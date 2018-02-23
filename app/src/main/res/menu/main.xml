@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_cart"
+        android:title="Cart"
+        android:icon="@drawable/ic_action_cart_white"
+        app:actionLayout="@layout/action_item"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/empty"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_action_menu"
+        tools:ignore="MenuTitle"
+        android:title="Menu">
+
+        <menu>
+            <item android:id="@+id/action_search"
+                android:icon="@drawable/ic_action_search"
+                app:showAsAction="ifRoom"
+                android:title="Search" />
+
+            <item android:id="@+id/action_login"
+                android:icon="@drawable/ic_action_usesilogin"
+                app:showAsAction="ifRoom"
+                android:title="Login" />
+
+            <item android:id="@+id/action_location"
+                android:icon="@drawable/ic_action_location"
+                app:showAsAction="ifRoom"
+                android:title="Branch" />
+        </menu>
+
+    </item>
+
+</menu>

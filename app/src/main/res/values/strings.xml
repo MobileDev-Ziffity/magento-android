@@ -1,16 +1,10 @@
 <resources>
-    <string name="app_name">US Electrical Services, Inc.</string>
+    <string name="app_name">USESI</string>
 
-    <string name="fa_bars">&#xf0c9;</string>
-    <string name="fa_search">&#xf002;</string>
-    <string name="fa_building">&#xf1ad;</string>
-    <string name="fa_shopping_cart">&#xf07a;</string>
-    <string name="todo">TODO</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-
-
+    <string name="action_search">Search</string>
+    <string name="action_cart">Cart</string>
+    <string name="action_login">Login</string>
 </resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_branch"
+            android:icon="@drawable/ic_action_locationmenu"
+            android:title="BRANCH" />
+        <group>
+            <item
+                android:id="@+id/nav_city"
+                android:title=" "/>
+        </group>
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@drawable/ic_action_shop"
+            android:title="SHOP BY CATEGORY" />
+        <item
+            android:id="@+id/nav_locations"
+            android:icon="@drawable/ic_action_locations"
+            android:title="OUR LOCATIONS" />
+        <item
+            android:id="@+id/nav_list"
+            android:icon="@drawable/ic_action_list"
+            android:title="YOUR LIST" />
+        <item
+            android:id="@+id/nav_catalog"
+            android:icon="@drawable/ic_action_catalog"
+            android:title="YOUR CATALOG" />
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_action_order"
+            android:title="QUICK ORDER" />
+        <item
+            android:id="@+id/nav_barcode"
+            android:icon="@drawable/ic_action_barcode"
+            android:title="SCAN A BARCODE" />
+        <item
+            android:id="@+id/nav_photo"
+            android:icon="@drawable/ic_action_photo"
+            android:title="SUBMIT A PHOTO" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_action_help"
+            android:title="HELP CENTER" />
+        <item
+            android:id="@+id/nav_service"
+            android:icon="@drawable/ic_action_customer"
+            android:title="CUSTOMER SERVICE" />
+            <group>
+                <item
+                    android:id="@+id/nav_customer"
+                    android:title="+1-781-297-5666"/>
+            </group>
+
+        <item
+            android:id="@+id/nav_branchnumber"
+            android:icon="@drawable/ic_action_branch"
+            android:title="BRANCH NUMBER" />
+        <group>
+            <item
+                android:id="@+id/nav_contact"
+                android:title=""/>
+        </group>
+
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_action_login"
+            android:title="LOGIN" />
+    </group>
+
+</menu>
