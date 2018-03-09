@@ -77,7 +77,6 @@ public class ApiTask extends AsyncTask<String, String, String> {
             else{
                 builder.addHeader("Cookie",cookie);
             }
-
             if (type == HTTP_TYPE.POST)
                 builder.post(requestBody);
 

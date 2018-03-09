@@ -62,6 +62,8 @@ public class SubmitPhoto extends Activity {
                 emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"selvakumar.porccha@gmail.com"});
                 emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Test Subject");
                 emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "From My App");
+                Log.d("tag", "onClick: photo uri == " +photoUri);
+
                 emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(photoUri));
                 startActivity(Intent.createChooser(emailIntent, "Send mail..."));
             }
@@ -98,12 +100,12 @@ public class SubmitPhoto extends Activity {
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String image = cursor.getString(columnIndex);
+            photoUri = image;
             cursor.close();
 
             imgProfile.setScaleType(ImageView.ScaleType.FIT_XY);
             imgProfile.setImageBitmap(BitmapFactory.decodeFile(image));
         }
-
     }
 
     public void uploadPhotoFromGalllery() {
@@ -117,7 +119,7 @@ public class SubmitPhoto extends Activity {
     PermissionListener permissionlistener = new PermissionListener() {
         @Override
         public void onPermissionGranted() {
-                
+
         }
 
         @Override

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="?attr/actionButtonStyle"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutFrame"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
@@ -25,8 +25,8 @@
         android:background="@layout/badge_background"
         android:gravity="center"
         android:padding="0dp"
-        android:textColor="@android:color/white"
         android:text=""
-        android:textSize="13sp"/>
+        android:textColor="@android:color/white"
+        android:textSize="13sp" />
 
 </FrameLayout>

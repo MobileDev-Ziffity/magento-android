@@ -1,5 +1,6 @@
 package com.usesi.mobile;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -16,11 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -28,48 +27,31 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-
-
-import cz.msebera.android.httpclient.client.HttpClient;
-import cz.msebera.android.httpclient.client.protocol.ClientContext;
-import cz.msebera.android.httpclient.client.protocol.RequestAddCookies;
-import cz.msebera.android.httpclient.cookie.Cookie;
-import cz.msebera.android.httpclient.impl.client.BasicCookieStore;
-import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
-import cz.msebera.android.httpclient.protocol.BasicHttpContext;
-import cz.msebera.android.httpclient.protocol.HttpContext;
-import okhttp3.MediaType;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 
 import static com.usesi.mobile.ApiTask.HTTP_TYPE.GET;
-import static com.usesi.mobile.ApiTask.HTTP_TYPE.POST;
 
 public class MainActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener {
-        private static final String TAG = "webviewLog";
-        private  WebView webLoad;
-        private String search_Text = "";
-        private ProgressDialog progress;
-        private boolean loggedIn;
-        private static String getUrl;
-        private TextView userName;
+    private static final String TAG = "webviewLog";
+    private WebView webLoad;
+    private String search_Text = "";
+    private ProgressDialog progress;
+    private boolean loggedIn;
+    private static String getUrl;
+    private TextView userName;
 
+    @SuppressLint("JavascriptInterface")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CookieManager.getInstance().setCookie("https://www.usesi.com/?mobileapp=1", "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
+        CookieManager.getInstance().setCookie(Constants.BASE_URL + "?mobileapp=1", "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
 
         webLoad = (WebView) findViewById(R.id.webLoad);
         CookieManager.getInstance().setAcceptThirdPartyCookies(webLoad, true);
@@ -81,6 +63,8 @@ public class MainActivity extends AppCompatActivity
         webSettings.setAllowContentAccess(true);
         webSettings.setGeolocationEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
+       webLoad.addJavascriptInterface(new javascriptInterface(), "javascriptInterface");
+
         webLoad.setWebViewClient(new WebViewClient() {
 
             @Override
@@ -103,6 +87,7 @@ public class MainActivity extends AppCompatActivity
                                 Log.d("tag", "jsonResponse: === " + result);
 
                                 loggedIn = jsonObject.getBoolean("loggedIn");
+                                Log.d("tag", "Logged IN: === " + loggedIn);
 
                                 JSONObject branch_number = jsonObject.getJSONObject("branch");
                                 String phone_number = branch_number.getString("phone");
@@ -118,6 +103,7 @@ public class MainActivity extends AppCompatActivity
 
                                 JSONObject cart = jsonObject.getJSONObject("cart");
                                 String count = cart.getString("count");
+                                Log.d("tag", "Count: === " + count);
 
                                 NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
                                 Menu menu = navigationView.getMenu();
@@ -129,7 +115,7 @@ public class MainActivity extends AppCompatActivity
                                 nav_branch.setTitle("BRANCH :" + addressLine1);
 
                                 MenuItem nav_city = menu.findItem(R.id.nav_city);
-                                nav_city.setTitle(city_name+ ", " + state_name);
+                                nav_city.setTitle(city_name + ", " + state_name);
 
                                 Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
                                 Menu menuBar = toolbar.getMenu();
@@ -140,29 +126,42 @@ public class MainActivity extends AppCompatActivity
 
                                 MenuItem nav_account = menuBar.findItem(R.id.action_login);
 
-                                if (count == null || count.equals(null) || count == "null" || count.equals("null"))  {
+
+                                if (!("null".equals(count))) {
+                                    Log.d("tag", "First IF: === " + result);
+                                    int value = Integer.parseInt(count);
+                                    if (!(value >= 1))
+                                    {
+                                        Log.d("tag", "IF condition True: === " + result);
+                                        extCartItemCount.setVisibility(View.GONE);
+                                    }
+                                    else
+                                    {
+                                        Log.d("tag", "Else Condition: === " + result);
+                                        extCartItemCount.setText(count);
+                                    }
+                                }
+                                else {
+                                    Log.d("tag", "Else Last : === " + result);
                                     extCartItemCount.setVisibility(View.GONE);
                                 }
-                                else{
-                                    extCartItemCount.setText(count);
-                                }
 
 
 
-                                if (loggedIn){
+                                if (loggedIn == true) {
                                     String profileName = jsonObject.getString("name");
-                                    View header=navigationView.getHeaderView(0);
-                                    userName = (TextView)header.findViewById(R.id.textView);
+                                    Log.d("tag", "Logged IN: === " + profileName);
+                                    View header = navigationView.getHeaderView(0);
+                                    userName = (TextView) header.findViewById(R.id.textView);
                                     userName.setText(profileName.toUpperCase());
 
                                     MenuItem nav_login = menu.findItem(R.id.nav_login);
                                     nav_login.setTitle("LOGOUT");
 
                                     nav_account.setTitle("My Account");
-                                }
-                                else{
-                                    View header=navigationView.getHeaderView(0);
-                                    userName = (TextView)header.findViewById(R.id.textView);
+                                } else {
+                                    View header = navigationView.getHeaderView(0);
+                                    userName = (TextView) header.findViewById(R.id.textView);
                                     userName.setText("GUEST USER");
 
                                     MenuItem nav_login = menu.findItem(R.id.nav_login);
@@ -170,16 +169,14 @@ public class MainActivity extends AppCompatActivity
                                 }
 
 
-
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
                     });
-                    apiTask.setParams(null, "https://www.usesi.com/customer/index/status?mobileapp=1");
+                    apiTask.setParams(null, "https://alpha.usesi.com/customer/index/status?mobileapp=1");
 
-                }else
+                } else
                     Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
             }
 
@@ -188,26 +185,32 @@ public class MainActivity extends AppCompatActivity
                 super.onPageFinished(webLoad, url);
 
 
+
+
             }
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 //Toast.makeText(getApplicationContext(), "Oh no! " + description, Toast.LENGTH_SHORT).show();
             }
+
+
         });
 
 
-        webLoad.loadUrl("https://www.usesi.com/?mobileapp=1");
+        webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
         View logoView = toolbar.findViewById(R.id.logo);
         logoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webLoad.loadUrl("https://www.usesi.com/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
 
             }
         });
+
+
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -221,25 +224,37 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
-                webLoad.loadUrl("https://www.usesi.com/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
+
         navigationView.setNavigationItemSelectedListener(this);
 
 
     }
+    public class javascriptInterface(){
+        public void ajaxBegin()
 
-    public String getCookie(String siteName,String CookieName){
+        {
+            Toast.makeText(getApplicationContext(), "AJAX Start",  Toast.LENGTH_SHORT).show();
+        }
+       public void ajaxFinish()
+       {
+            Toast.makeText(getApplicationContext(), "AJAX Finish", Toast.LENGTH_SHORT).show();
+       }
+}
+
+    public String getCookie(String siteName, String CookieName) {
         String CookieValue = null;
 
         CookieManager cookieManager = CookieManager.getInstance();
         String cookies = cookieManager.getCookie(siteName);
-        String[] temp=cookies.split(";");
-        for (String ar1 : temp ){
-            if(ar1.contains(CookieName)){
-                String[] temp1=ar1.split("=");
+        String[] temp = cookies.split(";");
+        for (String ar1 : temp) {
+            if (ar1.contains(CookieName)) {
+                String[] temp1 = ar1.split("=");
                 CookieValue = temp1[1];
                 break;
             }
@@ -247,17 +262,17 @@ public class MainActivity extends AppCompatActivity
         return CookieValue;
     }
 
-    private static View getToolbarLogoView(Toolbar toolbar){
+    private static View getToolbarLogoView(Toolbar toolbar) {
         boolean hadContentDescription = android.text.TextUtils.isEmpty(toolbar.getLogoDescription());
         String contentDescription = String.valueOf(!hadContentDescription ? toolbar.getLogoDescription() : "logoContentDescription");
         toolbar.setLogoDescription(contentDescription);
         ArrayList<View> potentialViews = new ArrayList<View>();
-        toolbar.findViewsWithText(potentialViews,contentDescription, View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+        toolbar.findViewsWithText(potentialViews, contentDescription, View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
         View logoIcon = null;
-        if(potentialViews.size() > 0){
+        if (potentialViews.size() > 0) {
             logoIcon = potentialViews.get(0);
         }
-        if(hadContentDescription)
+        if (hadContentDescription)
             toolbar.setLogoDescription(null);
         return logoIcon;
     }
@@ -301,7 +316,7 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     search_Text = input.getText().toString();
-                    webLoad.loadUrl("https://www.usesi.com/hawksearch/keyword/index/?keyword="+search_Text+"&search=1/?mobileapp=1");
+                    webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + search_Text + "&search=1/?mobileapp=1");
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -314,18 +329,33 @@ public class MainActivity extends AppCompatActivity
             builder.show();
         }
         if (id == R.id.action_cart) {
-            webLoad.loadUrl("https://www.usesi.com/checkout/cart/?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
         }
         if (id == R.id.action_location) {
+            //webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
             webLoad.evaluateJavascript("jQuery(document).ready(function(){jQuery('.header-branch-popup .btn-link').click();})", null);
         }
         if (id == R.id.action_login) {
-            webLoad.loadUrl("https://www.usesi.com/customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+//        FrameLayout view = (FrameLayout) menu.findItem(R.id.layoutFrame).getActionView();
+ //       TextView txtCart = (TextView) view.findViewById(R.id.cart_badge);
+
+//        txtCart.setOnClickListener(new View.OnClickListener() {
+  //          @Override
+    //        public void onClick(View v) {
+
+      //      }
+       // });
+
+        return super.onPrepareOptionsMenu(menu);
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -334,44 +364,41 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-          if (id == R.id.nav_branch) {
+        if (id == R.id.nav_branch) {
             // Handle the camera action
         } else if (id == R.id.nav_category) {
-                startActivity(new Intent(this,ActivityList.class));
+            startActivity(new Intent(this, ActivityList.class));
         } else if (id == R.id.nav_locations) {
-           webLoad.loadUrl("https://careers.usesi.com/companies");
+            webLoad.loadUrl(Constants.LOCATION_URL);
         } else if (id == R.id.nav_list) {
-              Log.v("TAGVALUE", Boolean.toString(loggedIn));
-              if (loggedIn)
-                 webLoad.loadUrl("https://www.usesi.com/shoppinglist?mobileapp=1");
-              else
-                  webLoad.loadUrl("https://www.usesi.com/customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
+            Log.v("TAGVALUE", Boolean.toString(loggedIn));
+            if (loggedIn)
+                webLoad.loadUrl(Constants.BASE_URL + "shoppinglist?mobileapp=1");
+            else
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
         } else if (id == R.id.nav_catalog) {
-            webLoad.loadUrl("https://www.usesi.com/yourcatalog?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "yourcatalog?mobileapp=1");
         } else if (id == R.id.nav_barcode) {
-              startActivity(new Intent(this,Barcode.class));
+            startActivity(new Intent(this, Barcode.class));
         } else if (id == R.id.nav_photo) {
-              startActivity(new Intent(this,SubmitPhoto.class));
-        }else if (id == R.id.nav_order) {
-            webLoad.loadUrl("https://www.usesi.com/quickorder?mobileapp=1");
-        } else if (id == R.id.nav_help){
-            webLoad.loadUrl("https://www.usesi.com/help-center?mobileapp=1");
-        } else if (id == R.id.nav_login){
-              if (loggedIn){
-                  webLoad.loadUrl("https://www.usesi.com/customer/account/logout?mobileapp=1");
-              }
-              else {
-                  webLoad.loadUrl("https://www.usesi.com/customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
-              }
+            startActivity(new Intent(this, SubmitPhoto.class));
+        } else if (id == R.id.nav_order) {
+            webLoad.loadUrl(Constants.BASE_URL + "quickorder?mobileapp=1");
+        } else if (id == R.id.nav_help) {
+            webLoad.loadUrl(Constants.BASE_URL + "help-center?mobileapp=1");
+        } else if (id == R.id.nav_login) {
+            if (loggedIn) {
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/logout?mobileapp=1");
+            } else {
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
+            }
         }
 
-        if (id == R.id.nav_service || id == R.id.nav_branchnumber || id == R.id.nav_branch || id == R.id.nav_city || id == R.id.nav_contact || id == R.id.nav_customer)
-        {
+        if (id == R.id.nav_service || id == R.id.nav_branchnumber || id == R.id.nav_branch || id == R.id.nav_city || id == R.id.nav_contact || id == R.id.nav_customer) {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.openDrawer(GravityCompat.START);
             return true;
-        }
-        else {
+        } else {
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);

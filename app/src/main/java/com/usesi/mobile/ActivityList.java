@@ -1,9 +1,8 @@
 package com.usesi.mobile;
 
-import android.os.PersistableBundle;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -75,9 +74,6 @@ public class ActivityList extends AppCompatActivity {
             }
         });
 
-
-
-
         ApiTask apiTask = new ApiTask(this);
         apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
         apiTask.setParams(null,"http://manage.hawksearch.com/sites/uselectric/?hawkoutput=json&hawkpath=category");
@@ -100,17 +96,12 @@ public class ActivityList extends AppCompatActivity {
 
                     }
                 }
-
                 adapterCategory.setData(listSingleData);
                 adapterCategory.setAllValues(listValues);
                 recyclerView.setAdapter(adapterCategory);
                 adapterCategory.notifyDataSetChanged();
             }
         });
-
-
-
-
     }
 
     @Override
