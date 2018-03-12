@@ -105,13 +105,13 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
 
                         } else if (j == 4) {
                             Log.d("tag", "J VALUE ID+S 4 ");
-                            String thirdLabel = listThirdData.get(holder.getAdapterPosition()).getThirdLabel();
+                            String thirdLabel = listThirdData.get(holder.getAdapterPosition()).getThirdLabel().trim();
 
                             thirdLabel= thirdLabel.replaceAll(" ", "");
                             Log.d("tag", "thirdLabel  === " +thirdLabel);
-                            List<String> labelSeparotor = Arrays.asList(thirdLabel.split("|"));
+                            List<String> labelSeparotor = Arrays.asList(thirdLabel.split("\\|"));
                             Log.d("tag", "PATH== " +path  + "label value 00000 == " +
-                                labelSeparotor.get(0));
+                                labelSeparotor.get(1) + "size == " +labelSeparotor.size());
 
                             if (path.equalsIgnoreCase(labelSeparotor.get(0))) {
                                // for (int h = 0; h < labelSeparotor.size(); h++) {
