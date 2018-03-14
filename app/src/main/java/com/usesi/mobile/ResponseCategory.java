@@ -10,7 +10,7 @@ public class ResponseCategory {
     @SerializedName("Values")
     private List<Values> values;
 
-    public List<Values> getValues() {
+    List<Values> getValues() {
         return values;
     }
 

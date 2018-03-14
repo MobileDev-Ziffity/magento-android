@@ -10,6 +10,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.usesi.mobile.ApiTask.HTTP_TYPE.*;
+
 public class ApiTask extends AsyncTask<String, String, String> {
 
     private ProgressDialog progressDialog;
@@ -22,9 +24,9 @@ public class ApiTask extends AsyncTask<String, String, String> {
 
     private String cookie;
 
-    public HTTP_TYPE type = HTTP_TYPE.POST;
+    private HTTP_TYPE type;
 
-    public void setCookie(String cookiesValue) {
+    void setCookie(String cookiesValue) {
         this.cookie = cookiesValue;
     }
 
@@ -33,27 +35,28 @@ public class ApiTask extends AsyncTask<String, String, String> {
         GET
     }
 
-    public ResponseListener listener;
+    private ResponseListener listener;
 
     public interface ResponseListener {
         void jsonResponse(String result);
     }
 
-    public void responseCallBack(ResponseListener listener) {
+    void responseCallBack(ResponseListener listener) {
         this.listener = listener;
     }
 
-    public ApiTask(Context context) {
+    ApiTask(Context context) {
         this.context = context;
+        type = POST;
     }
 
-    public void setParams(RequestBody requestBody, String url) {
+    void setParams(RequestBody requestBody, String url) {
         this.requestBody = requestBody;
         this.url = url;
         this.execute();
     }
 
-    public void setHttpType(HTTP_TYPE type) {
+    void setHttpType(HTTP_TYPE type) {
         this.type = type;
     }
 
@@ -77,7 +80,7 @@ public class ApiTask extends AsyncTask<String, String, String> {
             else{
                 builder.addHeader("Cookie",cookie);
             }
-            if (type == HTTP_TYPE.POST)
+            if (type == POST)
                 builder.post(requestBody);
 
             Response response = okHttpClient.newCall(builder.build()).execute();

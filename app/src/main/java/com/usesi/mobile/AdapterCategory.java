@@ -27,7 +27,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
 
     private int j;
 
-    public void setListTitle() {
+    void setListTitle() {
         j--;
         notifyDataSetChanged();
     }
@@ -36,13 +36,13 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
         void showTitle(String title, int value);
     }
 
-    public OnTitleSelected titleSelected;
+    private OnTitleSelected titleSelected;
 
-    public void setListener(OnTitleSelected onTitleSelected) {
+    void setListener(OnTitleSelected onTitleSelected) {
         this.titleSelected = onTitleSelected;
     }
 
-    public AdapterCategory(Context context) {
+    AdapterCategory(Context context) {
         this.context = context;
     }
 
@@ -143,22 +143,19 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
         this.listCategory = listValues;
     }
 
-    public void setAllValues(List<Values> listValues) {
+    void setAllValues(List<Values> listValues) {
         this.listValues = listValues;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txtCategory;
-
         private ImageView imgNav;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
-            txtCategory = (TextView) itemView.findViewById(R.id.txtCategory);
-            imgNav = (ImageView) itemView.findViewById(R.id.imgNav);
+            txtCategory = itemView.findViewById(R.id.txtCategory);
+            imgNav = itemView.findViewById(R.id.imgNav);
         }
     }
-
-
 }

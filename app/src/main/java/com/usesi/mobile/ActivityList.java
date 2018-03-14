@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.usesi.mobile.R.string.SHOP_BY_CATEGORY;
+
 public class ActivityList extends AppCompatActivity {
 
     private AdapterCategory adapterCategory;
@@ -25,12 +27,9 @@ public class ActivityList extends AppCompatActivity {
 
     private List<String> listSingleData;
 
-    private int k=0;
+//    private int k=0;
 
     private TextView txtTitle;
-
-    private Toolbar toolbar;
-
 
 
     @Override
@@ -43,7 +42,7 @@ public class ActivityList extends AppCompatActivity {
     public void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         Constants.apiCall = Boolean.TRUE;
-         toolbar = (Toolbar) findViewById(R.id.toolBar);
+        Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
@@ -54,8 +53,8 @@ public class ActivityList extends AppCompatActivity {
             }
         });
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listView);
-        txtTitle  = (TextView) findViewById(R.id.txtTitle);
+        final RecyclerView recyclerView = findViewById(R.id.listView);
+        txtTitle = findViewById(R.id.txtTitle);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapterCategory = new AdapterCategory(this);
         adapterCategory.setListener(new AdapterCategory.OnTitleSelected() {
@@ -93,7 +92,6 @@ public class ActivityList extends AppCompatActivity {
                     listSingleData.add(path);
                     else {
                         List<String> separatorData = Arrays.asList(path.split("/"));
-
                     }
                 }
                 adapterCategory.setData(listSingleData);
@@ -111,7 +109,7 @@ public class ActivityList extends AppCompatActivity {
             @Override
             public void showTitle(String title,int j) {
                 if (j==1) {
-                    txtTitle.setText("Shop by Category");
+                    txtTitle.setText(SHOP_BY_CATEGORY);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 }else txtTitle.setText(title);
             }

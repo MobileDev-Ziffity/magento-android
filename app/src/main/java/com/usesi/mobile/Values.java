@@ -37,7 +37,7 @@ public class Values {
         this.path = path;
     }
 
-    public String getLabel() {
+    String getLabel() {
         return label;
     }
 

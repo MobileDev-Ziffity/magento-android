@@ -3,16 +3,14 @@ package com.usesi.mobile;
 
 public class ThirdData {
 
-
     private String thirdValue, thirdLabel;
 
-
-    public ThirdData(String thirdValue, String thirdLabel) {
+    ThirdData(String thirdValue, String thirdLabel) {
         this.thirdValue = thirdValue;
         this.thirdLabel = thirdLabel;
     }
 
-    public String getThirdValue() {
+    String getThirdValue() {
         return thirdValue;
     }
 
@@ -20,7 +18,7 @@ public class ThirdData {
         this.thirdValue = thirdValue;
     }
 
-    public String getThirdLabel() {
+    String getThirdLabel() {
         return thirdLabel;
     }
 
