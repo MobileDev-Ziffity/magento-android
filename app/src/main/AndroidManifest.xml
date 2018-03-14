@@ -29,6 +29,17 @@
         <activity android:name=".ActivityList"/>
         <activity android:name=".Barcode"/>
         <activity android:name=".SubmitPhoto"/>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.usesi.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+
+
     </application>
 
 </manifest>
