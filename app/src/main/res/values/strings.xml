@@ -7,4 +7,7 @@
     <string name="action_search">Search</string>
     <string name="action_cart">Cart</string>
     <string name="action_login">Login</string>
+    <string name="guestUser">GUEST USER</string>
+    <string name="logOut">LOGOUT</string>
+    <string name="SHOP_BY_CATEGORY">Shop by Category</string>
 </resources>
