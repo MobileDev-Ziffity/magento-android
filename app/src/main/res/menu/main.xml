@@ -16,22 +16,24 @@
 
     <item
         android:id="@+id/empty"
-        android:orderInCategory="101"
-        app:showAsAction="always"
         android:icon="@drawable/ic_action_menu"
-        tools:ignore="MenuTitle"
-        android:title="Menu">
+        android:orderInCategory="101"
+        android:title="Menu"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle">
 
         <menu>
-            <item android:id="@+id/action_login"
+            <item
+                android:id="@+id/action_login"
                 android:icon="@drawable/ic_action_usesilogin"
-                app:showAsAction="ifRoom"
-                android:title="Login" />
+                android:title="Login"
+                app:showAsAction="ifRoom" />
 
-            <item android:id="@+id/action_location"
+            <item
+                android:id="@+id/action_location"
                 android:icon="@drawable/ic_action_location"
-                app:showAsAction="ifRoom"
-                android:title="Branch" />
+                android:title="Branch"
+                app:showAsAction="ifRoom" />
         </menu>
 
     </item>
