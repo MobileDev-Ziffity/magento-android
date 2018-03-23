@@ -276,17 +276,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected   void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        Log.e("CALLED", "OnActivity Result");
-        if (requestCode == 5) {
+        if (requestCode == 1) {
             if(resultCode == Barcode.RESULT_OK){
                 String result = data.getStringExtra("result");
                 webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + result + "&search=1/?mobileapp=1");
-                Log.d("tag", "labelSeparator  == " + result);
-            }
-            if (resultCode == Barcode.RESULT_CANCELED) {
-                //Write your code if there's no result
             }
         }
     }
@@ -436,7 +431,8 @@ public class MainActivity extends AppCompatActivity
             progressDialog.show();
             webLoad.loadUrl(Constants.BASE_URL + "yourcatalog?mobileapp=1");
         } else if (id == R.id.nav_barcode) {
-            startActivity(new Intent(this, Barcode.class));
+            Intent i = new Intent(this, Barcode.class);
+            startActivityForResult(i, 1);
         } else if (id == R.id.nav_photo) {
             startActivity(new Intent(this, SubmitPhoto.class));
         } else if (id == R.id.nav_order) {

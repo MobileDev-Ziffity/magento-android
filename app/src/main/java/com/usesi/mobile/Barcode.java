@@ -1,5 +1,6 @@
 package com.usesi.mobile;
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,8 +19,8 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
     private ZXingScannerView mScannerView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle state) {
+        super.onCreate(state);
         showPermissionDialog();
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
@@ -41,7 +42,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
 
     @Override
     public void handleResult(Result result) {
-        Log.d("tag", "handleResult: " + result.getText());
+        Log.d("tag", "ƒ√: " + result.getText());
         Log.d("tag", "bar code ==  " + result.getBarcodeFormat().toString());
         mScannerView.resumeCameraPreview(this);
 
@@ -57,7 +58,6 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("result",result);
                 setResult(MainActivity.RESULT_OK,returnIntent);
-                startActivityForResult(returnIntent, 5);
                 finish();
 
             }
