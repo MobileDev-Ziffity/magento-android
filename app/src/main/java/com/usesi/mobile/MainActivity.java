@@ -26,6 +26,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.ValueCallback;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -46,7 +47,6 @@ public class MainActivity extends AppCompatActivity
 
         private WebView webLoad;
         private String search_Text = "";
-//        private ProgressDialog progress;
         private boolean loggedIn;
         private TextView userName;
         private  String count;
@@ -90,11 +90,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPageFinished(final WebView view, String url) {
                 super.onPageFinished(webLoad, url);
-                callLoginWebService();
                 if (url.equals(Constants.BASE_URL + "customer/account/logoutSuccess/")) {
                     callLoginWebService();
                 }
                 else if (url.equals(Constants.BASE_URL + "customer/account/")) {
+                    callLoginWebService();
+                }
+                else if (url.equals(Constants.BASE_URL + "checkout/cart/delete/"))
+                {
                     callLoginWebService();
                 }
             }
@@ -102,41 +105,34 @@ public class MainActivity extends AppCompatActivity
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 
             }
+
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, String url)
+            {
+                if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=cart%2Cmessages&update_section_id=true"))
+                {
+                    webLoad.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callLoginWebService();
+                        }
+                    });
+                }
+                else if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=shoppinglist&update_section_id=true"))
+                {
+                    webLoad.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callLoginWebService();
+                        }
+                    });
+                }
+                return super.shouldInterceptRequest(view, url);
+            }
         });
 
         webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
         callLoginWebService();
-        webLoad.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: {
-
-                        webLoad.evaluateJavascript("document.getElementById('product-addtocart-button').textContent", new ValueCallback<String>() {
-                            @Override
-                            public void onReceiveValue(String s) {
-                                Spanned decodedString = Html.fromHtml(s);
-                                Log.d("tag", "decodedString IN: === " + decodedString);
-
-                                if (decodedString.equals("\n Deliver\n ")){
-                                    Log.i("TAG", "onScroll: ");
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                             callLoginWebService();
-
-                                        }
-                                    },6000);
-                                }
-                            }
-                        });
-                    }
-                }
-                    return false;
-                }
-
-        });
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         View logoView = toolbar.findViewById(R.id.logo);
@@ -150,17 +146,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        View backHistoryViewView = toolbar.findViewById(R.id.backHistory);
-        backHistoryViewView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (webLoad.canGoBack()){
-                    progressDialog = new ProgressDialog(MainActivity.this);
-                    progressDialog.show();
-                    webLoad.goBack();
-                }
-            }
-        });
 
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -212,10 +197,8 @@ public class MainActivity extends AppCompatActivity
                         JSONObject address = jsonObject.getJSONObject("branch");
                         String addressLine1 = address.getString("addressLine1");
 
-//                        JSONObject city = jsonObject.getJSONObject("branch");
                         String city_name = address.getString("city");
 
-//                        JSONObject state = jsonObject.getJSONObject("branch");
                         String state_name = address.getString("state");
 
                         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -292,6 +275,21 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        Log.e("CALLED", "OnActivity Result");
+        if (requestCode == 5) {
+            if(resultCode == Barcode.RESULT_OK){
+                String result = data.getStringExtra("result");
+                webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + result + "&search=1/?mobileapp=1");
+                Log.d("tag", "labelSeparator  == " + result);
+            }
+            if (resultCode == Barcode.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
 
     public String getCookie(String siteName, String CookieName) {
         String CookieValue = null;
@@ -330,8 +328,16 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        }
+        else {
+            if (webLoad.canGoBack()){
+                progressDialog = new ProgressDialog(MainActivity.this);
+                progressDialog.show();
+                webLoad.goBack();
+            }
+            else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -368,7 +374,6 @@ public class MainActivity extends AppCompatActivity
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             input.setHint("Search by Keyword or Part number");
             builder.setView(input);
-
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

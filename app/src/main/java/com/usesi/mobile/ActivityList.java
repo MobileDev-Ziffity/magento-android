@@ -27,8 +27,6 @@ public class ActivityList extends AppCompatActivity {
 
     private List<String> listSingleData;
 
-//    private int k=0;
-
     private TextView txtTitle;
 
 
@@ -61,7 +59,7 @@ public class ActivityList extends AppCompatActivity {
             @Override
             public void showTitle(String title,int j) {
                 Log.d("tag", "showTitle: "+title);
-                txtTitle.setText(title);
+                //txtTitle.setText(title);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
         });
@@ -111,7 +109,8 @@ public class ActivityList extends AppCompatActivity {
                 if (j==1) {
                     txtTitle.setText(SHOP_BY_CATEGORY);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                }else txtTitle.setText(title);
+                }
+                else txtTitle.setText(title);
             }
         });
     }

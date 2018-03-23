@@ -65,7 +65,7 @@ public class ApiTask extends AsyncTask<String, String, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog = new ProgressDialog(context);
-        progressDialog.show();
+        //progressDialog.show();
     }
 
     @Override
@@ -86,7 +86,6 @@ public class ApiTask extends AsyncTask<String, String, String> {
             Response response = okHttpClient.newCall(builder.build()).execute();
             return response.body().string();
         } catch (Exception e) {
-            Log.d("tag", "ERROR ==  " + e.getMessage());
             e.printStackTrace();
         }
         return null;
@@ -100,6 +99,5 @@ public class ApiTask extends AsyncTask<String, String, String> {
             progressDialog.dismiss();
         if (listener != null)
             listener.jsonResponse(response);
-        Log.d("tag", "onPostExecute: RESPONSE == " + response);
     }
 }

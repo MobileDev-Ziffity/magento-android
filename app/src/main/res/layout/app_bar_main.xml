@@ -19,12 +19,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <ImageView
-                android:id="@+id/backHistory"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_action_back_white" />
-
-            <ImageView
                 android:id="@+id/logo"
                 android:layout_width="110dp"
                 android:layout_height="30dp"
