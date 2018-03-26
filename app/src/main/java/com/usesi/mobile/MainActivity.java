@@ -1,6 +1,7 @@
 package com.usesi.mobile;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -171,7 +172,6 @@ public class MainActivity extends AppCompatActivity
 
     private void callLoginWebService()
     {
-        Log.d("TAG", "onFling: ");
         String getUrl = webLoad.getUrl();
         Constants.apiCall = Boolean.FALSE;
         String cookies = CookieManager.getInstance().getCookie(getUrl);
@@ -186,10 +186,8 @@ public class MainActivity extends AppCompatActivity
                 public void jsonResponse(String result) {
                     try {
                         JSONObject jsonObject = new JSONObject(result);
-                        Log.d("tag", "jsonResponse: === " + result);
 
                         loggedIn = jsonObject.getBoolean("loggedIn");
-                        Log.d("tag", "Logged IN: === " + loggedIn);
 
                         JSONObject branch_number = jsonObject.getJSONObject("branch");
                         String phone_number = branch_number.getString("phone");
@@ -229,13 +227,11 @@ public class MainActivity extends AppCompatActivity
                             int value = Integer.parseInt(count);
                             if (!(value >= 1))
                             {
-                                Log.d("tag", "IF condition True: === " + result);
                                 extCartItemCount.setVisibility(View.GONE);
                                 extCartItemCount.setText(count);
                             }
                             else
                             {
-                                Log.d("tag", "Else Condition: === " + result);
                                 extCartItemCount.setVisibility(View.VISIBLE);
                                 extCartItemCount.setText(count);
                             }
@@ -247,20 +243,16 @@ public class MainActivity extends AppCompatActivity
 
                         if (loggedIn) {
                             String profileName = jsonObject.getString("name");
-                            Log.d("tag", "Logged IN: === " + profileName);
                             View header = navigationView.getHeaderView(0);
                             userName = header.findViewById(R.id.textView);
                             userName.setText(profileName.toUpperCase());
-
                             MenuItem nav_login = menu.findItem(R.id.nav_login);
                             nav_login.setTitle(logOut);
-
                             nav_account.setTitle("My Account");
                         } else {
                             View header = navigationView.getHeaderView(0);
                             userName = header.findViewById(R.id.textView);
                             userName.setText(guestUser);
-
                             MenuItem nav_login = menu.findItem(R.id.nav_login);
                             nav_login.setTitle("LOGIN");
                         }
@@ -269,7 +261,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
             });
-            apiTask.setParams(null, "https://alpha.usesi.com/customer/index/status?mobileapp=1");
+            apiTask.setParams(null, Constants.BASE_URL + "customer/index/status?mobileapp=1");
 
         } else
             Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -282,6 +274,13 @@ public class MainActivity extends AppCompatActivity
             if(resultCode == Barcode.RESULT_OK){
                 String result = data.getStringExtra("result");
                 webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + result + "&search=1/?mobileapp=1");
+            }
+        }
+        else if (requestCode == 2) {
+            if(resultCode == ActivityList.RESULT_OK){
+                String result = data.getStringExtra("result");
+                String loadURL = Constants.BASE_URL + result.trim();
+                webLoad.loadUrl(loadURL);
             }
         }
     }
@@ -414,7 +413,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_branch) {
             // Handle the camera action
         } else if (id == R.id.nav_category) {
-            startActivity(new Intent(this, ActivityList.class));
+            Intent i = new Intent(this, ActivityList.class);
+            startActivityForResult(i, 2);
+            //startActivity(new Intent(this, ActivityList.class));
         } else if (id == R.id.nav_locations) {
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.show();

@@ -1,6 +1,5 @@
 package com.usesi.mobile;
 import android.Manifest;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,12 +41,9 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
 
     @Override
     public void handleResult(Result result) {
-        Log.d("tag", "ƒ√: " + result.getText());
-        Log.d("tag", "bar code ==  " + result.getBarcodeFormat().toString());
+
         mScannerView.resumeCameraPreview(this);
-
         final String barCodeData = result.getText().toString();
-
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setMessage(barCodeData);
         alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -59,7 +55,6 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                 returnIntent.putExtra("result",result);
                 setResult(MainActivity.RESULT_OK,returnIntent);
                 finish();
-
             }
         });
         alertDialog.create().show();

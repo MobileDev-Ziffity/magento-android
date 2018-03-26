@@ -1,6 +1,8 @@
 package com.usesi.mobile;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +19,7 @@ import java.util.List;
 
 public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyViewHolder> {
 
-    private Context context;
+    private Activity context;
 
     private List<String> listCategory, listDoubleData = new ArrayList<>(),
             labelData, separatorHyphen;
@@ -31,6 +33,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
     void setListTitle() {
         j--;
         notifyDataSetChanged();
+
     }
 
     public interface OnTitleSelected {
@@ -43,7 +46,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
         this.titleSelected = onTitleSelected;
     }
 
-    AdapterCategory(Context context) {
+    AdapterCategory(Activity context) {
         this.context = context;
     }
 
@@ -94,11 +97,17 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
                                 listThirdData.add(new ThirdData(separatorData.get(2), label));
                             }
                         } else if (j == 4) {
-                            String thirdLabel = listThirdData.get(holder.getAdapterPosition()).getThirdLabel().trim();
-                            thirdLabel= thirdLabel.replaceAll(" ", "");
+                            String thirdLabel = listThirdData.get(holder.getAdapterPosition()).getThirdLabel();
+
                             List<String> labelSeparotor = Arrays.asList(thirdLabel.split("\\|"));
-                            if (path.equalsIgnoreCase(labelSeparotor.get(0))) {
-                                    Log.d("tag", "labelSeparator  == " + labelSeparotor.get(1));
+                            String URL  = labelSeparotor.get(0);
+
+                            if (path.equals(URL.trim())){
+                                Intent returnIntent;
+                                returnIntent = new Intent(context, MainActivity.class);
+                                returnIntent.putExtra("result",labelSeparotor.get(1));
+                                context.setResult(MainActivity.RESULT_OK,returnIntent);
+                                context.finish();
                             }
                         }
                     }

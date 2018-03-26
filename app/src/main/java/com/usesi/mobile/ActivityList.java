@@ -58,7 +58,6 @@ public class ActivityList extends AppCompatActivity {
         adapterCategory.setListener(new AdapterCategory.OnTitleSelected() {
             @Override
             public void showTitle(String title,int j) {
-                Log.d("tag", "showTitle: "+title);
                 //txtTitle.setText(title);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
@@ -73,11 +72,10 @@ public class ActivityList extends AppCompatActivity {
 
         ApiTask apiTask = new ApiTask(this);
         apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
-        apiTask.setParams(null,"http://manage.hawksearch.com/sites/uselectric/?hawkoutput=json&hawkpath=category");
+        apiTask.setParams(null,Constants.CATEGORY_URL);
         apiTask.responseCallBack(new ApiTask.ResponseListener() {
             @Override
             public void jsonResponse(String result) {
-                Log.d("tag", "category search " +result);
                 Gson gson = new GsonBuilder().create();
                 ResponseCategory responseCategory =  gson.fromJson(result,ResponseCategory.class);
                 listValues = new ArrayList<>();
