@@ -27,13 +27,13 @@
                 android:id="@+id/action_login"
                 android:icon="@drawable/ic_action_usesilogin"
                 android:title="Login"
-                app:showAsAction="ifRoom" />
+                app:showAsAction="ifRoom"/>
 
             <item
                 android:id="@+id/action_location"
                 android:icon="@drawable/ic_action_location"
                 android:title="Branch"
-                app:showAsAction="ifRoom" />
+                app:showAsAction="ifRoom"/>
         </menu>
 
     </item>

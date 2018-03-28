@@ -430,7 +430,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_catalog) {
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.show();
-            webLoad.loadUrl(Constants.BASE_URL + "yourcatalog?mobileapp=1");
+            if (loggedIn)
+                webLoad.loadUrl(Constants.BASE_URL + "yourcatalog?mobileapp=1");
+            else
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
         } else if (id == R.id.nav_barcode) {
             Intent i = new Intent(this, Barcode.class);
             startActivityForResult(i, 1);

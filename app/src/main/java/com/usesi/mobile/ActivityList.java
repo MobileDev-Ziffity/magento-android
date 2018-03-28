@@ -108,6 +108,7 @@ public class ActivityList extends AppCompatActivity {
                     txtTitle.setText(SHOP_BY_CATEGORY);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 }
+
                 else txtTitle.setText(title);
             }
         });

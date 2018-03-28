@@ -4,71 +4,107 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+    <group android:id="@+id/grp12" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_branch"
-            android:icon="@drawable/ic_action_locationmenu"
+            android:icon="@drawable/ic_action_location"
+            android:drawable="@android:color/transparent"
             android:title="BRANCH" />
-        <group>
-            <item
-                android:id="@+id/nav_city"
-                android:title=" "/>
-        </group>
+
+        <item
+            android:id="@+id/nav_city"
+            android:paddingTop="16dp"
+            android:title=" "/>
+    </group>
+
+
+    <group android:id="@+id/grp11" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_category"
             android:icon="@drawable/ic_action_shop"
             android:title="SHOP BY CATEGORY" />
+    </group>
+
+    <group android:id="@+id/grp10" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_locations"
             android:icon="@drawable/ic_action_locations"
             android:title="OUR LOCATIONS" />
+    </group>
+
+    <group android:id="@+id/grp9" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_list"
             android:icon="@drawable/ic_action_list"
             android:title="YOUR LIST" />
+    </group>
+
+    <group android:id="@+id/grp8" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_catalog"
             android:icon="@drawable/ic_action_catalog"
             android:title="YOUR CATALOG" />
+    </group>
+
+    <group android:id="@+id/grp7" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_order"
             android:icon="@drawable/ic_action_order"
             android:title="QUICK ORDER" />
+    </group>
+
+    <group android:id="@+id/grp6" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_barcode"
             android:icon="@drawable/ic_action_barcode"
             android:title="SCAN A BARCODE" />
+    </group>
+
+    <group android:id="@+id/grp5" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_photo"
             android:icon="@drawable/ic_action_photo"
             android:title="SUBMIT A PHOTO" />
+    </group>
+
+    <group android:id="@+id/grp4" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_action_help"
             android:title="HELP CENTER" />
+    </group>
+
+    <group android:id="@+id/grp3" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_service"
             android:icon="@drawable/ic_action_customer"
             android:title="CUSTOMER SERVICE" />
-            <group>
-                <item
-                    android:id="@+id/nav_customer"
-                    android:title="+1-781-297-5666"/>
-            </group>
 
+        <item
+             android:id="@+id/nav_customer"
+             android:paddingTop="-16dp"
+             android:title="+1-781-297-5666"/>
+    </group>
+
+    <group android:id="@+id/grp2" android:checkableBehavior="single" >
         <item
             android:id="@+id/nav_branchnumber"
             android:icon="@drawable/ic_action_branch"
             android:title="BRANCH NUMBER" />
-        <group>
-            <item
-                android:id="@+id/nav_contact"
-                android:title=""/>
-        </group>
 
+        <item
+            android:id="@+id/nav_contact"
+            android:title=""/>
+    </group>
+
+    <group android:id="@+id/grp1" android:checkableBehavior="single" >
         <item
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_action_login"
             android:title="LOGIN" />
+    </group>
+
     </group>
 
 </menu>
