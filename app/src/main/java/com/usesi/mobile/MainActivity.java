@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity
         headerview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog = new ProgressDialog(MainActivity.this);
                 progressDialog.show();
                 webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -325,9 +326,16 @@ public class MainActivity extends AppCompatActivity
         }
         else {
             if (webLoad.canGoBack()){
-                progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.show();
-                webLoad.goBack();
+                String currentURL = webLoad.getUrl();
+                if (currentURL.equals(Constants.BASE_URL + "checkout/#payment"))
+                {
+                    webLoad.goBack();
+                }
+                else {
+                    progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.show();
+                    webLoad.goBack();
+                }
             }
             else {
                 super.onBackPressed();

@@ -40,6 +40,9 @@ public class SubmitPhoto extends Activity {
 
     private Uri mImageUri;
 
+    private Uri galleryUrl;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +54,14 @@ public class SubmitPhoto extends Activity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
         imgProfile = findViewById(R.id.image);
+
         findViewById(R.id.camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                photoUri = takePhotoFromCamera();
                 dispatchTakePictureIntent();
+                imgProfile.setBackgroundResource(0);
             }
         });
 
@@ -64,6 +69,7 @@ public class SubmitPhoto extends Activity {
             @Override
             public void onClick(View v) {
                 uploadPhotoFromGallery();
+                imgProfile.setBackgroundResource(0);
             }
         });
 
@@ -82,16 +88,6 @@ public class SubmitPhoto extends Activity {
                 if (body.toString().length() > 0 && hasImg == 1) {
                     composeEmail(new String[]{"customersupport@usesi.com"}, "Mobile App: Submit a Photo", body, mImageUri);
                 }
-
-//                Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-//                emailIntent.setType("application/image");
-//                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"selvakumar.porccha@gmail.com"});
-//                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Test Subject");
-//                emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "From My App");
-//                Log.d("tag", "onClick: photo uri == " +photoUri);
-//
-//                emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(photoUri));
-//                startActivity(Intent.createChooser(emailIntent, "Send mail..."));
             }
         });
 
@@ -136,7 +132,6 @@ public class SubmitPhoto extends Activity {
 
     public void grabImage(ImageView imageView) {
         this.getContentResolver().notifyChange(mImageUri, null);
-        Log.e("", mImageUri.toString());
         ContentResolver cr = this.getContentResolver();
         Bitmap bitmap;
         try {
@@ -144,7 +139,7 @@ public class SubmitPhoto extends Activity {
             imageView.setImageBitmap(bitmap);
             hasImg = 1;
         } catch (Exception e) {
-            Log.d("","Failed to load", e);
+
         }
     }
 
@@ -154,23 +149,18 @@ public class SubmitPhoto extends Activity {
         intent.putExtra(Intent.EXTRA_EMAIL, addresses);
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, text);
-        intent.putExtra(Intent.EXTRA_STREAM, attachment);
+        if (galleryUrl != null)
+        {
+            intent.putExtra(Intent.EXTRA_STREAM, galleryUrl);
+        }
+        else {
+            intent.putExtra(Intent.EXTRA_STREAM, attachment);
+        }
+
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
     }
-
-
-//    private String takePhotoFromCamera() {
-//        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (intent.resolveActivity(getPackageManager()) != null) {
-//            photoUri = Environment.getExternalStorageDirectory() + "/IMG_" + new Random().nextInt(8000) + ".jpg";
-//            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(photoUri)));
-//            Log.d("photo", "PATH= = = = = " + photoUri);
-//            startActivityForResult(intent, 3);
-//        }
-//        return photoUri;
-//    }
 
 
     @Override
@@ -178,38 +168,25 @@ public class SubmitPhoto extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         Log.e("onAvtivityResult", requestCode + "");
         if (requestCode == 1 && resultCode == RESULT_OK) {
-//            Glide.with(this).load(new File(photoUri))
-//                    .into(imgProfile);
-//            imgProfile.setScaleType(ImageView.ScaleType.FIT_XY);
             ImageView imageView;
             imageView = findViewById(R.id.image);
             this.grabImage(imageView);
-
         } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            assert selectedImage != null;
             Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-//            if (cursor != null) {
-                cursor.moveToFirst();
-//            }
-
-//            assert cursor != null;
+            cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+
             String image = cursor.getString(columnIndex);
-//            Log.e("HENLO", image);
-//            photoUri = image;
+            Log.e("Attachment Path:", image);
+            galleryUrl = Uri.parse("file://" + image);
+
             cursor.close();
-
             Bitmap myImage = BitmapFactory.decodeFile(image);
-
+            hasImg = 1;
             ImageView imageView = findViewById(R.id.image);
             imageView.setImageBitmap(myImage);
-//            Log.e("galleryImageView", myImage.toString());
-//            imgProfile.setImageBitmap(myImage);
-//            imgProfile.setScaleType(ImageView.ScaleType.FIT_XY);
-//            imgProfile.setImageBitmap(BitmapFactory.decodeFile(image));
         }
     }
 

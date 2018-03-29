@@ -47,7 +47,7 @@ public class ActivityList extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+               // onBackPressed();
             }
         });
 
@@ -100,17 +100,19 @@ public class ActivityList extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        adapterCategory.setListTitle();
-        adapterCategory.setListener(new AdapterCategory.OnTitleSelected() {
-            @Override
-            public void showTitle(String title,int j) {
-                if (j==1) {
-                    txtTitle.setText(SHOP_BY_CATEGORY);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                }
-
-                else txtTitle.setText(title);
-            }
-        });
+        finish();
     }
+//        adapterCategory.setListTitle();
+//        adapterCategory.setListener(new AdapterCategory.OnTitleSelected() {
+//            @Override
+//            public void showTitle(String title,int j) {
+//                if (j==1) {
+//                    txtTitle.setText(SHOP_BY_CATEGORY);
+//                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//                }
+//
+//                else txtTitle.setText(title);
+//            }
+//        });
+//    }
 }
