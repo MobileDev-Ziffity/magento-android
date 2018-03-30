@@ -51,9 +51,16 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 String result = barCodeData;
+
+                result = removeLeadingZero(result);
+                Log.e("####### @@@ ######",result);
+
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("result",result);
                 setResult(MainActivity.RESULT_OK,returnIntent);
+
+                Log.e("#############",result);
+
                 finish();
             }
         });
@@ -82,6 +89,15 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                 .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
                 .setPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .check();
+    }
+
+    private String removeLeadingZero(String result) {
+        if (result.charAt(0) == '0') {
+            result = result.substring(1);
+            Log.e("@@@@@@", result);
+            result = removeLeadingZero(result);
+            return result;
+        } return result;
     }
 
 }
