@@ -4,9 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-//import com.bumptech.glide.Glide;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -35,8 +32,6 @@ public class SubmitPhoto extends Activity {
     private int hasImg = 0;
 
     private ImageView imgProfile;
-
-    private String photoUri;
 
     private Uri mImageUri;
 
@@ -78,14 +73,14 @@ public class SubmitPhoto extends Activity {
             public void onClick(View v) {
                 EditText text = findViewById(R.id.scan_header);
                 String body = text.getText().toString();
-                if (body.toString().length() < 1 && hasImg == 0) {
+                if (body.length() < 1 && hasImg == 0) {
                     Toast.makeText(SubmitPhoto.this, "Please add an image and a message", Toast.LENGTH_LONG).show();
-                } else if (body.toString().length() < 1) {
+                } else if (body.length() < 1) {
                     Toast.makeText(SubmitPhoto.this, "Please add a message", Toast.LENGTH_LONG).show();
                 } else if (hasImg == 0) {
                     Toast.makeText(SubmitPhoto.this, "Please add an image", Toast.LENGTH_LONG).show();
                 }
-                if (body.toString().length() > 0 && hasImg == 1) {
+                if (body.length() > 0 && hasImg == 1) {
                     composeEmail(new String[]{"customersupport@usesi.com"}, "Mobile App: Submit a Photo", body, mImageUri);
                 }
             }
@@ -139,7 +134,7 @@ public class SubmitPhoto extends Activity {
             imageView.setImageBitmap(bitmap);
             hasImg = 1;
         } catch (Exception e) {
-
+            Log.e("grabImage()", e.getMessage());
         }
     }
 
@@ -173,20 +168,15 @@ public class SubmitPhoto extends Activity {
             this.grabImage(imageView);
         } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-
-            String image = cursor.getString(columnIndex);
-            Log.e("Attachment Path:", image);
-            galleryUrl = Uri.parse("file://" + image);
-
-            cursor.close();
-            Bitmap myImage = BitmapFactory.decodeFile(image);
-            hasImg = 1;
-            ImageView imageView = findViewById(R.id.image);
-            imageView.setImageBitmap(myImage);
+            mImageUri = selectedImage;
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                ImageView imageView = findViewById(R.id.image);
+                imageView.setImageBitmap(bitmap);
+                hasImg = 1;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
