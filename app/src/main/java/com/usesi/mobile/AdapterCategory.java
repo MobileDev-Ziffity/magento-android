@@ -91,14 +91,15 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
                         if (separatorData.size() == 2 && j == 2) {
                             if (separatorData.get(0).equalsIgnoreCase(path)) {
                                 listDoubleData.add(separatorData.get(1));
+                                notifyDataSetChanged();
                             }
                         } else if (separatorData.size() == 3 && j == 3) {
                             if (separatorData.get(1).equalsIgnoreCase(path)) {
                                 listThirdData.add(new ThirdData(separatorData.get(2), label));
+                                notifyDataSetChanged();
                             }
                         } else if (j == 4) {
                             String thirdLabel = listThirdData.get(holder.getAdapterPosition()).getThirdLabel();
-
                             List<String> labelSeparotor = Arrays.asList(thirdLabel.split("\\|"));
                             String URL  = labelSeparotor.get(0);
 
@@ -112,7 +113,6 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
                         }
                     }
                 }
-                notifyDataSetChanged();
             }
         });
     }

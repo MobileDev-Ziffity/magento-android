@@ -35,9 +35,6 @@ public class SubmitPhoto extends Activity {
 
     private Uri mImageUri;
 
-    private Uri galleryUrl;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,7 +152,7 @@ public class SubmitPhoto extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("onAvtivityResult", requestCode + "");
+
         if (requestCode == 1 && resultCode == RESULT_OK) {
             ImageView imageView;
             imageView = findViewById(R.id.image);

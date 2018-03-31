@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity
                 if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
             }
-
-
             
             @Override
             public void onPageFinished(final WebView view, String url) {
@@ -155,7 +153,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -165,7 +162,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerview = navigationView.getHeaderView(0);
-        headerview.setOnClickListener(new View.OnClickListener() {
+        View logo = headerview.findViewById(R.id.imageView);
+        logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressDialog = new ProgressDialog(MainActivity.this);
@@ -407,36 +405,6 @@ public class MainActivity extends AppCompatActivity
             alertDialogAndroid.show();
         }
 
-
-
-
-//            LayoutInflater li = LayoutInflater.from(this);
-//            View dialogView = li.inflate(R.layout.custom_dialog, null);
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setTitle("SEARCH");
-//
-//            final EditText input = new EditText(this);
-//            input.setInputType(InputType.TYPE_CLASS_TEXT);
-//            input.setHint("Search by Keyword or Part number");
-//            builder.setView(input);
-//            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    search_Text = input.getText().toString();
-//                    progressDialog = new ProgressDialog(MainActivity.this);
-//                    progressDialog.show();
-//                    webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + search_Text + "&search=1/?mobileapp=1");
-//                }
-//            });
-//            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    dialog.cancel();
-//                }
-//            });
-//
-//            builder.show();
-//        }
         if (id == R.id.action_cart) {
             webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
         }
