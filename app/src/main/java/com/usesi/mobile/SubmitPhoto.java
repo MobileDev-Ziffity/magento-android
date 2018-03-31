@@ -144,13 +144,7 @@ public class SubmitPhoto extends Activity {
         intent.putExtra(Intent.EXTRA_EMAIL, addresses);
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, text);
-        if (galleryUrl != null)
-        {
-            intent.putExtra(Intent.EXTRA_STREAM, galleryUrl);
-        }
-        else {
-            intent.putExtra(Intent.EXTRA_STREAM, attachment);
-        }
+        intent.putExtra(Intent.EXTRA_STREAM, attachment);
 
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);

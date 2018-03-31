@@ -1,16 +1,21 @@
 package com.usesi.mobile;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +26,7 @@ import android.text.Html;
 import android.text.InputType;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -53,6 +59,8 @@ public class MainActivity extends AppCompatActivity
         private  String count;
         private ProgressDialog progressDialog;
         private  String strLocationClicked = "notclicked";
+        private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
+        private  String phone_number;
 
     @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled"})
     @Override
@@ -191,7 +199,7 @@ public class MainActivity extends AppCompatActivity
                         loggedIn = jsonObject.getBoolean("loggedIn");
 
                         JSONObject branch_number = jsonObject.getJSONObject("branch");
-                        String phone_number = branch_number.getString("phone");
+                        phone_number = branch_number.getString("phone");
 
                         JSONObject address = jsonObject.getJSONObject("branch");
                         String addressLine1 = address.getString("addressLine1");
@@ -369,31 +377,66 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("SEARCH");
 
-            final EditText input = new EditText(this);
-            input.setInputType(InputType.TYPE_CLASS_TEXT);
-            input.setHint("Search by Keyword or Part number");
-            builder.setView(input);
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    search_Text = input.getText().toString();
-                    progressDialog = new ProgressDialog(MainActivity.this);
-                    progressDialog.show();
-                    webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + search_Text + "&search=1/?mobileapp=1");
-                }
-            });
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
+            LayoutInflater layoutInflaterAndroid = LayoutInflater.from(this);
+            View mView = layoutInflaterAndroid.inflate(R.layout.custom_dialog, null);
+            AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(this);
+            alertDialogBuilderUserInput.setView(mView);
 
-            builder.show();
+            final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
+            alertDialogBuilderUserInput
+                    .setCancelable(false)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogBox, int id) {
+                            // ToDo get user input here
+                            search_Text = userInputDialogEditText.getText().toString();
+                            progressDialog = new ProgressDialog(MainActivity.this);
+                            progressDialog.show();
+                            webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + search_Text + "&search=1/?mobileapp=1");
+                        }
+                    })
+
+                    .setNegativeButton("Cancel",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialogBox, int id) {
+                                    dialogBox.cancel();
+                                }
+                            });
+
+            AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+            alertDialogAndroid.show();
         }
+
+
+
+
+//            LayoutInflater li = LayoutInflater.from(this);
+//            View dialogView = li.inflate(R.layout.custom_dialog, null);
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle("SEARCH");
+//
+//            final EditText input = new EditText(this);
+//            input.setInputType(InputType.TYPE_CLASS_TEXT);
+//            input.setHint("Search by Keyword or Part number");
+//            builder.setView(input);
+//            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    search_Text = input.getText().toString();
+//                    progressDialog = new ProgressDialog(MainActivity.this);
+//                    progressDialog.show();
+//                    webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + search_Text + "&search=1/?mobileapp=1");
+//                }
+//            });
+//            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    dialog.cancel();
+//                }
+//            });
+//
+//            builder.show();
+//        }
         if (id == R.id.action_cart) {
             webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
         }
@@ -454,7 +497,29 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_help) {
             progressDialog.show();
             webLoad.loadUrl(Constants.BASE_URL + "help-center?mobileapp=1");
-        } else if (id == R.id.nav_login) {
+        }else if (id == R.id.nav_contact){
+            String number = phone_number;
+            if (checkPermission(Manifest.permission.CALL_PHONE)) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + number));
+                startActivity(intent);
+            }
+            else
+            {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
+            }
+        }else if (id == R.id.nav_customer){
+            String number = "+1-781-297-5666";
+            if (checkPermission(Manifest.permission.CALL_PHONE)) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + number));
+                startActivity(intent);
+            }
+            else
+            {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
+            }
+        }else if (id == R.id.nav_login) {
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.show();
             if (loggedIn) {
@@ -467,11 +532,26 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_service || id == R.id.nav_branchnumber || id == R.id.nav_branch || id == R.id.nav_city || id == R.id.nav_contact || id == R.id.nav_customer) {
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.openDrawer(GravityCompat.START);
-            return true;
+            return false;
         } else {
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-            return true;
+            return false;
+        }
+    }
+
+    private boolean checkPermission(String permission) {
+        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch(requestCode) {
+            case MAKE_CALL_PERMISSION_REQUEST_CODE :
+                if (grantResults.length > 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+
+                }
+                return;
         }
     }
 }
