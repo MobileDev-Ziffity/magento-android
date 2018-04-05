@@ -1,10 +1,5 @@
 package com.usesi.mobile;
 
-/**
- *
- * Created by selva on 22/2/18.
- */
-
 public class ModelValue {
 
     private String label, value, path;

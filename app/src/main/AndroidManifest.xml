@@ -11,9 +11,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/iccon"
+        android:label="US Electrical Services, Inc"
+        android:roundIcon="@mipmap/iccon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -21,15 +21,22 @@
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ActivityList"/>
         <activity android:name=".Barcode"/>
         <activity android:name=".SubmitPhoto"/>
+
+        <activity
+
+            android:name=".SplashScreen">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+       </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.usesi.android.fileprovider"
