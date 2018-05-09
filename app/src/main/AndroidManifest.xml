@@ -11,9 +11,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/iccon"
-        android:label="US Electrical Services, Inc"
-        android:roundIcon="@mipmap/iccon"
+        android:icon="@mipmap/icon"
+        android:label="USESI"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -39,7 +39,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.usesi.android.fileprovider"
+            android:authorities="in.usesi.mobile.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

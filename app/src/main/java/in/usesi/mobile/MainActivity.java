@@ -20,6 +20,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -51,7 +52,7 @@ import static in.usesi.mobile.R.string.logOut;
 
 public class MainActivity extends AppCompatActivity
 
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SwipeRefreshLayout.OnRefreshListener {
 
         private WebView webLoad;
         private String search_Text = "";
@@ -62,9 +63,10 @@ public class MainActivity extends AppCompatActivity
         private  String strLocationClicked = "notclicked";
         private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
         private  String phone_number;
-        private  int currentVersionCode;
+        private  float currentVersionCode;
         private  String latestVersion;
         private  String mandatoryUpdate;
+        private SwipeRefreshLayout swipe;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled"})
@@ -75,7 +77,8 @@ public class MainActivity extends AppCompatActivity
         getVersionInfo();
         CookieManager.getInstance().setCookie(Constants.BASE_URL + "?mobileapp=1", "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
         webLoad = findViewById(R.id.webLoad);
-
+        swipe = (SwipeRefreshLayout) findViewById(R.id.swipe);
+        swipe.setOnRefreshListener(this);
         CookieManager.getInstance().setAcceptThirdPartyCookies(webLoad, true);
         final WebSettings webSettings = webLoad.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(webLoad, url, favicon);
-
+                swipe.setRefreshing(false);
                 if (strLocationClicked.equals("clicked")) {
                     if (url.contains(Constants.BASE_URL)) {
                             callLoginWebService();
@@ -105,6 +108,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPageFinished(final WebView view, String url) {
                 super.onPageFinished(webLoad, url);
+
                 if (url.equals(Constants.BASE_URL + "customer/account/logoutSuccess/")) {
                     callLoginWebService();
                 }
@@ -212,15 +216,13 @@ public class MainActivity extends AppCompatActivity
         if (Utils.checkInternet(MainActivity.this)) {
             ApiTask apiTask = new ApiTask(this);
             apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
-            apiTask.setParams(null, "https://alpha.usesi.com/" + Constants.VERSION_CHECK);
+            apiTask.setParams(null, Constants.VERSION_CHECK);
             apiTask.responseCallBack(new ApiTask.ResponseListener() {
                 @Override
                 public void jsonResponse(String result) {
                     try {
                         JSONObject object = new JSONObject(result);
-                        Log.i("Response Data","Message" +object);
                         JSONArray Jarray  = object.getJSONArray(Constants.VERSION_REGION);
-                        Log.i("Response Data","Message" +Jarray);
 
                         for (int i = 0; i < Jarray.length(); i++)
                         {
@@ -284,7 +286,7 @@ public class MainActivity extends AppCompatActivity
         int currentVersion = -1;
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            currentVersionCode = packageInfo.versionCode;
+            currentVersionCode = Float.parseFloat(packageInfo.versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -635,7 +637,13 @@ public class MainActivity extends AppCompatActivity
                 if (grantResults.length > 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
 
                 }
-                return;
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        swipe.setRefreshing(true);
+        webLoad.reload();
+
     }
 }
