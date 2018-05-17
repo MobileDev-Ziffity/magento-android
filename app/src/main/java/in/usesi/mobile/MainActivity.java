@@ -38,13 +38,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonArray;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.Map;
 
 import static in.usesi.mobile.ApiTask.HTTP_TYPE.GET;
 import static in.usesi.mobile.R.string.guestUser;
@@ -406,6 +404,13 @@ public class MainActivity extends AppCompatActivity
                 webLoad.loadUrl(loadURL);
             }
         }
+        else if (requestCode == 3) {
+            if(resultCode == ActivityShopList.RESULT_OK){
+                String result = data.getStringExtra("result");
+                String loadURL = result;
+                webLoad.loadUrl(loadURL);
+            }
+        }
     }
 
     public String getCookie(String siteName, String CookieName) {
@@ -551,8 +556,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_category) {
             Intent i = new Intent(this, ActivityList.class);
             startActivityForResult(i, 2);
-            //startActivity(new Intent(this, ActivityList.class));
-        } else if (id == R.id.nav_locations) {
+        }else if (id == R.id.nav_shopbylist) {
+            Intent i = new Intent(this, ActivityShopList.class);
+            startActivityForResult(i, 3);
+        }else if (id == R.id.nav_locations) {
             progressDialog = new ProgressDialog(MainActivity.this);
             progressDialog.show();
             webLoad.loadUrl(Constants.LOCATION_URL);

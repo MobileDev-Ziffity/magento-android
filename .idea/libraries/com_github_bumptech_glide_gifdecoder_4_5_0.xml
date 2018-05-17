@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.github.bumptech.glide:gifdecoder-4.5.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.5.0.aar/5b711763fbbdcf8b6809d5628c7dd197/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.5.0.aar/5b711763fbbdcf8b6809d5628c7dd197/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.5.0.aar/31678908e54effd5adfa1abaa11220c5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.5.0.aar/31678908e54effd5adfa1abaa11220c5/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

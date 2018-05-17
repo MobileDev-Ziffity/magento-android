@@ -26,6 +26,13 @@
             android:title="SHOP BY CATEGORY" />
     </group>
 
+     <group android:id="@+id/grp13" android:checkableBehavior="single">
+         <item
+            android:id="@+id/nav_shopbylist"
+            android:icon="@drawable/ic_action_shopping"
+            android:title="SHOP BY LIST" />
+     </group>
+
     <group android:id="@+id/grp10" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_locations"
