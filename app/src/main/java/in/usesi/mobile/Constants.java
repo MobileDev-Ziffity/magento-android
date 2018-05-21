@@ -7,4 +7,5 @@ class Constants {
     static Boolean apiCall = true;
     static String VERSION_REGION = "usesi";
     static String VERSION_CHECK  = "https://s3.amazonaws.com/magento-assets/mobile-app-versions.json";
+    static String SHOP_BY_LIST = "advancewishlist/index/rawlists/";
 }

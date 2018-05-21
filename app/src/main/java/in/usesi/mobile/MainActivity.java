@@ -43,10 +43,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static in.usesi.mobile.ApiTask.HTTP_TYPE.GET;
 import static in.usesi.mobile.R.string.guestUser;
 import static in.usesi.mobile.R.string.logOut;
+import static java.lang.Boolean.FALSE;
 
 public class MainActivity extends AppCompatActivity
 
@@ -171,6 +173,7 @@ public class MainActivity extends AppCompatActivity
         webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
         callLoginWebService();
         callVerionWebService();
+        callShopbyList();
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         View logoView = toolbar.findViewById(R.id.logo);
@@ -280,6 +283,31 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void callShopbyList()
+    {
+        Constants.apiCall = Boolean.TRUE;
+        if (Utils.checkInternet(MainActivity.this)) {
+            ApiTask apiTask = new ApiTask(this);
+            apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
+            apiTask.setParams(null, Constants.BASE_URL + Constants.SHOP_BY_LIST);
+            apiTask.responseCallBack(new ApiTask.ResponseListener() {
+                @Override
+                public void jsonResponse(String result) {
+                    try {
+                        JSONObject object = new JSONObject(result);
+                    }catch (JSONException e) {
+                        NavigationView navigationView = findViewById(R.id.nav_view);
+                        Menu menu = navigationView.getMenu();
+                        MenuItem nav_shopbylist = menu.findItem(R.id.nav_shopbylist);
+                        nav_shopbylist.setVisible(FALSE);
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        }
+    }
+
     private void getVersionInfo() {
         int currentVersion = -1;
         try {
@@ -293,7 +321,7 @@ public class MainActivity extends AppCompatActivity
     private void callLoginWebService()
     {
         String getUrl = webLoad.getUrl();
-        Constants.apiCall = Boolean.FALSE;
+        Constants.apiCall = FALSE;
         String cookies = CookieManager.getInstance().getCookie(getUrl);
         if (Utils.checkInternet(MainActivity.this)) {
 

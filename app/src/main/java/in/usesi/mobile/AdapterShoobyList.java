@@ -52,18 +52,38 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
             ShopDetails data = listLevelOne.get(position);
             if (j == 1) {
                 holder.txtCategory.setText(listOneData.get(position).getName());
-                if (listTwoCheck.size() == 0){
-                    holder.imgNav.setVisibility(View.GONE);
+                String parentID = listOneData.get(position).getId();
+                for (int i=0; i<listTwoCheck.size(); i++) {
+                    if (listTwoCheck.get(i).getParent().equals(parentID)) {
+
+                    }
+                    else
+                    {
+                        holder.imgNav.setVisibility(View.GONE);
+                    }
+
                 }
+
             }
             else if (j == 2){
                 holder.txtCategory.setText(listTwoData.get(position).getName());
-                if (listThreeCheck.size() == 0){
-                    holder.imgNav.setVisibility(View.GONE);
+                holder.imgNav.setVisibility(View.VISIBLE);
+                String parentID = listTwoData.get(position).getId();
+                for (int i=0; i<listThreeCheck.size(); i++) {
+                    if (listThreeCheck.get(i).getParent().equals(parentID)) {
+
+
+                    }
+                    else
+                    {
+                        holder.imgNav.setVisibility(View.GONE);
+                    }
+
                 }
             }
             else if (j == 3){
                 holder.txtCategory.setText(listThreeData.get(position).getName());
+                holder.imgNav.setVisibility(View.GONE);
             }
 
         holder.txtCategory.setOnClickListener(new View.OnClickListener() {

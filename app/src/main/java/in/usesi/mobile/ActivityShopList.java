@@ -57,7 +57,7 @@ public class ActivityShopList extends AppCompatActivity {
 
         ApiTask apiTask = new ApiTask(this);
         apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
-        apiTask.setParams(null,"https://www.walterswholesale.com/advancewishlist/index/rawlists/");
+        apiTask.setParams(null,Constants.BASE_URL + Constants.SHOP_BY_LIST);
         apiTask.responseCallBack(new ApiTask.ResponseListener() {
             @Override
             public void jsonResponse(String result) {
@@ -73,7 +73,7 @@ public class ActivityShopList extends AppCompatActivity {
                                 String url = ((JSONObject) jObject.get(key)).getString("url");
                                 String name = ((JSONObject) jObject.get(key)).getString("name");
                                 String level = ((JSONObject) jObject.get(key)).getString("level");
-                                String parent = ((JSONObject) jObject.get(key)).getString("parent");
+                                String parent = ((JSONObject) jObject.get(key)).getString("parent_id");
                                 listShopDetails.add(new ShopDetails(id, url, name, level, parent));
                         }
                     }
