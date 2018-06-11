@@ -53,15 +53,24 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
             if (j == 1) {
                 holder.txtCategory.setText(listOneData.get(position).getName());
                 String parentID = listOneData.get(position).getId();
-                for (int i=0; i<listTwoCheck.size(); i++) {
-                    if (listTwoCheck.get(i).getParent().equals(parentID)) {
 
-                    }
-                    else
-                    {
-                        holder.imgNav.setVisibility(View.GONE);
-                    }
+                if (listTwoCheck.size() > 0) {
+                    int i = 0;
+                    while (i < listTwoCheck.size()) {
+                        if (listTwoCheck.get(i).getParent().equals(parentID)) {
+                            holder.imgNav.setVisibility(View.VISIBLE);
+                            break;
 
+                        } else {
+
+                            holder.imgNav.setVisibility(View.GONE);
+                        }
+
+                        i++;
+                    }
+                }
+                else{
+                    holder.imgNav.setVisibility(View.GONE);
                 }
 
             }
@@ -69,16 +78,22 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
                 holder.txtCategory.setText(listTwoData.get(position).getName());
                 holder.imgNav.setVisibility(View.VISIBLE);
                 String parentID = listTwoData.get(position).getId();
-                for (int i=0; i<listThreeCheck.size(); i++) {
-                    if (listThreeCheck.get(i).getParent().equals(parentID)) {
 
-
+                if (listThreeCheck.size() > 0) {
+                    int i = 0;
+                    while (i < listThreeCheck.size()) {
+                        if (listThreeCheck.get(i).getParent().equals(parentID)) {
+                            //Log.i(" ID", "Parent ID" +parentID);
+                            holder.imgNav.setVisibility(View.VISIBLE);
+                            break;
+                        } else {
+                            holder.imgNav.setVisibility(View.GONE);
+                        }
+                        i++;
                     }
-                    else
-                    {
-                        holder.imgNav.setVisibility(View.GONE);
-                    }
-
+                }
+                else{
+                    holder.imgNav.setVisibility(View.GONE);
                 }
             }
             else if (j == 3){
@@ -126,7 +141,6 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
                     j=2;
                     for (int i=0; i<listLevelOne.size(); i++) {
                         if (listLevelOne.get(i).getLevel().equals("2") && (listLevelOne.get(i).getParent().equals(listOneData.get(position).getId()))) {
-                            Log.i("Message ", "onClickEvent: " + listOneData.get(position).getId());
                             listTwoData.add(new ShopDetails(listLevelOne.get(i).getId(), listLevelOne.get(i).getUrl(), listLevelOne.get(i).getName(), listLevelOne.get(i).getLevel(), listLevelOne.get(i).getParent()));
                         }
                         if (listLevelOne.get(i).getLevel().equals("3")) {
@@ -140,12 +154,12 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
                     j=3;
                     for (int i=0; i<listLevelOne.size(); i++) {
                         if (listLevelOne.get(i).getLevel().equals("3") && (listLevelOne.get(i).getParent().equals(listTwoData.get(position).getId()))) {
-                            Log.i("Message ", "onClickEvent: " + listOneData.get(position).getId());
                             listThreeData.add(new ShopDetails(listLevelOne.get(i).getId(), listLevelOne.get(i).getUrl(), listLevelOne.get(i).getName(), listLevelOne.get(i).getLevel(), listLevelOne.get(i).getParent()));
                         }
                     }
                     notifyDataSetChanged();
                 }
+
 
             }
         });
@@ -159,7 +173,7 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
             if (listLevelOne.get(i).getLevel().equals("1")) {
                 listOneData.add(new ShopDetails(listLevelOne.get(i).getId(), listLevelOne.get(i).getUrl(), listLevelOne.get(i).getName(), listLevelOne.get(i).getLevel(), listLevelOne.get(i).getParent()));
             }
-            if (listLevelOne.get(i).getLevel().equals("2")) {
+            else if (listLevelOne.get(i).getLevel().equals("2")) {
                 listTwoCheck.add(new ShopDetails(listLevelOne.get(i).getId(), listLevelOne.get(i).getUrl(), listLevelOne.get(i).getName(), listLevelOne.get(i).getLevel(), listLevelOne.get(i).getParent()));
             }
         }
