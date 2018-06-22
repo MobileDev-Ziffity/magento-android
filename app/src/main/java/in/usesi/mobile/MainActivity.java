@@ -1,9 +1,10 @@
 package in.usesi.mobile;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -12,8 +13,12 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -30,6 +35,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.CookieManager;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -37,16 +44,12 @@ import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import static in.usesi.mobile.ApiTask.HTTP_TYPE.GET;
-import static in.usesi.mobile.R.string.guestUser;
 import static in.usesi.mobile.R.string.logOut;
 import static java.lang.Boolean.FALSE;
 
@@ -67,6 +70,8 @@ public class MainActivity extends AppCompatActivity
         private  String latestVersion;
         private  String mandatoryUpdate;
         private SwipeRefreshLayout swipe;
+        private ValueCallback<Uri[]> mUploadMessage;
+        private final static int FILECHOOSER_RESULTCODE = 10;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled"})
@@ -74,10 +79,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
         getVersionInfo();
         CookieManager.getInstance().setCookie(Constants.BASE_URL + "?mobileapp=1", "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
         webLoad = findViewById(R.id.webLoad);
-        swipe = (SwipeRefreshLayout) findViewById(R.id.swipe);
+        swipe = findViewById(R.id.swipe);
         swipe.setOnRefreshListener(this);
         CookieManager.getInstance().setAcceptThirdPartyCookies(webLoad, true);
         final WebSettings webSettings = webLoad.getSettings();
@@ -89,18 +96,49 @@ public class MainActivity extends AppCompatActivity
         webSettings.setGeolocationEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+
+        webLoad.setWebChromeClient(new WebChromeClient() {
+
+            @SuppressLint("NewApi")
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+
+                if (mUploadMessage != null) {
+                    mUploadMessage.onReceiveValue(null);
+                    mUploadMessage = null;
+                }
+
+                mUploadMessage = filePathCallback;
+
+                Intent intent = fileChooserParams.createIntent();
+
+                try {
+                    startActivityForResult(intent, FILECHOOSER_RESULTCODE);
+                } catch (ActivityNotFoundException e) {
+                    mUploadMessage = null;
+                    return false;
+                }
+
+                return true;
+            }
+        });
+
         webLoad.setWebViewClient(new WebViewClient() {
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(webLoad, url, favicon);
                 swipe.setRefreshing(false);
+
+                FloatingActionButton fab = findViewById(R.id.fab);
+                fab.setVisibility(View.GONE);
+
                 if (strLocationClicked.equals("clicked")) {
                     if (url.contains(Constants.BASE_URL)) {
                             callLoginWebService();
                         strLocationClicked = "notclicked";
                     }
                 }
+
                 if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
             }
@@ -118,6 +156,11 @@ public class MainActivity extends AppCompatActivity
                 else if (url.equals(Constants.BASE_URL + "checkout/cart/delete/"))
                 {
                     callLoginWebService();
+                }
+                else if ((url.equals(Constants.BASE_URL + "checkout/onepage/success/")) || (url.equals(Constants.BASE_URL + "order/index/orderdetail/id/"))) {
+                    FloatingActionButton fab = findViewById(R.id.fab);
+                    fab.setVisibility(View.VISIBLE);
+                    callPrintUI();
                 }
             }
             @Override
@@ -170,6 +213,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
         webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
         callLoginWebService();
         callVerionWebService();
@@ -186,6 +230,8 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+
+
 
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -208,7 +254,48 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+        View login = headerview.findViewById(R.id.textView);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressDialog = new ProgressDialog(MainActivity.this);
+                progressDialog.show();
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                printAction();
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void callPrintUI()
+    {
+        String javascriptString = "var style = document.createElement('style'); style.innerHTML = '.action.print,.header-nav-quicklinks{display: none}'; document.head.appendChild(style)";
+        webLoad.evaluateJavascript(javascriptString, null);
+    }
+
+    private void printAction()
+    {
+        PrintManager printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
+        PrintDocumentAdapter printAdapter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            printAdapter = webLoad.createPrintDocumentAdapter();
+        }
+        String jobName = getString(R.string.app_name) + " Print Test";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            printManager.print(jobName, printAdapter, new PrintAttributes.Builder().build());
+        }
+
     }
 
     private void callVerionWebService()
@@ -353,6 +440,9 @@ public class MainActivity extends AppCompatActivity
                         MenuItem nav_contact = menu.findItem(R.id.nav_contact);
                         nav_contact.setTitle(phone_number);
 
+                        MenuItem nav_service = menu.findItem(R.id.nav_customer);
+                        nav_service.setTitle(Constants.SERVICE_NUMBER);
+
                         MenuItem nav_branch = menu.findItem(R.id.nav_branch);
                         nav_branch.setTitle("BRANCH :" + addressLine1);
 
@@ -395,14 +485,16 @@ public class MainActivity extends AppCompatActivity
                             userName = header.findViewById(R.id.textView);
                             userName.setText(profileName.toUpperCase());
                             MenuItem nav_login = menu.findItem(R.id.nav_login);
+                            nav_login.setVisible(true);
                             nav_login.setTitle(logOut);
                             nav_account.setTitle("My Account");
                         } else {
                             View header = navigationView.getHeaderView(0);
                             userName = header.findViewById(R.id.textView);
-                            userName.setText(guestUser);
+                            userName.setText("LOGIN / REGISTER");
+                            nav_account.setTitle("Login");
                             MenuItem nav_login = menu.findItem(R.id.nav_login);
-                            nav_login.setTitle("LOGIN");
+                            nav_login.setVisible(false);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -438,6 +530,13 @@ public class MainActivity extends AppCompatActivity
                 String loadURL = result;
                 webLoad.loadUrl(loadURL);
             }
+        }
+        else if (requestCode == FILECHOOSER_RESULTCODE) {
+            if (mUploadMessage == null) return;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mUploadMessage.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data));
+            }
+            mUploadMessage = null;
         }
     }
 
@@ -630,7 +729,7 @@ public class MainActivity extends AppCompatActivity
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
             }
         }else if (id == R.id.nav_customer){
-            String number = "+1-781-297-5666";
+            String number = Constants.SERVICE_NUMBER;
             if (checkPermission(Manifest.permission.CALL_PHONE)) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 intent.setData(Uri.parse("tel:" + number));
@@ -669,7 +768,7 @@ public class MainActivity extends AppCompatActivity
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch(requestCode) {
             case MAKE_CALL_PERMISSION_REQUEST_CODE :
-                if (grantResults.length > 0 && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                if (grantResults.length <= 0 || (grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
 
                 }
         }
@@ -681,4 +780,6 @@ public class MainActivity extends AppCompatActivity
         webLoad.reload();
 
     }
+
+
 }

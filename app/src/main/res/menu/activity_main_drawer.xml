@@ -91,7 +91,7 @@
         <item
              android:id="@+id/nav_customer"
              android:paddingTop="-16dp"
-             android:title="+1-781-297-5666"/>
+             android:title=""/>
     </group>
 
     <group android:id="@+id/grp2" android:checkableBehavior="single" >
