@@ -34,6 +34,11 @@
                 android:icon="@drawable/ic_action_location"
                 android:title="Branch"
                 app:showAsAction="ifRoom"/>
+            <item
+                android:id="@+id/action_feedback"
+                android:icon="@drawable/ic_action_feedback"
+                android:title="Feedback"
+                app:showAsAction="ifRoom"/>
         </menu>
 
     </item>

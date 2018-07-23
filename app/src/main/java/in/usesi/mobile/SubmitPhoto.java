@@ -113,7 +113,7 @@ public class SubmitPhoto extends Activity {
             }
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                                                    "com.usesi.android.fileprovider",
+                                                    "in.usesi.mobile.fileprovider",
                                                     photoFile);
                 mImageUri = photoURI;
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);

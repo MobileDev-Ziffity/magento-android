@@ -54,13 +54,6 @@
             android:title="YOUR CATALOG" />
     </group>
 
-    <group android:id="@+id/grp7" android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_order"
-            android:icon="@drawable/ic_action_order"
-            android:title="QUICK ORDER" />
-    </group>
-
     <group android:id="@+id/grp6" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_barcode"

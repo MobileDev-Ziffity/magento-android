@@ -42,16 +42,30 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.HttpResponse;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.util.EncodingUtils;
 
 import static in.usesi.mobile.ApiTask.HTTP_TYPE.GET;
 import static in.usesi.mobile.R.string.logOut;
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class MainActivity extends AppCompatActivity
 
@@ -72,6 +86,8 @@ public class MainActivity extends AppCompatActivity
         private SwipeRefreshLayout swipe;
         private ValueCallback<Uri[]> mUploadMessage;
         private final static int FILECHOOSER_RESULTCODE = 10;
+        private ProgressBar progressView;
+        private FrameLayout frame;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled"})
@@ -80,6 +96,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FloatingActionButton fab = findViewById(R.id.fab);
+        progressView = findViewById(R.id.progressBar);
+        progressView.setMax(100);
         fab.setVisibility(View.GONE);
         getVersionInfo();
         CookieManager.getInstance().setCookie(Constants.BASE_URL + "?mobileapp=1", "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
@@ -95,9 +113,24 @@ public class MainActivity extends AppCompatActivity
         webSettings.setAllowContentAccess(true);
         webSettings.setGeolocationEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setSupportMultipleWindows(true);
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
+
         webLoad.setWebChromeClient(new WebChromeClient() {
+
+            public void onProgressChanged (WebView view, int Progress) {
+                progressView.setVisibility(View.VISIBLE);
+                progressView.setProgress(Progress);
+                if (Progress == 100) {
+                    progressView.setVisibility(View.GONE);
+                }
+                else
+                    progressView.setVisibility(View.VISIBLE);
+                super.onProgressChanged(view, Progress);
+            }
 
             @SuppressLint("NewApi")
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
@@ -128,7 +161,6 @@ public class MainActivity extends AppCompatActivity
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(webLoad, url, favicon);
                 swipe.setRefreshing(false);
-
                 FloatingActionButton fab = findViewById(R.id.fab);
                 fab.setVisibility(View.GONE);
 
@@ -139,28 +171,21 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
-                if (progressDialog != null && progressDialog.isShowing())
-                    progressDialog.dismiss();
             }
-            
+
+
+
+
             @Override
             public void onPageFinished(final WebView view, String url) {
                 super.onPageFinished(webLoad, url);
 
                 if (url.equals(Constants.BASE_URL + "customer/account/logoutSuccess/")) {
                     callLoginWebService();
-                }
-                else if (url.equals(Constants.BASE_URL + "customer/account/")) {
+                } else if (url.equals(Constants.BASE_URL + "customer/account/")) {
                     callLoginWebService();
-                }
-                else if (url.equals(Constants.BASE_URL + "checkout/cart/delete/"))
-                {
+                } else if (url.equals(Constants.BASE_URL + "checkout/cart/delete/")) {
                     callLoginWebService();
-                }
-                else if ((url.equals(Constants.BASE_URL + "checkout/onepage/success/")) || (url.equals(Constants.BASE_URL + "order/index/orderdetail/id/"))) {
-                    FloatingActionButton fab = findViewById(R.id.fab);
-                    fab.setVisibility(View.VISIBLE);
-                    callPrintUI();
                 }
             }
             @Override
@@ -169,6 +194,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
                 if (url.startsWith("tel:")) {
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
                     startActivity(intent);
@@ -177,12 +203,10 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 if (url.startsWith("mailto:")) {
-                    //Handle mail Urls
                     startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse(url)));
                     view.reload();
                     return true;
                 }
-
                 view.loadUrl(url);
                 return true;
             }
@@ -213,7 +237,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
         callLoginWebService();
         callVerionWebService();
@@ -224,14 +247,10 @@ public class MainActivity extends AppCompatActivity
         logoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.show();
                 webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
 
             }
         });
-
-
 
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -246,8 +265,6 @@ public class MainActivity extends AppCompatActivity
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.show();
                 webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -259,8 +276,6 @@ public class MainActivity extends AppCompatActivity
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.show();
                 webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -268,35 +283,14 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                printAction();
-            }
-        });
+
 
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void callPrintUI()
-    {
-        String javascriptString = "var style = document.createElement('style'); style.innerHTML = '.action.print,.header-nav-quicklinks{display: none}'; document.head.appendChild(style)";
-        webLoad.evaluateJavascript(javascriptString, null);
-    }
 
-    private void printAction()
-    {
-        PrintManager printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
-        PrintDocumentAdapter printAdapter = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            printAdapter = webLoad.createPrintDocumentAdapter();
-        }
-        String jobName = getString(R.string.app_name) + " Print Test";
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            printManager.print(jobName, printAdapter, new PrintAttributes.Builder().build());
-        }
 
-    }
+   
 
     private void callVerionWebService()
     {
@@ -417,6 +411,7 @@ public class MainActivity extends AppCompatActivity
             apiTask.setCookie(cookies);
 
             apiTask.responseCallBack(new ApiTask.ResponseListener() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void jsonResponse(String result) {
                     try {
@@ -586,8 +581,6 @@ public class MainActivity extends AppCompatActivity
                     webLoad.goBack();
                 }
                 else {
-                    progressDialog = new ProgressDialog(MainActivity.this);
-                    progressDialog.show();
                     webLoad.goBack();
                 }
             }
@@ -606,8 +599,6 @@ public class MainActivity extends AppCompatActivity
         MenuItemCompat.getActionView(cartView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.show();
                 webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
             }
         });
@@ -637,8 +628,6 @@ public class MainActivity extends AppCompatActivity
                         public void onClick(DialogInterface dialogBox, int id) {
                             // ToDo get user input here
                             search_Text = userInputDialogEditText.getText().toString();
-                            progressDialog = new ProgressDialog(MainActivity.this);
-                            progressDialog.show();
                             webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + search_Text + "&search=1/?mobileapp=1");
                         }
                     })
@@ -657,14 +646,15 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_cart) {
             webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
         }
-        if (id == R.id.action_location) {
+        else if (id == R.id.action_location) {
             strLocationClicked = "clicked";
             webLoad.evaluateJavascript("jQuery(document).ready(function(){jQuery('.header-branch-popup .btn-link').click();})", null);
         }
-        if (id == R.id.action_login) {
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.show();
+        else if (id == R.id.action_login) {
             webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
+        }
+        else if (id == R.id.action_feedback) {
+            webLoad.evaluateJavascript("jQuery(document).ready(function(){jQuery('#report-bug-link').click();})", null);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -687,19 +677,13 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this, ActivityShopList.class);
             startActivityForResult(i, 3);
         }else if (id == R.id.nav_locations) {
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.show();
             webLoad.loadUrl(Constants.LOCATION_URL);
         } else if (id == R.id.nav_list) {
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.show();
             if (loggedIn)
                 webLoad.loadUrl(Constants.BASE_URL + "shoppinglist?mobileapp=1");
             else
                 webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/referer/aHR0cHM6Ly93d3cudXNlc2kuY29tL2N1c3RvbWVyL2FjY291bnQvaW5kZXgvP21vYmlsZWFwcD0x/?mobileapp=1");
         } else if (id == R.id.nav_catalog) {
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.show();
             if (loggedIn)
                 webLoad.loadUrl(Constants.BASE_URL + "yourcatalog?mobileapp=1");
             else
@@ -709,13 +693,7 @@ public class MainActivity extends AppCompatActivity
             startActivityForResult(i, 1);
         } else if (id == R.id.nav_photo) {
             startActivity(new Intent(this, SubmitPhoto.class));
-        } else if (id == R.id.nav_order) {
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.show();
-            webLoad.loadUrl(Constants.BASE_URL + "quickorder?mobileapp=1");
         } else if (id == R.id.nav_help) {
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.show();
             webLoad.loadUrl(Constants.BASE_URL + "help-center?mobileapp=1");
         }else if (id == R.id.nav_contact){
             String number = phone_number;
@@ -740,8 +718,6 @@ public class MainActivity extends AppCompatActivity
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
             }
         }else if (id == R.id.nav_login) {
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.show();
             if (loggedIn) {
                 webLoad.loadUrl(Constants.BASE_URL + "customer/account/logout?mobileapp=1");
             } else {
@@ -776,8 +752,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onRefresh() {
-        swipe.setRefreshing(true);
-        webLoad.reload();
+
+            swipe.setRefreshing(true);
+            webLoad.reload();
 
     }
 
