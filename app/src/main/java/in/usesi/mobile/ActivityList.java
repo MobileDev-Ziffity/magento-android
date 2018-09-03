@@ -1,5 +1,7 @@
 package in.usesi.mobile;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +35,7 @@ public class ActivityList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_shop_list);
     }
 
     @Override
@@ -53,12 +55,13 @@ public class ActivityList extends AppCompatActivity {
 
         final RecyclerView recyclerView = findViewById(R.id.listView);
         txtTitle = findViewById(R.id.txtTitle);
+        txtTitle.setText("Shop By Category");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapterCategory = new AdapterCategory(this);
         adapterCategory.setListener(new AdapterCategory.OnTitleSelected() {
             @Override
             public void showTitle(String title,int j) {
-                //txtTitle.setText(title);
+                txtTitle.setText(title);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
         });
@@ -76,7 +79,6 @@ public class ActivityList extends AppCompatActivity {
         apiTask.responseCallBack(new ApiTask.ResponseListener() {
             @Override
             public void jsonResponse(String result) {
-                Log.i("Message", "test2"+result);
                 Gson gson = new GsonBuilder().create();
                 ResponseCategory responseCategory =  gson.fromJson(result,ResponseCategory.class);
                 listValues = new ArrayList<>();
@@ -101,19 +103,9 @@ public class ActivityList extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+
+            adapterCategory.setListTitle();
+
     }
-//        adapterCategory.setListTitle();
-//        adapterCategory.setListener(new AdapterCategory.OnTitleSelected() {
-//            @Override
-//            public void showTitle(String title,int j) {
-//                if (j==1) {
-//                    txtTitle.setText(SHOP_BY_CATEGORY);
-//                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//                }
-//
-//                else txtTitle.setText(title);
-//            }
-//        });
-//    }
+
 }

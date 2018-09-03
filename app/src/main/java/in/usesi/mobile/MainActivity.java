@@ -2,17 +2,21 @@ package in.usesi.mobile;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
@@ -35,6 +39,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
+import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
@@ -46,11 +52,15 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
@@ -71,6 +81,8 @@ public class MainActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener, SwipeRefreshLayout.OnRefreshListener {
 
+
+        private FirebaseAnalytics mFirebaseAnalytics;
         private WebView webLoad;
         private String search_Text = "";
         private boolean loggedIn;
@@ -95,13 +107,15 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        final FloatingActionButton fab = findViewById(R.id.fab);
         progressView = findViewById(R.id.progressBar);
         progressView.setMax(100);
         fab.setVisibility(View.GONE);
         getVersionInfo();
         CookieManager.getInstance().setCookie(Constants.BASE_URL + "?mobileapp=1", "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
         webLoad = findViewById(R.id.webLoad);
+        webLoad.setWebContentsDebuggingEnabled(true);
         swipe = findViewById(R.id.swipe);
         swipe.setOnRefreshListener(this);
         CookieManager.getInstance().setAcceptThirdPartyCookies(webLoad, true);
@@ -115,8 +129,31 @@ public class MainActivity extends AppCompatActivity
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
-        webSettings.setSupportMultipleWindows(true);
+
+        webSettings.setUserAgentString("MobileAPP");
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+
+        webLoad.setDownloadListener(new DownloadListener() {
+            public void onDownloadStart(String url, String userAgent,
+                                        String contentDisposition, String mimetype,
+                                        long contentLength) {
+
+                if (url.contains("https://secure.billtrust.com")) {
+                    DownloadManager.Request request = new DownloadManager.Request(
+                            Uri.parse(url));
+                    request.addRequestHeader("User-Agent", userAgent);
+                    request.setDescription("Downloading file...");
+                    request.allowScanningByMediaScanner();
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                    request.setDestinationInExternalFilesDir(MainActivity.this,
+                            Environment.DIRECTORY_DOWNLOADS, "invoice.pdf");
+                    DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                    dm.enqueue(request);
+                    Toast.makeText(getApplicationContext(), "Downloading File",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
 
         webLoad.setWebChromeClient(new WebChromeClient() {
@@ -161,8 +198,7 @@ public class MainActivity extends AppCompatActivity
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(webLoad, url, favicon);
                 swipe.setRefreshing(false);
-                FloatingActionButton fab = findViewById(R.id.fab);
-                fab.setVisibility(View.GONE);
+                swipe.setEnabled(true);
 
                 if (strLocationClicked.equals("clicked")) {
                     if (url.contains(Constants.BASE_URL)) {
@@ -170,10 +206,7 @@ public class MainActivity extends AppCompatActivity
                         strLocationClicked = "notclicked";
                     }
                 }
-
             }
-
-
 
 
             @Override
@@ -182,12 +215,19 @@ public class MainActivity extends AppCompatActivity
 
                 if (url.equals(Constants.BASE_URL + "customer/account/logoutSuccess/")) {
                     callLoginWebService();
-                } else if (url.equals(Constants.BASE_URL + "customer/account/")) {
+                }
+                else if (url.equals(Constants.BASE_URL + "customer/account/")) {
                     callLoginWebService();
-                } else if (url.equals(Constants.BASE_URL + "checkout/cart/delete/")) {
+                }
+                else if (url.equals(Constants.BASE_URL + "checkout/cart/delete/"))
+                {
                     callLoginWebService();
                 }
             }
+
+
+
+
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 
@@ -198,15 +238,28 @@ public class MainActivity extends AppCompatActivity
                 if (url.startsWith("tel:")) {
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
                     startActivity(intent);
-                    view.reload();
                     return true;
                 }
 
                 if (url.startsWith("mailto:")) {
                     startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse(url)));
-                    view.reload();
                     return true;
                 }
+
+                if (url.startsWith("share:")) {
+                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    sharingIntent.setType("text/plain");
+                    String shareBody = webLoad.getUrl();
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Product detail Page");
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                    startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                    return true;
+                }
+                if (url.startsWith("print:")) {
+                    printAction();
+                    return true;
+                }
+
                 view.loadUrl(url);
                 return true;
             }
@@ -236,6 +289,15 @@ public class MainActivity extends AppCompatActivity
                 return super.shouldInterceptRequest(view, url);
             }
         });
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            webLoad.addJavascriptInterface(
+                    new AnalyticsWebInterface(this), AnalyticsWebInterface.TAG);
+        } else {
+            Log.w("Message", "Not adding JavaScriptInterface, API Version: " + Build.VERSION.SDK_INT);
+        }
+
 
         webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
         callLoginWebService();
@@ -282,15 +344,26 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
-
         navigationView.setNavigationItemSelectedListener(this);
     }
 
 
 
-   
+
+
+    private void printAction()
+    {
+        PrintManager printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
+        PrintDocumentAdapter printAdapter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            printAdapter = webLoad.createPrintDocumentAdapter();
+        }
+        String jobName = "Print";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            printManager.print(jobName, printAdapter, new PrintAttributes.Builder().build());
+        }
+
+    }
 
     private void callVerionWebService()
     {
@@ -752,11 +825,14 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onRefresh() {
+        if (strLocationClicked.equals("clicked")){
+            swipe.setEnabled(false);
+            swipe.setRefreshing(false);
 
+        }else{
             swipe.setRefreshing(true);
             webLoad.reload();
-
+        }
     }
-
 
 }
