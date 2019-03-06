@@ -1,4 +1,4 @@
-package in.usesi.mobile;
+package in.yale.mobile;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,7 +10,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static in.usesi.mobile.ApiTask.HTTP_TYPE.*;
+import static in.yale.mobile.ApiTask.HTTP_TYPE.*;
 
 public class ApiTask extends AsyncTask<String, String, String> {
 

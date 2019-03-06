@@ -1,4 +1,4 @@
-package in.usesi.mobile;
+package in.yale.mobile;
 
 import com.google.gson.annotations.SerializedName;
 

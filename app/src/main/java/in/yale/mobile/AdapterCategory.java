@@ -1,4 +1,4 @@
-package in.usesi.mobile;
+package in.yale.mobile;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import static in.usesi.mobile.R.string.SHOP_BY_CATEGORY;
+import static in.yale.mobile.R.string.SHOP_BY_CATEGORY;
 
 
 public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyViewHolder> {
@@ -38,8 +38,9 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
 
     void setListTitle() {
         j--;
-        if (j>0)
+        if (j > 0) {
             notifyDataSetChanged();
+        }
         else
             ((ActivityList)context).finish();
     }
@@ -69,6 +70,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         if (j == 1) {
             listDoubleData = new ArrayList<>();
+            listSecondData = new ArrayList<>();
             holder.txtCategory.setText(listCategory.get(holder.getAdapterPosition()));
             holder.imgNav.setVisibility(View.VISIBLE);
             if (titleSelected != null)
@@ -148,7 +150,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
                 }
                 else if (j == 2) {
                     String thirdLabel = listSecondData.get(holder.getAdapterPosition()).getSecondLabel();
-
+                     Log.i("Message Link", thirdLabel);
                     StringTokenizer tokens = new StringTokenizer(thirdLabel, "|");
                     String first = tokens.nextToken();
                     String loadURL = tokens.nextToken();

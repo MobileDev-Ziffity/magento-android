@@ -1,4 +1,4 @@
-package in.usesi.mobile;
+package in.yale.mobile;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static in.usesi.mobile.R.string.SHOP_BY_CATEGORY;
+import static in.yale.mobile.R.string.SHOP_BY_CATEGORY;
 
 public class ActivityList extends AppCompatActivity {
 

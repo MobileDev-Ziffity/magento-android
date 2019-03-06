@@ -1,4 +1,4 @@
-package in.usesi.mobile;
+package in.yale.mobile;
 
 import android.Manifest;
 import android.app.Activity;
@@ -113,7 +113,7 @@ public class SubmitPhoto extends Activity {
             }
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                                                    "in.usesi.mobile.fileprovider",
+                                                    "in.yale.mobile.fileprovider",
                                                     photoFile);
                 mImageUri = photoURI;
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);

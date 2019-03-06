@@ -1,4 +1,4 @@
-package in.usesi.mobile;
+package in.yale.mobile;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;

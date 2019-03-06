@@ -1,4 +1,4 @@
-package in.usesi.mobile;
+package in.yale.mobile;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

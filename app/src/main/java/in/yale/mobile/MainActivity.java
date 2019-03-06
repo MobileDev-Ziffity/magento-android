@@ -1,4 +1,4 @@
-package in.usesi.mobile;
+package in.yale.mobile;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -72,8 +72,8 @@ import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import cz.msebera.android.httpclient.util.EncodingUtils;
 
-import static in.usesi.mobile.ApiTask.HTTP_TYPE.GET;
-import static in.usesi.mobile.R.string.logOut;
+import static in.yale.mobile.ApiTask.HTTP_TYPE.GET;
+import static in.yale.mobile.R.string.logOut;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity
                     dm.enqueue(request);
                     Toast.makeText(getApplicationContext(), "Downloading File",
                             Toast.LENGTH_LONG).show();
+                    webLoad.reload();
                 }
             }
         });
@@ -178,7 +179,6 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 mUploadMessage = filePathCallback;
-
                 Intent intent = fileChooserParams.createIntent();
 
                 try {
@@ -235,6 +235,8 @@ public class MainActivity extends AppCompatActivity
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
+                Log.i("Message", url);
+
                 if (url.startsWith("tel:")) {
                     Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
                     startActivity(intent);
@@ -286,17 +288,18 @@ public class MainActivity extends AppCompatActivity
                         }
                     });
                 }
+                else if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=cart"))
+                {
+                    webLoad.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            callLoginWebService();
+                        }
+                    });
+                }
                 return super.shouldInterceptRequest(view, url);
             }
         });
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            webLoad.addJavascriptInterface(
-                    new AnalyticsWebInterface(this), AnalyticsWebInterface.TAG);
-        } else {
-            Log.w("Message", "Not adding JavaScriptInterface, API Version: " + Build.VERSION.SDK_INT);
-        }
 
 
         webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
@@ -477,6 +480,7 @@ public class MainActivity extends AppCompatActivity
         String getUrl = webLoad.getUrl();
         Constants.apiCall = FALSE;
         String cookies = CookieManager.getInstance().getCookie(getUrl);
+        Log.i("cookie",cookies);
         if (Utils.checkInternet(MainActivity.this)) {
 
             ApiTask apiTask = new ApiTask(MainActivity.this);
@@ -829,7 +833,12 @@ public class MainActivity extends AppCompatActivity
             swipe.setEnabled(false);
             swipe.setRefreshing(false);
 
-        }else{
+        }
+        else if (webLoad.getUrl().equals(Constants.BASE_URL + "checkout/")){
+            swipe.setEnabled(false);
+            swipe.setRefreshing(false);
+
+        } else{
             swipe.setRefreshing(true);
             webLoad.reload();
         }

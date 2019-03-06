@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.usesi.mobile">
+    package="in.yale.mobile">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +12,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon"
-        android:label="USESI"
+        android:label="YALE"
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -34,7 +34,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="in.usesi.mobile.fileprovider"
+            android:authorities="in.yale.mobile.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
