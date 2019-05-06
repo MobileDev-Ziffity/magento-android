@@ -98,6 +98,13 @@
             android:title=""/>
     </group>
 
+        <group android:id="@+id/grp14" android:checkableBehavior="single" >
+            <item
+                android:id="@+id/nav_employee"
+                android:icon="@drawable/ic_action_employee"
+                android:title="EMPLOYEE LOGIN" />
+        </group>
+
     <group android:id="@+id/grp1" android:checkableBehavior="single" >
         <item
             android:id="@+id/nav_login"

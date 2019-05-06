@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "83998153607",
-    "firebase_url": "https://yale-mobile-12b40.firebaseio.com",
-    "project_id": "yale-mobile-12b40",
-    "storage_bucket": "yale-mobile-12b40.appspot.com"
+    "project_number": "190139210448",
+    "firebase_url": "https://usesi-mobile.firebaseio.com",
+    "project_id": "usesi-mobile",
+    "storage_bucket": "usesi-mobile.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:83998153607:android:1a18acd4cc1f0d32",
+        "mobilesdk_app_id": "1:190139210448:android:a53f88efd8b76f28",
         "android_client_info": {
-          "package_name": "in.yale.mobile"
+          "package_name": "in.usesi.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "83998153607-acldg76oqebicuvjvqrmeg0r2dur7768.apps.googleusercontent.com",
+          "client_id": "190139210448-oir4fd01binhnuq8l3gjc6j59urjdfam.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDGkkezam7afNJZozGkLX730gbeoRcdD-s"
+          "current_key": "AIzaSyDLOiaGX71-bKEJtVZeK_s5v_vetbiqIcU"
         }
       ],
       "services": {
