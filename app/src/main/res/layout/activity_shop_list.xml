@@ -35,12 +35,69 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shimmer">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <include layout="@layout/placeholder_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:visibility="gone">
 
 
     </android.support.v7.widget.RecyclerView>

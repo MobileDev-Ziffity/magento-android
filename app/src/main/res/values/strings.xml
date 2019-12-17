@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">USESI</string>
+    <string name="app_name">YALE</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -10,4 +10,7 @@
     <string name="guestUser">GUEST USER</string>
     <string name="logOut">LOGOUT</string>
     <string name="SHOP_BY_CATEGORY">Shop by Category</string>
+    <string name="search">Search</string>
+    <string name="search_alert"><font size="10">Search by keyword or part number</font></string>
+    <string name="permission_location_rationale">We require access to your location to find the closest branch</string>
 </resources>

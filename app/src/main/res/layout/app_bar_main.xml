@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="in.usesi.mobile.MainActivity">
+    tools:context="in.yale.mobile.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:id="@+id/logo"
                 android:layout_width="110dp"
                 android:layout_height="30dp"
-                android:background="@drawable/usesi_logo" />
+                android:background="@drawable/yale_logo" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>

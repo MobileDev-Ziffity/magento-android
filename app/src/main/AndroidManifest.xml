@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.usesi.mobile">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="in.yale.mobile">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -8,11 +9,12 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon"
-        android:label="USESI"
+        android:label="YALE"
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -23,6 +25,9 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ActivityList" />
         <activity android:name=".Barcode" />
+        <activity
+            android:name=".ScannerItemActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".SubmitPhoto" />
         <activity android:name=".SplashScreen">
             <intent-filter>
@@ -34,7 +39,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="in.usesi.mobile.fileprovider"
+            android:authorities="in.yale.mobile.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -43,6 +48,12 @@
         </provider>
 
         <activity android:name=".ActivityShopList"/>
+
+        <activity android:name="com.gun0912.tedpermission.TedPermissionActivity"
+            android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|screenLayout|fontScale|uiMode|orientation|screenSize|layoutDirection"
+            android:screenOrientation="unspecified"
+            android:theme="@style/Theme.Transparent.Permission"
+            tools:replace="android:screenOrientation"/>
     </application>
 
 </manifest>
