@@ -112,8 +112,7 @@ public class SubmitPhoto extends Activity {
                 Log.e("SubmitPhoto Err", "ERROR creating image file");
             }
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                                                    "in.yale.mobile.fileprovider",
+                Uri photoURI = FileProvider.getUriForFile(this, "@string/flavored_authorities_name",
                                                     photoFile);
                 mImageUri = photoURI;
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);

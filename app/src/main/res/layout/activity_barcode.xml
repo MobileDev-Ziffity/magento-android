@@ -27,9 +27,9 @@
 
                 <ImageView
                     android:id="@+id/logo"
-                    android:layout_width="110dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/yale_logo" />
+                    android:layout_width="@string/flavored_layout_width"
+                    android:layout_height="@string/flavored_layout_height"
+                    android:background="@string/flavored_splash_icon" />
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>

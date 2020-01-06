@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "190139210448",
+    "firebase_url": "https://usesi-mobile.firebaseio.com",
+    "project_id": "usesi-mobile",
+    "storage_bucket": "usesi-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190139210448:android:a53f88efd8b76f28",
+        "android_client_info": {
+          "package_name": "in.usesi.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190139210448-oir4fd01binhnuq8l3gjc6j59urjdfam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLOiaGX71-bKEJtVZeK_s5v_vetbiqIcU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

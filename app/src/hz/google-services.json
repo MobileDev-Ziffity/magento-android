@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "604183265038",
+    "firebase_url": "https://hz-mobile-feaf0.firebaseio.com",
+    "project_id": "hz-mobile-feaf0",
+    "storage_bucket": "hz-mobile-feaf0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604183265038:android:0656ecc1a3866b45",
+        "android_client_info": {
+          "package_name": "in.hz.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604183265038-15mmh83emnc84msgm6at75p3mh95efpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiM-yDEIVft5XOZqLNdFCjLspwS-r1MkU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "855344961920",
+    "firebase_url": "https://lade-mobile.firebaseio.com",
+    "project_id": "lade-mobile",
+    "storage_bucket": "lade-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855344961920:android:aa017efa2e783a7c",
+        "android_client_info": {
+          "package_name": "in.lade.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855344961920-h47dop9kfj7128ei6q3p9d8h3542q6g1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyzck4UJo1HI0NNrcQlrDmRbRKPbuYhig"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

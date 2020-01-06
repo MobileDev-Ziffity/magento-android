@@ -14,14 +14,14 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon"
-        android:label="YALE"
+        android:label="@string/flavored_app_name"
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/app_name"
+            android:label="@string/flavored_app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ActivityList" />
         <activity android:name=".Barcode" />
@@ -39,7 +39,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="in.yale.mobile.fileprovider"
+            android:authorities="@string/flavored_authorities_name"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

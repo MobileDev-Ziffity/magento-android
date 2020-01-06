@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "909881112243",
+    "firebase_url": "https://standard-mobile-299db.firebaseio.com",
+    "project_id": "standard-mobile-299db",
+    "storage_bucket": "standard-mobile-299db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909881112243:android:3b22ba76ca910fed",
+        "android_client_info": {
+          "package_name": "in.standard.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909881112243-g27k6bmfa7v2nq8up2svu5k52ov47f01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdA611jIsMqnwla0rOdhzb7qLaLAYLSyE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

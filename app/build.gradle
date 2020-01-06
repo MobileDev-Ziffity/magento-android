@@ -3,18 +3,172 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "in.yale.mobile"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 23
         versionName "1.17"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        setProperty("archivesBaseName","yale")
+        resValue "string", "flavored_external_path" , "Android/data/"+applicationId+"/files/Pictures"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "version"
+
+    productFlavors {
+        yale {
+            dimension "version"
+            applicationId "in.yale.mobile"
+            resValue "string", "flavored_app_name", "YALE"
+            resValue "string", "flavored_authorities_name", "in.yale.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/yale_logo"
+            resValue "string", "flavored_layout_width", "110dp"
+            resValue "string", "flavored_layout_height", "30dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.yaleelectricsupply.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.yaleelectricsupply.com/yale-locations/\"";
+        }
+
+        usesi {
+            dimension "version"
+            applicationId "in.usesi.mobile"
+            resValue "string", "flavored_app_name", "USESI"
+            resValue "string", "flavored_authorities_name", "in.usesi.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/usesi_logo"
+            resValue "string", "flavored_layout_width", "110dp"
+            resValue "string", "flavored_layout_height", "30dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.usesi.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://careers.usesi.com/companies/\"";
+        }
+
+        duplex {
+            dimension "version"
+            applicationId "in.duplex.mobile"
+            resValue "string", "flavored_app_name", "DUPLEX"
+            resValue "string", "flavored_authorities_name", "in.duplex.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/duplex_logo"
+            resValue "string", "flavored_layout_width", "90dp"
+            resValue "string", "flavored_layout_height", "35dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.duplexelectric.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.duplexelectric.com/duplex-locations/\"";
+        }
+
+        ewct {
+            dimension "version"
+            applicationId "in.ewct.mobile"
+            resValue "string", "flavored_app_name", "EWCT"
+            resValue "string", "flavored_authorities_name", "in.ewct.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/ewcy_logo"
+            resValue "string", "flavored_layout_width", "80dp"
+            resValue "string", "flavored_layout_height", "35dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.ew-ct.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.ew-ct.com/locations/\"";
+        }
+
+        ewne {
+            dimension "version"
+            applicationId "in.ewne.mobile"
+            resValue "string", "flavored_app_name", "EWNE"
+            resValue "string", "flavored_authorities_name", "in.ewne.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/ewne_logo"
+            resValue "string", "flavored_layout_width", "110dp"
+            resValue "string", "flavored_layout_height", "25dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.ew-ne.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.ew-ne.com/locations/\"";
+        }
+
+        hz {
+            dimension "version"
+            applicationId "in.hz.mobile"
+            resValue "string", "flavored_app_name", "HZ"
+            resValue "string", "flavored_authorities_name", "in.hz.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/hz_logo"
+            resValue "string", "flavored_layout_width", "65dp"
+            resValue "string", "flavored_layout_height", "35dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.hzelectric.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.hzelectric.com/locations/\"";
+        }
+
+        lade {
+            dimension "version"
+            applicationId "in.lade.mobile"
+            resValue "string", "flavored_app_name", "LADE"
+            resValue "string", "flavored_authorities_name", "in.lade.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/ld_logo"
+            resValue "string", "flavored_layout_width", "110dp"
+            resValue "string", "flavored_layout_height", "30dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.ladedanlar.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.ladedanlar.com/locations/\"";
+        }
+
+        maurice {
+            dimension "version"
+            applicationId "in.maurice.mobile"
+            resValue "string", "flavored_app_name", "Maurice Electric"
+            resValue "string", "flavored_authorities_name", "in.maurice.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/maurice_logo"
+            resValue "string", "flavored_layout_width", "90dp"
+            resValue "string", "flavored_layout_height", "40dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.mauriceelectric.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.mauriceelectric.com/locations/\"";
+        }
+
+        monarch {
+            dimension "version"
+            applicationId "in.monarch.mobile"
+            resValue "string", "flavored_app_name", "MONARCH"
+            resValue "string", "flavored_authorities_name", "in.monarch.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/monarch_logo"
+            resValue "string", "flavored_layout_width", "110dp"
+            resValue "string", "flavored_layout_height", "30dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.monarchelectric.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.monarchelectric.com/monarch-locations/\"";
+        }
+
+        standard {
+            dimension "version"
+            applicationId "in.standard.mobile"
+            resValue "string", "flavored_app_name", "STANDARD"
+            resValue "string", "flavored_authorities_name", "in.standard.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/standard_logo"
+            resValue "string", "flavored_layout_width", "110dp"
+            resValue "string", "flavored_layout_height", "30dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.standardelectric.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.standardelectric.com/locations/\"";
+        }
+
+        usrs {
+            dimension "version"
+            applicationId "in.usrs.mobile"
+            resValue "string", "flavored_app_name", "USRS"
+            resValue "string", "flavored_authorities_name", "in.usrs.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/usrs_logo"
+            resValue "string", "flavored_layout_width", "110dp"
+            resValue "string", "flavored_layout_height", "30dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.usrenewablesolutions.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.usrenewablesolutions.com/careers/\"";
+        }
+
+        walters {
+            dimension "version"
+            applicationId "in.walters.mobile"
+            resValue "string", "flavored_app_name", "WALTERS"
+            resValue "string", "flavored_authorities_name", "in.walters.mobile.fileprovider"
+            resValue "string", "flavored_splash_icon", "@drawable/walters_logo"
+            resValue "string", "flavored_layout_width", "110dp"
+            resValue "string", "flavored_layout_height", "30dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.walterswholesale.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.walterswholesale.com/locations/\"";
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def flavorName = variant.flavorName
+            def buildType = variant.buildType.name
+            outputFileName = "${flavorName}-${buildType}.apk"
         }
     }
 }
@@ -23,16 +177,16 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.firebase:firebase-core:16.0.1'
     //noinspection GradleCompatible
-    compile 'com.android.support:appcompat-v7:28.0.0'
-    compile 'com.android.support:design:27.1.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.loopj.android:android-async-http:1.4.9'
-    compile 'com.squareup.okhttp3:okhttp:3.9.1'
-    compile 'com.squareup.okio:okio:1.13.0'
-    compile 'com.google.code.gson:gson:2.8.2'
-    compile 'gun0912.ted:tedpermission:2.1.0'
-    compile 'com.github.bumptech.glide:glide:4.5.0'
-    compile 'me.dm7.barcodescanner:zxing:1.9.8'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.squareup.okio:okio:1.13.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'gun0912.ted:tedpermission:2.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "928025736015",
+    "firebase_url": "https://maurice-b2c2a.firebaseio.com",
+    "project_id": "maurice-b2c2a",
+    "storage_bucket": "maurice-b2c2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928025736015:android:4b99356915237892",
+        "android_client_info": {
+          "package_name": "in.maurice.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928025736015-3vinkd4v167425f0rv0eba64vmier877.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqngPgHcAYQtgYqOknhgzX0tsE4V7LsSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928025736015-3vinkd4v167425f0rv0eba64vmier877.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "928025736015-3adqsc9u06utn5drqiu6o63r5jruivo9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mauriceelectric"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

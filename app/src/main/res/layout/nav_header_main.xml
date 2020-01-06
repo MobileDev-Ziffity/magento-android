@@ -16,7 +16,7 @@
         android:id="@+id/imageView"
         android:layout_width="115dp"
         android:layout_height="40dp"
-        app:srcCompat="@drawable/yale_logo" />
+        app:srcCompat="@string/flavored_splash_icon" />
 
     <TextView
         android:id="@+id/header_welcome"

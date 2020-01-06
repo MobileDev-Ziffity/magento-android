@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
-    <external-path name="my_images" path="Android/data/in.yale.mobile/files/Pictures"/>
+    <external-path name="my_images" path="@string/flavored_external_path"/>
 </paths>
