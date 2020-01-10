@@ -8,14 +8,109 @@ android {
         versionCode 23
         versionName "1.17"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        resValue "string", "flavored_external_path" , "Android/data/"+applicationId+"/files/Pictures"
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    /* // To install and run signed APK in device
+    signingConfigs {
+        yale {
+            storeFile file("")
+            keyAlias "yale"
+            storePassword ""
+            keyPassword ""
+        }
+
+        usesi {
+            storeFile file("")
+            keyAlias "usesi"
+            storePassword ""
+            keyPassword ""
+        }
+
+        duplex {
+            storeFile file("")
+            keyAlias "duplex"
+            storePassword ""
+            keyPassword ""
+        }
+
+        ewct {
+            storeFile file("")
+            keyAlias "ewct"
+            storePassword ""
+            keyPassword ""
+        }
+
+        ewne {
+            storeFile file("")
+            keyAlias "ewne"
+            storePassword ""
+            keyPassword ""
+        }
+
+        hz {
+            storeFile file("")
+            keyAlias "hz"
+            storePassword ""
+            keyPassword ""
+        }
+
+        lade {
+            storeFile file("")
+            keyAlias "lade"
+            storePassword ""
+            keyPassword ""
+        }
+
+        maurice {
+            storeFile file("")
+            keyAlias "maurice"
+            storePassword ""
+            keyPassword ""
+        }
+
+        monarch {
+            storeFile file("")
+            keyAlias "monarch"
+            storePassword ""
+            keyPassword ""
+        }
+
+        standard {
+            storeFile file("")
+            keyAlias "standard"
+            storePassword ""
+            keyPassword ""
+        }
+
+        usrs {
+            storeFile file("")
+            keyAlias "usrs"
+            storePassword ""
+            keyPassword ""
+        }
+
+        walters {
+            storeFile file("")
+            keyAlias "walters"
+            storePassword ""
+            keyPassword ""
+        }
+    }
+    // End To install and run signed APK in device */
+
     flavorDimensions "version"
 
     productFlavors {
@@ -23,154 +118,159 @@ android {
             dimension "version"
             applicationId "in.yale.mobile"
             resValue "string", "flavored_app_name", "YALE"
-            resValue "string", "flavored_authorities_name", "in.yale.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/yale_logo"
-            resValue "string", "flavored_layout_width", "110dp"
-            resValue "string", "flavored_layout_height", "30dp"
+            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.yaleelectricsupply.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.yaleelectricsupply.com/yale-locations/\"";
+            //signingConfig signingConfigs.yale
         }
 
         usesi {
             dimension "version"
             applicationId "in.usesi.mobile"
             resValue "string", "flavored_app_name", "USESI"
-            resValue "string", "flavored_authorities_name", "in.usesi.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/usesi_logo"
-            resValue "string", "flavored_layout_width", "110dp"
-            resValue "string", "flavored_layout_height", "30dp"
+            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.usesi.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://careers.usesi.com/companies/\"";
+            //signingConfig signingConfigs.usesi
         }
 
         duplex {
             dimension "version"
             applicationId "in.duplex.mobile"
             resValue "string", "flavored_app_name", "DUPLEX"
-            resValue "string", "flavored_authorities_name", "in.duplex.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/duplex_logo"
-            resValue "string", "flavored_layout_width", "90dp"
-            resValue "string", "flavored_layout_height", "35dp"
+            resValue "dimen", "flavored_layout_width", "90dp"
+            resValue "dimen", "flavored_layout_height", "35dp"
             buildConfigField "String", "BASE_URL", "\"https://www.duplexelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.duplexelectric.com/duplex-locations/\"";
+            //signingConfig signingConfigs.duplex
         }
 
         ewct {
             dimension "version"
             applicationId "in.ewct.mobile"
             resValue "string", "flavored_app_name", "EWCT"
-            resValue "string", "flavored_authorities_name", "in.ewct.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/ewcy_logo"
-            resValue "string", "flavored_layout_width", "80dp"
-            resValue "string", "flavored_layout_height", "35dp"
+            resValue "dimen", "flavored_layout_width", "80dp"
+            resValue "dimen", "flavored_layout_height", "35dp"
             buildConfigField "String", "BASE_URL", "\"https://www.ew-ct.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.ew-ct.com/locations/\"";
+            //signingConfig signingConfigs.ewct
         }
 
         ewne {
             dimension "version"
             applicationId "in.ewne.mobile"
             resValue "string", "flavored_app_name", "EWNE"
-            resValue "string", "flavored_authorities_name", "in.ewne.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/ewne_logo"
-            resValue "string", "flavored_layout_width", "110dp"
-            resValue "string", "flavored_layout_height", "25dp"
+            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_height", "25dp"
             buildConfigField "String", "BASE_URL", "\"https://www.ew-ne.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.ew-ne.com/locations/\"";
+            //signingConfig signingConfigs.ewne
         }
 
         hz {
             dimension "version"
             applicationId "in.hz.mobile"
             resValue "string", "flavored_app_name", "HZ"
-            resValue "string", "flavored_authorities_name", "in.hz.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/hz_logo"
-            resValue "string", "flavored_layout_width", "65dp"
-            resValue "string", "flavored_layout_height", "35dp"
+            resValue "dimen", "flavored_layout_width", "65dp"
+            resValue "dimen", "flavored_layout_height", "35dp"
             buildConfigField "String", "BASE_URL", "\"https://www.hzelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.hzelectric.com/locations/\"";
+            //signingConfig signingConfigs.hz
         }
 
         lade {
             dimension "version"
             applicationId "in.lade.mobile"
             resValue "string", "flavored_app_name", "LADE"
-            resValue "string", "flavored_authorities_name", "in.lade.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/ld_logo"
-            resValue "string", "flavored_layout_width", "110dp"
-            resValue "string", "flavored_layout_height", "30dp"
+            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.ladedanlar.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.ladedanlar.com/locations/\"";
+            //signingConfig signingConfigs.lade
         }
 
         maurice {
             dimension "version"
             applicationId "in.maurice.mobile"
             resValue "string", "flavored_app_name", "Maurice Electric"
-            resValue "string", "flavored_authorities_name", "in.maurice.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/maurice_logo"
-            resValue "string", "flavored_layout_width", "90dp"
-            resValue "string", "flavored_layout_height", "40dp"
+            resValue "dimen", "flavored_layout_width", "90dp"
+            resValue "dimen", "flavored_layout_height", "40dp"
             buildConfigField "String", "BASE_URL", "\"https://www.mauriceelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.mauriceelectric.com/locations/\"";
+            //signingConfig signingConfigs.maurice
         }
 
         monarch {
             dimension "version"
             applicationId "in.monarch.mobile"
             resValue "string", "flavored_app_name", "MONARCH"
-            resValue "string", "flavored_authorities_name", "in.monarch.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/monarch_logo"
-            resValue "string", "flavored_layout_width", "110dp"
-            resValue "string", "flavored_layout_height", "30dp"
+            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.monarchelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.monarchelectric.com/monarch-locations/\"";
+            //signingConfig signingConfigs.monarch
         }
 
         standard {
             dimension "version"
             applicationId "in.standard.mobile"
             resValue "string", "flavored_app_name", "STANDARD"
-            resValue "string", "flavored_authorities_name", "in.standard.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/standard_logo"
-            resValue "string", "flavored_layout_width", "110dp"
-            resValue "string", "flavored_layout_height", "30dp"
+            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.standardelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.standardelectric.com/locations/\"";
+            //signingConfig signingConfigs.standard
         }
 
         usrs {
             dimension "version"
             applicationId "in.usrs.mobile"
             resValue "string", "flavored_app_name", "USRS"
-            resValue "string", "flavored_authorities_name", "in.usrs.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/usrs_logo"
-            resValue "string", "flavored_layout_width", "110dp"
-            resValue "string", "flavored_layout_height", "30dp"
+            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.usrenewablesolutions.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.usrenewablesolutions.com/careers/\"";
+            //signingConfig signingConfigs.usrs
         }
 
         walters {
             dimension "version"
             applicationId "in.walters.mobile"
             resValue "string", "flavored_app_name", "WALTERS"
-            resValue "string", "flavored_authorities_name", "in.walters.mobile.fileprovider"
             resValue "string", "flavored_splash_icon", "@drawable/walters_logo"
-            resValue "string", "flavored_layout_width", "110dp"
-            resValue "string", "flavored_layout_height", "30dp"
+            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.walterswholesale.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.walterswholesale.com/locations/\"";
+            //signingConfig signingConfigs.walters
         }
     }
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
+            resValue "string", "flavored_authorities_name", "\"${applicationId}.fileprovider\""
+            def AUTHORITY = ".fileprovider"
+            buildConfigField "String", "FLAVOURED_AUTHORITIES", "\"" + applicationId + AUTHORITY + "\"";
             def flavorName = variant.flavorName
             def buildType = variant.buildType.name
             outputFileName = "${flavorName}-${buildType}.apk"
         }
     }
+
+
 }
 
 dependencies {

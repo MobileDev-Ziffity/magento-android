@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/ba3f2dd81dbc034b66a73ac71371130b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="88c68e5ef7c5ace393d014c9ec5fe736b1ca55cf">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/39.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/0fd4472e62aa96e90b36b73fe09bc693/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="41b8c7e99024d4288d7dfc709bb72fdaa5fdc32f">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/43.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/tedpermission-2.1.0.aar/a533b1f4ac5781651183de328bcd6815/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9427b484610f3b640905a67fe2193c9bff2382d9">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/4f5b36bc4c16c27e456730db49aaad9a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e9b03dd36d3c106574e2cdeb8edd543bd5e51d0e">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/53.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/transition-27.1.1.aar/fb5a02367aa7ddd9e5e95e887d8dc287/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7038c6d960d3fe26fd41bc509f256c9692d886ce">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/37.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/a80d95d975565da107cebe33490a966d/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b05ce31f5d87a7f16cdbdbc5e3a7cf2190bf0118">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/34.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/cz.msebera.android/httpclient/4.3.6/526a9f794eab830eae4f23a62c572878b3f491ab/httpclient-4.3.6.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="526a9f794eab830eae4f23a62c572878b3f491ab">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/64.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/6bfbf0481c3a6a067fb789d51f187d62/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="19e63f5c3afd0a4379bfb830816bb8a9661aba75">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/45.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/5d0c47b0f5d893d70b484375bbd04e44/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ba4c894fd0a3d36e8f06f4947ab639140e668088">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/36.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.0.aar/2a57a0ae694dc36c7025c10c968c6036/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6ff520d5283b90ff4bb3db6b82298c3f1acd220b">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/66.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/5bed846687dbbd811530c1230733b908/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7b15ada2209f82b0249f331cb7ec70394dc2e828">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/54.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-16.0.1.aar/4fd1748277710f8783ef270f7feffc5b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="651276524a6892465688d2920f28072f4b35c6e7">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/18.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/76c26817f3402f68340a6c3c93cc3880/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="234e706c7aea09f97738c7830d144d50d240079e">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/9df32de3cd9a732060bb4e46372e09fb/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="49b8af59d5819c80792707bdda93a5c9a917e24c">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/38.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/d1f62c0a5a696f7ff048a3cc767587bc/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9335f203759bfcda4b6ea729dddcf06c07150d3f">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/57.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/firebase-analytics-impl-16.1.1.aar/8bdbb3317963ca93cf8e619e79e9e936/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d5c9872f97093326e643dbda4ffea750ecd69ea5">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/20.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/24cb3df9f56e44167badc228da291f8e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a69067467c7e4d5c810ea19ee43cbfab00a292b4">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/52.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/29fe84c793c20c6490221a6c47a29505/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fad505737146925636e28753e26523c3a8a03e48">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/42.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/firebase-iid-interop-16.0.0.aar/aba57b7578d1d41ce93adbbe0083fc81/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2a69972573cb7e5cc6b8652bacf981e82b68ff71">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.9.0/ccdd6bc8b4f3c001fbddec29ecddd515a13203c4/annotations-4.9.0.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ccdd6bc8b4f3c001fbddec29ecddd515a13203c4">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/ecafd18d8a7286f461aaa2b93b8e4c9d/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="925ec89d545e33030131b9470db85e701a8c61a4">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/44.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/a6c4cf64e6ae1f931651cb0823b89143/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4d4d98a0428b2e620e6b4a228ef9f7cb2f0debd2">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/28.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/firebase-analytics-16.0.1.aar/3c88b1632f66dac10bcdb3392a517adf/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="637393020f93f1744e2e325a7da6706b81697efe">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.0/73c49077166faa4c3c0059c5f583d1d7bd1475fe/core-3.3.0.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="73c49077166faa4c3c0059c5f583d1d7bd1475fe">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/65.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.android.support/collections/28.0.0/c1bcdade4d3cc2836130424a3f3e4182c666a745/collections-28.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c1bcdade4d3cc2836130424a3f3e4182c666a745">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/49.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/2cc8568cd4a0f6f53e68790ee3182b56/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f77c6cfaee7ee7c8844d5340e47a38c3fdea7060">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/32.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/core-1.6.4.aar/3b71019098b0ec88c5244ab07e9960dd/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2203f913186821901e776884570ed940c2f89841">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-15.0.1.aar/b3b059def23b21ddd733f1ec72480df0/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="63413895dce50f6123807d1db2274a1982a34194">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/25.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/191db2d5a698125b88802a855cafbe32/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9aff7eec7a0b091e460e44b8bb0bf64cadc0844">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/50.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.2/3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf/gson-2.8.2.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3edcfe49d2c6053a70a2a47e4e1c2f94998a49cf">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/70bfc21c5972e9cd167c615c69e92bfb/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/play-services-stats-15.0.1.aar/c974ad848f8dbcaa6cddd29466feea82/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c1e9d140d3260619ce2fa991d30b14b531d61dec">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.9.0/cbb185635e8f265d6391c7d43118d3856574dc3a/disklrucache-4.9.0.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cbb185635e8f265d6391c7d43118d3856574dc3a">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/15.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/02cb15ed0680f56c822eecd50520fde5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8d813c05361147f6f515f749df19223cd6256314">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/27.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.9.1/84b4b7d1c4a238e7899972b7446c250691e65f1f/okhttp-3.9.1.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="84b4b7d1c4a238e7899972b7446c250691e65f1f">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/shimmer-0.1.0.aar/4998f1d45ba3c5509c4631b1f17d3cb2/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="37e257a25703e692be3f9aa9c4bf7de620e9271a">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/710fb585e149778747ce3033ad291fcb/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="376a25a3bdce5133262368e85d430aae5bb80c28">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/55.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/core-1.9.8.aar/afebf3dc90badbd3fa35d0f5b0268b53/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0b723383fcc5c9e6d233f12cf3670c153dcb9f72">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/5bb22bce1e4bb53fb904b47fa512d22b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d8fe6d91310b54734f454dd490c3c869f6290576">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/29.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/51cbe7340f1eed4a992a6abf00420a2b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ae6d33f37143b08cd8c477c9e348d61ef7ed7eba">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/8b45225fa5c4c5f8a46a8cb7126135e7/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b99e6cdcb85894164e1a06145a5f6b78e3cb7270">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/35.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.1.aar/909712adc5cc7e15ebcf356f877645f5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4d2b8ad415048e88b41ba4afcaafe36150e69b8c">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/33.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/11b2d24b9b3f304df83b7012c53270c5/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5b049b5525643f62ebe162013dae975c7e74dcc5">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.9/386a4339ffe52d5d63e80f9bed8d2b1d1a418249/android-async-http-1.4.9.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/17afbbb8d2954cbbda99d85dbe971e5c/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="be31b531309a9196873ba4ac96ea9484ca0ecad6">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/40.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/firebase-iid-16.0.0.aar/9ab357883eccdd08d2402c2c6cff1725/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1e224748cbf54c34eac0bca6376922468b786775">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/21.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/eb4467b4e8137014b62fb7aafb4540cd/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a6d4c3181151ffbcd67897e94c688f6c200c5bec">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/41.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/8081ab7da59d5610c2528d7f0e892c59/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="70bf65523dc3db43f6c3749931976585a8f4dd20">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/56.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/c46e2ae8aedf2c3bb0a3cb30641411c8/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b1173d9f45ae18f2e0dc8ec42d15fa5b95c391d1">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/58.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.1/e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95/common-1.1.1.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e55b70d1f5620db124b3e85a7f4bdc7bd48d9f95">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/61.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/901fc6f3c151aa1b65ea3770572d5a13/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="afb9ac89f722ac83466f1bb5f2135010b7f05f32">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/60.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/a47a98fcbe41eeebe28fccbf811a588b/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ddfc0d219f43bf3c1e357a55284cbd1000e461bf">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/47.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/5320c9598be918489ad033a1c836c5b0/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8510837b7e70ee5f12cf2a20dd0a1b3d23a0cdeb">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/46.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.9.0.aar/04066f5df0b0ad3a15db36a8b992f14a/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="221de83c08ed1502286513b4d472d256341e8839">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.0.2/b9cd8fc6bd15cb915735d34535db30ece0c44603/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/63.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/zxing-1.9.8.aar/27fce85a7ef8fddac90a055b2f2f8d05/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="414c5172d9739a35339700d133288418059e7d83">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/28.0.0/ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8/support-annotations-28.0.0.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ed73f5337a002d1fd24339d5fb08c2c9d9ca60d8">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/62.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/2465ae74f638bafc8312b2955be61f22/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2e85417e7990657be8fe07d63fd5278d82eb960e">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/48.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/firebase-common-16.0.0.aar/bb44fc3a0aeaebae0fdc01a41ec473cb/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0fbef528093d3d19b229116b683bd2a66d4aeae1">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/23.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/d972e0e0d57cb0a9e227cb9aa1ed0def/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="de467de1baba33a922246561f87c0a910206d1ff">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/51.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/glide-4.9.0.aar/b876a23caa0bfec84aae984ddb215b4e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="12c6a298b609e825ad3994a96f9e61b3aac7046f">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/10.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.1/207a6efae6a3555e326de41f76bdadd9a239cbce/common-1.1.1.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="207a6efae6a3555e326de41f76bdadd9a239cbce">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/59.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/ziffity_os/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-16.0.0.aar/8534cb6f3c0fa0501147e6a09f496937/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f9148af2391a1288519f4f1d38da060c4a640e85">
+        <dex dex="/Users/ziffity_os/Desktop/magento-android/app/build/intermediates/transforms/preDex/ewct/release/24.jar" />
+    </item>
+
+</items>
