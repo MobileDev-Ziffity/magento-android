@@ -6,11 +6,9 @@ import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -22,21 +20,25 @@ import android.os.Environment;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,7 +46,6 @@ import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
-import android.webkit.URLUtil;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
@@ -68,28 +69,18 @@ import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-
-import cz.msebera.android.httpclient.HttpResponse;
-import cz.msebera.android.httpclient.client.HttpClient;
-import cz.msebera.android.httpclient.client.methods.HttpPost;
-import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
-import cz.msebera.android.httpclient.util.EncodingUtils;
 
 import static in.yale.mobile.ApiTask.HTTP_TYPE.GET;
 import static in.yale.mobile.R.string.logOut;
 import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 public class MainActivity extends AppCompatActivity
 
@@ -128,10 +119,28 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        final FloatingActionButton fab = findViewById(R.id.fab);
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Check Google play services are updated", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                        String msg = getString(R.string.msg_token_fmt, token);
+                        sendRegistrationToServer(msg);
+                    }
+                });
+
+
         progressView = findViewById(R.id.progressBar);
         progressView.setMax(100);
-        fab.setVisibility(View.GONE);
         getVersionInfo();
         CookieManager.getInstance().setCookie(Constants.BASE_URL + "?mobileapp=1", "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
         webLoad = findViewById(R.id.webLoad);
@@ -148,7 +157,6 @@ public class MainActivity extends AppCompatActivity
         appUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
             @Override
             public void onSuccess(AppUpdateInfo appUpdateInfo) {
-                //Toast.makeText(MainActivity.this, "packageName :"+appUpdateInfo.packageName()+ ", "+ "availableVersionCode :"+ appUpdateInfo.availableVersionCode() +", "+"updateAvailability :"+ appUpdateInfo.updateAvailability() +", "+ "installStatus :" + appUpdateInfo.installStatus(), Toast.LENGTH_SHORT).show();
                 if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                         && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)){
                     requestUpdate(appUpdateInfo);
@@ -159,10 +167,6 @@ public class MainActivity extends AppCompatActivity
                 }
                 else if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED){
                     notifyUser();
-                }
-                else
-                {
-                    //Toast.makeText(MainActivity.this, "No Update Available", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -181,7 +185,6 @@ public class MainActivity extends AppCompatActivity
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
 
-        //webSettings.setUserAgentString("MobileAPP");
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
         webLoad.setDownloadListener(new DownloadListener() {
@@ -398,7 +401,6 @@ public class MainActivity extends AppCompatActivity
 
         webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
         callLoginWebService();
-        //callVerionWebService();
         callShopbyList();
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
@@ -511,6 +513,12 @@ public class MainActivity extends AppCompatActivity
 
             webLoad.loadUrl(getIntent().getStringExtra("three_url"));
 
+        } else if (getIntent().getBooleanExtra("pushNotifyBoolean", false)) {
+           try {
+                if (Patterns.WEB_URL.matcher(getIntent().getStringExtra("pushNotify")).matches()) {
+                    webLoad.loadUrl(getIntent().getStringExtra("pushNotify"));
+                }
+            } catch (Exception ef) { }
         }
     }
 
@@ -598,6 +606,10 @@ public class MainActivity extends AppCompatActivity
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendRegistrationToServer(String token) {
+        // TODO: Implement this method to send token to your app server.
     }
 
     private void callLoginWebService() {
