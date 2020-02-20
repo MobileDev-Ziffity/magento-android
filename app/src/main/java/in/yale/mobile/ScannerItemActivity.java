@@ -198,7 +198,7 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
         Constants.apiCall = Boolean.TRUE;
         ApiTask apiTask = new ApiTask(ScannerItemActivity.this);
         apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
-        apiTask.setParams(null, skuUrl + barcodeText);
+        apiTask.setParams(null, skuUrl + barcodeText + ".");
 
         apiTask.responseCallBack(new ApiTask.ResponseListener() {
             @Override
