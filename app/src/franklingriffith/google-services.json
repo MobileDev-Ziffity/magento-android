@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "372421578180",
+    "firebase_url": "https://franklin-griffith.firebaseio.com",
+    "project_id": "franklin-griffith",
+    "storage_bucket": "franklin-griffith.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372421578180:android:79f96c6613a01404506891",
+        "android_client_info": {
+          "package_name": "in.franklingriffith.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372421578180-6g8a2ugmrrqs3knf9bja6oi8a2mnl48i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC816waEPzzUef9Vch_e3rVsxiLvrGxMzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372421578180-6g8a2ugmrrqs3knf9bja6oi8a2mnl48i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "372421578180-e9uf7l9sccap1o877ecrtmmcljlcifai.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.franklingriffith"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

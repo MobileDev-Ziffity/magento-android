@@ -268,6 +268,18 @@ android {
             buildConfigField "String", "LOCATION_URL", "\"https://www.walterswholesale.com/locations/\"";
             //signingConfig signingConfigs.walters
         }
+
+        franklingriffith {
+            dimension "version"
+            applicationId "in.franklingriffith.mobile"
+            versionCode 1
+            resValue "string", "flavored_app_name", "Franklin Griffith"
+            resValue "string", "flavored_splash_icon", "@drawable/franklingriffith_logo"
+            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_height", "30dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.franklinelectric.net/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.franklinelectric.net/franklin-locations/\"";
+        }
     }
 
     applicationVariants.all { variant ->
