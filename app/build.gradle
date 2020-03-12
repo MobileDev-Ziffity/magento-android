@@ -177,7 +177,7 @@ android {
             buildConfigField "String", "LOCATION_URL", "\"https://www.ew-ne.com/locations/\"";
             //signingConfig signingConfigs.ewne
         }
-
+ 
         hz {
             dimension "version"
             applicationId "in.hz.mobile"
@@ -272,13 +272,25 @@ android {
         franklingriffith {
             dimension "version"
             applicationId "in.franklingriffith.mobile"
-            versionCode 1
+            versionCode 2
             resValue "string", "flavored_app_name", "Franklin Griffith"
             resValue "string", "flavored_splash_icon", "@drawable/franklingriffith_logo"
-            resValue "dimen", "flavored_layout_width", "110dp"
+            resValue "dimen", "flavored_layout_width", "120dp"
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.franklinelectric.net/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.franklinelectric.net/franklin-locations/\"";
+        }
+
+        mainelectric {
+            dimension "version"
+            applicationId "in.mainelectric.mobile"
+            versionCode 1
+            resValue "string", "flavored_app_name", "Main Electric"
+            resValue "string", "flavored_splash_icon", "@drawable/mainelectric_logo"
+            resValue "dimen", "flavored_layout_width", "120dp"
+            resValue "dimen", "flavored_layout_height", "30dp"
+            buildConfigField "String", "BASE_URL", "\"https://www.mainelectricsupplyco.com/\"";
+            buildConfigField "String", "LOCATION_URL", "\"https://www.mainelectricsupplyco.com/mainelectric-locations/\"";
         }
     }
 

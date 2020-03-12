@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "420575323315",
+    "firebase_url": "https://main-electric.firebaseio.com",
+    "project_id": "main-electric",
+    "storage_bucket": "main-electric.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420575323315:android:80935e308a0d5d9575fcc6",
+        "android_client_info": {
+          "package_name": "in.mainelectric.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420575323315-4fu84kje9c7jph00uu6dv83jvi15a1ev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnIAJQhqhFpa6mjO9SZfbobj01j1p4Rb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420575323315-4fu84kje9c7jph00uu6dv83jvi15a1ev.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "420575323315-1bss2c6epbpvgv7203bj1da2r3tdpn6u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mainelectric"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
