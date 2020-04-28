@@ -16,110 +16,104 @@ android {
         abortOnError false
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
     // To install and run signed APK in device
     signingConfigs {
         yale {
-            storeFile file("../KeyStore\\ File/Android\\ YALE/yalekeystorefile")
-            keyAlias "yale"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android YALE/yalekeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         usesi {
-            storeFile file("../KeyStore\\ File/Android\\ USESI/usesikeystorefile")
-            keyAlias "usesi"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android USESI/usesikeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         duplex {
-            storeFile file("../KeyStore\\ File/Android\\ DUPLEX/duplexkeystorefile")
-            keyAlias "duplex"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android DUPLEX/duplexkeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         ewct {
-            storeFile file("../KeyStore\\ File/Android\\ EWCT/ewctkeystorefile")
-            keyAlias "ewct"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android EWCT/ewctkeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         ewne {
-            storeFile file("../KeyStore\\ File/Android\\ EWNE/ewnekeystorefile")
-            keyAlias "ewne"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android EWNE/ewnekeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         hz {
-            storeFile file("../KeyStore\\ File/Android\\ HZ/hzkeystorefile")
-            keyAlias "hz"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android HZ/hzkeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         lade {
-            storeFile file("../KeyStore\\ File/Android\\ LADE/ldkeystorefile")
-            keyAlias "lade"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android LADE/ldkeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         maurice {
-            storeFile file("../KeyStore\\ File/Android\\ Maurice/mauricekeystorefile")
-            keyAlias "maurice"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android Maurice/mauricekeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         monarch {
-            storeFile file("../KeyStore\\ File/Android\\ Monarch/monarchkeystorefile")
-            keyAlias "monarch"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android Monarch/monarchkeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         standard {
-            storeFile file("../KeyStore\\ File/Android\\ STANDARD/standardkeystorefile")
-            keyAlias "standard"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android STANDARD/standardkeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         usrs {
-            storeFile file("../KeyStore\\ File/Android\\ USRS/usrskeystorefile")
-            keyAlias "usrs"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android USRS/usrskeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         walters {
-            storeFile file("../KeyStore\\ File/Android\\ WALTERS/walterskeystorefile")
-            keyAlias "walters"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android WALTERS/walterskeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         franklingriffith {
-            storeFile file("../KeyStore\\ File/Android\\ FRANKLIN/franklinkeystorefile")
-            keyAlias "franklingriffith"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android FRANKLIN/franklinkeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
 
         mainelectric {
-            storeFile file("../KeyStore\\ File/Android\\ MainElectric/mainelectrickeystorefile")
-            keyAlias "mainelectric"
-            storePassword "usesi123"
-            keyPassword "usesi123"
+            storeFile file("../KeyStore File/Android MainElectric/mainelectrickeystorefile")
+            keyAlias "key0"
+            storePassword "usesi@123"
+            keyPassword "usesi@123"
         }
     }
     // End To install and run signed APK in device
@@ -137,7 +131,6 @@ android {
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.yaleelectricsupply.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.yaleelectricsupply.com/yale-locations/\"";
-            signingConfig signingConfigs.yale
         }
 
         usesi {
@@ -150,7 +143,6 @@ android {
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.usesi.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://careers.usesi.com/companies/\"";
-            signingConfig signingConfigs.usesi
         }
 
         duplex {
@@ -163,7 +155,6 @@ android {
             resValue "dimen", "flavored_layout_height", "35dp"
             buildConfigField "String", "BASE_URL", "\"https://www.duplexelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.duplexelectric.com/duplex-locations/\"";
-            signingConfig signingConfigs.duplex
         }
 
         ewct {
@@ -176,7 +167,6 @@ android {
             resValue "dimen", "flavored_layout_height", "35dp"
             buildConfigField "String", "BASE_URL", "\"https://www.ew-ct.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.ew-ct.com/locations/\"";
-            signingConfig signingConfigs.ewct
         }
 
         ewne {
@@ -189,7 +179,6 @@ android {
             resValue "dimen", "flavored_layout_height", "25dp"
             buildConfigField "String", "BASE_URL", "\"https://www.ew-ne.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.ew-ne.com/locations/\"";
-            signingConfig signingConfigs.ewne
         }
  
         hz {
@@ -202,7 +191,6 @@ android {
             resValue "dimen", "flavored_layout_height", "35dp"
             buildConfigField "String", "BASE_URL", "\"https://www.hzelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.hzelectric.com/locations/\"";
-            signingConfig signingConfigs.hz
         }
 
         lade {
@@ -215,7 +203,6 @@ android {
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.ladedanlar.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.ladedanlar.com/locations/\"";
-            signingConfig signingConfigs.lade
         }
 
         maurice {
@@ -228,7 +215,6 @@ android {
             resValue "dimen", "flavored_layout_height", "40dp"
             buildConfigField "String", "BASE_URL", "\"https://www.mauriceelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.mauriceelectric.com/locations/\"";
-            signingConfig signingConfigs.maurice
         }
 
         monarch {
@@ -241,7 +227,6 @@ android {
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.monarchelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.monarchelectric.com/monarch-locations/\"";
-            signingConfig signingConfigs.monarch
         }
 
         standard {
@@ -254,7 +239,6 @@ android {
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.standardelectric.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.standardelectric.com/locations/\"";
-            signingConfig signingConfigs.standard
         }
 
         usrs {
@@ -267,7 +251,6 @@ android {
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.usrenewablesolutions.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.usrenewablesolutions.com/careers/\"";
-            signingConfig signingConfigs.usrs
         }
 
         walters {
@@ -280,7 +263,6 @@ android {
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.walterswholesale.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.walterswholesale.com/locations/\"";
-            signingConfig signingConfigs.walters
         }
 
         franklingriffith {
@@ -293,7 +275,6 @@ android {
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.franklinelectric.net/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.franklinelectric.net/franklin-locations/\"";
-            signingConfig signingConfigs.franklingriffith
         }
 
         mainelectric {
@@ -306,7 +287,6 @@ android {
             resValue "dimen", "flavored_layout_height", "30dp"
             buildConfigField "String", "BASE_URL", "\"https://www.mainelectricsupplyco.com/\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.mainelectricsupplyco.com/mainelectric-locations/\"";
-            signingConfig signingConfigs.mainelectric
         }
     }
 
@@ -321,6 +301,26 @@ android {
         }
     }
 
+    buildTypes {
+        release {
+            productFlavors.yale.signingConfig signingConfigs.yale
+            productFlavors.usesi.signingConfig signingConfigs.usesi
+            productFlavors.duplex.signingConfig signingConfigs.duplex
+            productFlavors.ewct.signingConfig signingConfigs.ewct
+            productFlavors.ewne.signingConfig signingConfigs.ewne
+            productFlavors.hz.signingConfig signingConfigs.hz
+            productFlavors.lade.signingConfig signingConfigs.lade
+            productFlavors.maurice.signingConfig signingConfigs.maurice
+            productFlavors.monarch.signingConfig signingConfigs.monarch
+            productFlavors.standard.signingConfig signingConfigs.standard
+            productFlavors.usrs.signingConfig signingConfigs.usrs
+            productFlavors.walters.signingConfig signingConfigs.walters
+            productFlavors.franklingriffith.signingConfig signingConfigs.franklingriffith
+            productFlavors.mainelectric.signingConfig signingConfigs.mainelectric
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 
 }
 
