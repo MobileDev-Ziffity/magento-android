@@ -18,6 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +33,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -486,7 +489,12 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
         if (switchAuto.isChecked()) {
             mScannerView.resumeCameraPreview(this);
         }
-        final String barCodeData = result.getText().toString();
+        String barCodeData = "";
+        if (BarcodeFormat.UPC_A == result.getBarcodeFormat()) {
+            barCodeData = "00"+result.getText().toString();
+        } else {
+            barCodeData = result.getText().toString();
+        }
         startActivity(new Intent(Barcode.this,ScannerItemActivity.class).putExtra("bar_code_text",barCodeData));
 
     }

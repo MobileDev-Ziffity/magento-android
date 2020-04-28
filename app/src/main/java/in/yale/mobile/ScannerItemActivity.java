@@ -238,6 +238,8 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    finish();
+                    Toast.makeText(ScannerItemActivity.this, "Rescan! Invalid Barcode Format", Toast.LENGTH_SHORT).show();
                 }
 
 
