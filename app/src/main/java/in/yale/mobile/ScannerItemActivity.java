@@ -24,9 +24,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,13 +54,16 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
     private RelativeLayout relativeSecond;
     private Button addtoCart;
     public static Boolean apiAddToCart = false;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private Bundle params;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner_item);
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        params = new Bundle();
         LinearLayout llr_deliveryDetails = (LinearLayout) findViewById(R.id.llr_deliveryDetails);
         llr_shipment_deliver_details = (LinearLayout) findViewById(R.id.llr_shipment_deliver_details);
 
@@ -91,6 +97,10 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
         addtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Bundle params = new Bundle();
+                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                params.putString("date",dateStr);
+                mFirebaseAnalytics.logEvent("pdp_AddToCart", params);
                 addedToCart();
                 apiAddToCart = true;
                 finish();
@@ -99,6 +109,10 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Bundle params = new Bundle();
+                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                params.putString("date",dateStr);
+                mFirebaseAnalytics.logEvent("pdp_Cancel", params);
                 apiAddToCart = false;
                 finish();
             }
@@ -231,6 +245,9 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
                             if(!TextUtils.isEmpty(txtSku.getText().toString())) {
                                 Toast.makeText(ScannerItemActivity.this, "Product Added Successfully", Toast.LENGTH_SHORT).show();
                             }else {
+                                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                                params.putString("date",dateStr);
+                                mFirebaseAnalytics.logEvent("barcode_pdp_itemnotfound", params);
                                 Toast.makeText(ScannerItemActivity.this, "Product Not Found", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -325,6 +342,9 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
                     if(!TextUtils.isEmpty(txtSku.getText().toString())) {
                         Toast.makeText(ScannerItemActivity.this, "Product Added Successfully", Toast.LENGTH_SHORT).show();
                     }else {
+                        String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                        params.putString("date",dateStr);
+                        mFirebaseAnalytics.logEvent("barcode_pdp_itemnotfound", params);
                         Toast.makeText(ScannerItemActivity.this, "Product Not Found", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {

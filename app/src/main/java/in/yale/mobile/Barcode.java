@@ -33,6 +33,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.gun0912.tedpermission.PermissionListener;
@@ -40,7 +41,10 @@ import com.gun0912.tedpermission.TedPermission;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static in.yale.mobile.ApiTask.HTTP_TYPE.GET;
@@ -59,11 +63,15 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
     private int alertCount = 0;
     private TextView scanImageAction;
     private Switch switchAuto;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private Bundle params;
 
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_barcode);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        params = new Bundle();
         RelativeLayout relativeBarcode = findViewById(R.id.relativeBarcode);
         scanImageAction = findViewById(R.id.scanImageAction);
         switchAuto = findViewById(R.id.switchAuto);
@@ -108,6 +116,10 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
         logoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Bundle params = new Bundle();
+                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                params.putString("date",dateStr);
+                mFirebaseAnalytics.logEvent("navbar_Logo", params);
                 startActivity(new Intent(Barcode.this, MainActivity.class)
                         .putExtra("logoView_barcode", true));
 
@@ -139,6 +151,10 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Bundle params = new Bundle();
+                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                params.putString("date",dateStr);
+                mFirebaseAnalytics.logEvent("navdrawer_LOGINREGISTER", params);
                 startActivity(new Intent(Barcode.this, MainActivity.class)
                         .putExtra("login_barcode", true));
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -203,9 +219,12 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        //final Bundle params = new Bundle();
+        String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+        params.putString("date",dateStr);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
+            mFirebaseAnalytics.logEvent("navbar_Search", params);
             if (alertCount == 0) {
                 LayoutInflater layoutInflaterAndroid = LayoutInflater.from(this);
                 View mView = layoutInflaterAndroid.inflate(R.layout.custom_dialog, null);
@@ -225,7 +244,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                                 startActivity(new Intent(Barcode.this, MainActivity.class)
                                         .putExtra("alertDialog_barcode", true)
                                         .putExtra("search_Text", search_Text));
-
+                                mFirebaseAnalytics.logEvent("alert_Ok", params);
                             }
                         })
 
@@ -234,6 +253,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                                     public void onClick(DialogInterface dialogBox, int id) {
                                         dialogBox.cancel();
                                         alertCount = 0;
+                                        mFirebaseAnalytics.logEvent("alert_Cancel", params);
                                     }
                                 });
 
@@ -241,6 +261,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                 userInputDialogImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mFirebaseAnalytics.logEvent("alert_BarcodeScanner", params);
                         alertDialogAndroid.cancel();
                         alertCount = 0;
                     }
@@ -251,18 +272,22 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
         }
 
         if (id == R.id.action_cart) {
+            mFirebaseAnalytics.logEvent("navbar_Cart", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("menuItem_barcode", true));
 
         } else if (id == R.id.action_location) {
+            mFirebaseAnalytics.logEvent("navbar_Branch", params);
             Intent resultIntent = new Intent();
             resultIntent.putExtra("action_location_barcode", true);
             setResult(Barcode.RESULT_OK, resultIntent);
             finish();
         } else if (id == R.id.action_login) {
+            mFirebaseAnalytics.logEvent("navbar_Login", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("action_login_barcode", true));
         } else if (id == R.id.action_feedback) {
+            mFirebaseAnalytics.logEvent("navbar_Feedback", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("action_feedback_barcode", true));
         }
@@ -315,6 +340,10 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                         nav_city.getActionView().findViewById(R.id.changeBranch).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                //Bundle params = new Bundle();
+                                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                                params.putString("date",dateStr);
+                                mFirebaseAnalytics.logEvent("navdrawer_BranchChange", params);
                                 startActivity(new Intent(Barcode.this, MainActivity.class)
                                         .putExtra("action_location_barcode", true));
                                 drawer.closeDrawer(GravityCompat.START);
@@ -397,44 +426,56 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+        //Bundle params = new Bundle();
+        String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+        params.putString("date",dateStr);
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_branch) {
             // Handle the camera action
         } else if (id == R.id.nav_category) {
+            mFirebaseAnalytics.logEvent("navdrawer_SHOPBYCATEGORY", params);
             Intent i = new Intent(this, ActivityList.class);
             startActivityForResult(i, 2);
         } else if (id == R.id.nav_shopbylist) {
+            mFirebaseAnalytics.logEvent("navdrawer_SHOPBYLIST", params);
             Intent i = new Intent(this, ActivityShopList.class);
             startActivityForResult(i, 3);
         } else if (id == R.id.nav_locations) {
+            mFirebaseAnalytics.logEvent("navdrawer_OURLOCATIONS", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("nav_locations_barcode", true));
 
         } else if (id == R.id.nav_list) {
+            mFirebaseAnalytics.logEvent("navdrawer_YOURLIST", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("login_barcode", true));
 
         } else if (id == R.id.nav_catalog) {
+            mFirebaseAnalytics.logEvent("navdrawer_YOURCATALOG", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("nav_catalog_barcode", true));
 
         } else if (id == R.id.nav_barcode) {
+            mFirebaseAnalytics.logEvent("navdrawer_SCANBARCODE", params);
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_photo) {
+            mFirebaseAnalytics.logEvent("navdrawer_SUBMITAPHOTO", params);
             startActivity(new Intent(this, SubmitPhoto.class));
         } else if (id == R.id.nav_help) {
+            mFirebaseAnalytics.logEvent("navdrawer_HELPCENTER", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("nav_help_barcode", true));
 
         } else if (id == R.id.nav_employee) {
+            mFirebaseAnalytics.logEvent("navdrawer_EMPLOYEELOGIN", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("nav_employee_barcode", true));
 
         } else if (id == R.id.nav_contact) {
+            mFirebaseAnalytics.logEvent("navContact", params);
             String number = phone_number;
             if (checkPermission(Manifest.permission.CALL_PHONE)) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
@@ -444,6 +485,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
             }
         } else if (id == R.id.nav_customer) {
+            mFirebaseAnalytics.logEvent("navdrawer_CUSTOMERSERVICE", params);
             String number = Constants.SERVICE_NUMBER;
             if (checkPermission(Manifest.permission.CALL_PHONE)) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
@@ -453,6 +495,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
             }
         } else if (id == R.id.nav_login) {
+            mFirebaseAnalytics.logEvent("navdrawer_LOGOUT", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("nav_login_barcode", true));
 
@@ -496,7 +539,9 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
             barCodeData = result.getText().toString();
         }
         startActivity(new Intent(Barcode.this,ScannerItemActivity.class).putExtra("bar_code_text",barCodeData));
-
+        String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+        params.putString("date",dateStr);
+        mFirebaseAnalytics.logEvent("barcode_pdp", params);
     }
 
 

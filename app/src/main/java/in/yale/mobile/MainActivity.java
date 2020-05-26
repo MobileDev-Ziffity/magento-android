@@ -76,7 +76,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static in.yale.mobile.ApiTask.HTTP_TYPE.GET;
 import static in.yale.mobile.R.string.logOut;
@@ -111,6 +113,8 @@ public class MainActivity extends AppCompatActivity
     private String mGeoLocationRequestOrigin = null;
     private GeolocationPermissions.Callback mGeoLocationCallback = null;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private Bundle params;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled"})
@@ -118,8 +122,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        params = new Bundle();
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -408,6 +412,10 @@ public class MainActivity extends AppCompatActivity
         logoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Bundle params = new Bundle();
+                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                params.putString("date",dateStr);
+                mFirebaseAnalytics.logEvent("navbar_Logo", params);
                 webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
 
             }
@@ -437,6 +445,10 @@ public class MainActivity extends AppCompatActivity
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Bundle params = new Bundle();
+                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                params.putString("date",dateStr);
+                mFirebaseAnalytics.logEvent("navdrawer_LOGINREGISTER", params);
                 webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -659,6 +671,10 @@ public class MainActivity extends AppCompatActivity
                         nav_city.getActionView().findViewById(R.id.changeBranch).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                //Bundle params = new Bundle();
+                                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                                params.putString("date",dateStr);
+                                mFirebaseAnalytics.logEvent("navdrawer_BranchChange", params);
                                 strLocationClicked = "clicked";
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                                     webLoad.evaluateJavascript("jQuery(document).ready(function($) { if ($('.pickup-modal').css('display') != 'none') { $('.hidden-xs').click(); } $(window.branchChangeModalContainer).modal('toggleModal'); })", null);
@@ -831,9 +847,12 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        //final Bundle params = new Bundle();
+        String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+        params.putString("date",dateStr);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
+            mFirebaseAnalytics.logEvent("navbar_Search", params);
             if(alertCount==0) {
                 LayoutInflater layoutInflaterAndroid = LayoutInflater.from(this);
                 View mView = layoutInflaterAndroid.inflate(R.layout.custom_dialog, null);
@@ -856,6 +875,7 @@ public class MainActivity extends AppCompatActivity
                                     loadURLEncode = Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + search_Text + "&search=1/?mobileapp=1";
                                 }
                                 webLoad.loadUrl(loadURLEncode);
+                                mFirebaseAnalytics.logEvent("alert_Ok", params);
                             }
                         })
 
@@ -864,6 +884,7 @@ public class MainActivity extends AppCompatActivity
                                     public void onClick(DialogInterface dialogBox, int id) {
                                         dialogBox.cancel();
                                         alertCount = 0;
+                                        mFirebaseAnalytics.logEvent("alert_Cancel", params);
                                     }
                                 });
 
@@ -871,6 +892,7 @@ public class MainActivity extends AppCompatActivity
                 userInputDialogImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        mFirebaseAnalytics.logEvent("alert_BarcodeScanner", params);
                         alertDialogAndroid.cancel();
                         alertCount = 0;
                         Intent i = new Intent(MainActivity.this, Barcode.class);
@@ -884,13 +906,17 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (id == R.id.action_cart) {
+            mFirebaseAnalytics.logEvent("navbar_Cart", params);
             webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
         } else if (id == R.id.action_location) {
+            mFirebaseAnalytics.logEvent("navbar_Branch", params);
             strLocationClicked = "clicked";
             webLoad.evaluateJavascript("jQuery(document).ready(function($) { if ($('.pickup-modal').css('display') != 'none') { $('.hidden-xs').click(); } $(window.branchChangeModalContainer).modal('toggleModal'); })", null);
         } else if (id == R.id.action_login) {
+            mFirebaseAnalytics.logEvent("navbar_Login", params);
             webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
         } else if (id == R.id.action_feedback) {
+            mFirebaseAnalytics.logEvent("navbar_Feedback", params);
             webLoad.evaluateJavascript("jQuery(document).ready(function(){jQuery('#report-bug-link').click();})", null);
         }
         return super.onOptionsItemSelected(item);
@@ -900,40 +926,52 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+        //Bundle params = new Bundle();
+        String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+        params.putString("date",dateStr);
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_branch) {
             // Handle the camera action
         } else if (id == R.id.nav_category) {
+            mFirebaseAnalytics.logEvent("navdrawer_SHOPBYCATEGORY", params);
             Intent i = new Intent(this, ActivityList.class);
             startActivityForResult(i, 2);
         } else if (id == R.id.nav_shopbylist) {
+            mFirebaseAnalytics.logEvent("navdrawer_SHOPBYLIST", params);
             Intent i = new Intent(this, ActivityShopList.class);
             startActivityForResult(i, 3);
         } else if (id == R.id.nav_locations) {
+            mFirebaseAnalytics.logEvent("navdrawer_OURLOCATIONS", params);
             webLoad.loadUrl(Constants.LOCATION_URL + "?mobileapp=1");
         } else if (id == R.id.nav_list) {
+            mFirebaseAnalytics.logEvent("navdrawer_YOURLIST", params);
             if (employLoggedIn || loggedIn)
                 webLoad.loadUrl(Constants.BASE_URL + "wishlists?mobileapp=1");
             else
                 webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
         } else if (id == R.id.nav_catalog) {
+            mFirebaseAnalytics.logEvent("navdrawer_YOURCATALOG", params);
             if (employLoggedIn || loggedIn)
                 webLoad.loadUrl(Constants.BASE_URL + "yourcatalog?mobileapp=1");
             else
                 webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
         } else if (id == R.id.nav_barcode) {
+            mFirebaseAnalytics.logEvent("navdrawer_SCANBARCODE", params);
             Intent i = new Intent(this, Barcode.class);
             startActivityForResult(i, 1);
         } else if (id == R.id.nav_photo) {
+            mFirebaseAnalytics.logEvent("navdrawer_SUBMITAPHOTO", params);
             startActivity(new Intent(this, SubmitPhoto.class));
         } else if (id == R.id.nav_help) {
+            mFirebaseAnalytics.logEvent("navdrawer_HELPCENTER", params);
             webLoad.loadUrl(Constants.BASE_URL + "help-center?mobileapp=1");
         } else if (id == R.id.nav_employee) {
+            mFirebaseAnalytics.logEvent("navdrawer_EMPLOYEELOGIN", params);
             webLoad.loadUrl(Constants.BASE_URL + "employee/login?mobileapp=1");
         } else if (id == R.id.nav_contact) {
+            mFirebaseAnalytics.logEvent("navdrawer_BRANCHNUMBER", params);
             String number = phone_number;
             if (checkPermission(Manifest.permission.CALL_PHONE)) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
@@ -943,6 +981,7 @@ public class MainActivity extends AppCompatActivity
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
             }
         } else if (id == R.id.nav_customer) {
+            mFirebaseAnalytics.logEvent("navdrawer_CUSTOMERSERVICE", params);
             String number = Constants.SERVICE_NUMBER;
             if (checkPermission(Manifest.permission.CALL_PHONE)) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
@@ -952,6 +991,7 @@ public class MainActivity extends AppCompatActivity
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
             }
         } else if (id == R.id.nav_login) {
+            mFirebaseAnalytics.logEvent("navdrawer_LOGOUT", params);
             if (loggedIn) {
                 webLoad.loadUrl(Constants.BASE_URL + "customer/account/logout/?mobileapp=1");
             } else {

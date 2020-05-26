@@ -10,69 +10,69 @@
     </facet>
     <facet type="android" name="Android">
       <configuration>
-        <option name="SELECTED_BUILD_VARIANT" value="usrsRelease" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleUsrsRelease" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileUsrsReleaseSources" />
+        <option name="SELECTED_BUILD_VARIANT" value="yaleRelease" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleYaleRelease" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileYaleReleaseSources" />
         <afterSyncTasks>
-          <task>generateUsrsReleaseSources</task>
+          <task>generateYaleReleaseSources</task>
         </afterSyncTasks>
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/usrs/res;file://$MODULE_DIR$/build/generated/res/google-services/usrs/release;file://$MODULE_DIR$/build/generated/res/resValues/usrs/release" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/yale/res;file://$MODULE_DIR$/build/generated/res/google-services/yale/release;file://$MODULE_DIR$/build/generated/res/resValues/yale/release" />
         <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
-    <output url="file://$MODULE_DIR$/build/intermediates/javac/usrsRelease/classes" />
-    <output-test url="file://$MODULE_DIR$/build/intermediates/javac/usrsReleaseUnitTest/classes" />
+    <output url="file://$MODULE_DIR$/build/intermediates/javac/yaleRelease/classes" />
+    <output-test url="file://$MODULE_DIR$/build/intermediates/javac/yaleReleaseUnitTest/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/ap_generated_sources/usrsRelease/out" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/aidl_source_output_dir/usrsRelease/compileUsrsReleaseAidl/out" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/usrs/release" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/renderscript_source_output_dir/usrsRelease/compileUsrsReleaseRenderscript/out" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/google-services/usrs/release" type="java-resource" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/usrs/release" type="java-resource" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/usrs/release" type="java-resource" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrsRelease/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrsRelease/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrsRelease/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrsRelease/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrsRelease/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrsRelease/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrsRelease/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/ap_generated_sources/usrsReleaseUnitTest/out" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrsRelease/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrsRelease/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrsRelease/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrsRelease/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrsRelease/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrsRelease/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrsRelease/shaders" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrs/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrs/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrs/assets" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrs/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrs/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrs/rs" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/usrs/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestUsrs/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestUsrs/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestUsrs/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestUsrs/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestUsrs/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestUsrs/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTestUsrs/shaders" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrs/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrs/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrs/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrs/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrs/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrs/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/testUsrs/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/yale/release" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/aidl_source_output_dir/yaleRelease/compileYaleReleaseAidl/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/renderscript_source_output_dir/yaleRelease/compileYaleReleaseRenderscript/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/ap_generated_sources/yaleRelease/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/google-services/yale/release" type="java-resource" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/yale/release" type="java-resource" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/yale/release" type="java-resource" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yaleRelease/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yaleRelease/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yaleRelease/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yaleRelease/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yaleRelease/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yaleRelease/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yaleRelease/shaders" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/ap_generated_sources/yaleReleaseUnitTest/out" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYaleRelease/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYaleRelease/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYaleRelease/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYaleRelease/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYaleRelease/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYaleRelease/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYaleRelease/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yale/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yale/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yale/assets" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yale/aidl" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yale/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yale/rs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/yale/shaders" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestYale/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestYale/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestYale/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestYale/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestYale/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestYale/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTestYale/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYale/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYale/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYale/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYale/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYale/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYale/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/testYale/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/release/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/release/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/release/assets" type="java-resource" />

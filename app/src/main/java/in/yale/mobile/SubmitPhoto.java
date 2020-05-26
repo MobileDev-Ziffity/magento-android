@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -34,11 +35,15 @@ public class SubmitPhoto extends Activity {
     private ImageView imgProfile;
 
     private Uri mImageUri;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private Bundle params;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.submit_a_photo);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        params = new Bundle();
         showPermissionDialog();
         hasImg = 0;
     }
@@ -46,7 +51,9 @@ public class SubmitPhoto extends Activity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-
+        //final Bundle params = new Bundle();
+        String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+        params.putString("date",dateStr);
         imgProfile = findViewById(R.id.image);
 
         findViewById(R.id.camera).setOnClickListener(new View.OnClickListener() {
@@ -54,6 +61,7 @@ public class SubmitPhoto extends Activity {
             public void onClick(View v) {
                 dispatchTakePictureIntent();
                 imgProfile.setBackgroundResource(0);
+                mFirebaseAnalytics.logEvent("submitPhoto_Camera", params);
             }
         });
 
@@ -62,12 +70,14 @@ public class SubmitPhoto extends Activity {
             public void onClick(View v) {
                 uploadPhotoFromGallery();
                 imgProfile.setBackgroundResource(0);
+                mFirebaseAnalytics.logEvent("submitPhoto_Gallery", params);
             }
         });
 
         findViewById(R.id.buttonSend).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mFirebaseAnalytics.logEvent("submitPhoto_Send", params);
                 EditText text = findViewById(R.id.scan_header);
                 String body = text.getText().toString();
                 if (body.length() < 1 && hasImg == 0) {
