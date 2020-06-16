@@ -5,8 +5,9 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 28
-        versionName "1.20"
+        versionName "1.21"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     lintOptions {
@@ -124,7 +125,7 @@ android {
         yale {
             dimension "version"
             applicationId "in.yale.mobile"
-            versionCode 26
+            versionCode 27
             resValue "string", "flavored_app_name", "YALE"
             resValue "string", "flavored_splash_icon", "@drawable/yale_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -136,7 +137,7 @@ android {
         usesi {
             dimension "version"
             applicationId "in.usesi.mobile"
-            versionCode 26
+            versionCode 27
             resValue "string", "flavored_app_name", "USESI"
             resValue "string", "flavored_splash_icon", "@drawable/usesi_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -148,7 +149,7 @@ android {
         duplex {
             dimension "version"
             applicationId "in.duplex.mobile"
-            versionCode 30
+            versionCode 31
             resValue "string", "flavored_app_name", "DUPLEX"
             resValue "string", "flavored_splash_icon", "@drawable/duplex_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
@@ -160,7 +161,7 @@ android {
         ewct {
             dimension "version"
             applicationId "in.ewct.mobile"
-            versionCode 26
+            versionCode 27
             resValue "string", "flavored_app_name", "EWCT"
             resValue "string", "flavored_splash_icon", "@drawable/ewcy_logo"
             resValue "dimen", "flavored_layout_width", "80dp"
@@ -172,7 +173,7 @@ android {
         ewne {
             dimension "version"
             applicationId "in.ewne.mobile"
-            versionCode 26
+            versionCode 27
             resValue "string", "flavored_app_name", "EWNE"
             resValue "string", "flavored_splash_icon", "@drawable/ewne_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -184,7 +185,7 @@ android {
         hz {
             dimension "version"
             applicationId "in.hz.mobile"
-            versionCode 27
+            versionCode 28
             resValue "string", "flavored_app_name", "HZ"
             resValue "string", "flavored_splash_icon", "@drawable/hz_logo"
             resValue "dimen", "flavored_layout_width", "65dp"
@@ -196,7 +197,7 @@ android {
         lade {
             dimension "version"
             applicationId "in.lade.mobile"
-            versionCode 27
+            versionCode 28
             resValue "string", "flavored_app_name", "LADE"
             resValue "string", "flavored_splash_icon", "@drawable/ld_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -208,7 +209,7 @@ android {
         maurice {
             dimension "version"
             applicationId "in.maurice.mobile"
-            versionCode 29
+            versionCode 30
             resValue "string", "flavored_app_name", "Maurice Electric"
             resValue "string", "flavored_splash_icon", "@drawable/maurice_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
@@ -220,7 +221,7 @@ android {
         monarch {
             dimension "version"
             applicationId "in.monarch.mobile"
-            versionCode 27
+            versionCode 28
             resValue "string", "flavored_app_name", "MONARCH"
             resValue "string", "flavored_splash_icon", "@drawable/monarch_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -232,7 +233,7 @@ android {
         standard {
             dimension "version"
             applicationId "in.standard.mobile"
-            versionCode 28
+            versionCode 29
             resValue "string", "flavored_app_name", "STANDARD"
             resValue "string", "flavored_splash_icon", "@drawable/standard_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -244,7 +245,7 @@ android {
         usrs {
             dimension "version"
             applicationId "in.usrs.mobile"
-            versionCode 27
+            versionCode 28
             resValue "string", "flavored_app_name", "USRS"
             resValue "string", "flavored_splash_icon", "@drawable/usrs_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -256,7 +257,7 @@ android {
         walters {
             dimension "version"
             applicationId "in.walters.mobile"
-            versionCode 29
+            versionCode 30
             resValue "string", "flavored_app_name", "WALTERS"
             resValue "string", "flavored_splash_icon", "@drawable/walters_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -268,7 +269,7 @@ android {
         franklingriffith {
             dimension "version"
             applicationId "in.franklingriffith.mobile"
-            versionCode 4
+            versionCode 5
             resValue "string", "flavored_app_name", "Franklin Griffith"
             resValue "string", "flavored_splash_icon", "@drawable/franklingriffith_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
@@ -280,7 +281,7 @@ android {
         mainelectric {
             dimension "version"
             applicationId "in.mainelectric.mobile"
-            versionCode 3
+            versionCode 4
             resValue "string", "flavored_app_name", "Main Electric"
             resValue "string", "flavored_splash_icon", "@drawable/mainelectric_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
@@ -343,6 +344,10 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
     implementation 'com.google.android.play:core:1.6.4'
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
+    implementation 'com.comapi:foundation:1.2.0'
+    implementation('io.jsonwebtoken:jjwt:0.9.1')
+    //implementation ('com.google.android.gms:play-services-base:15.0.1') {force = true}
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

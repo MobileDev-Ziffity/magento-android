@@ -23,6 +23,12 @@ import android.print.PrintManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import com.comapi.Callback;
+import com.comapi.Comapi;
+import com.comapi.ComapiClient;
+import com.comapi.ComapiConfig;
+import com.comapi.Session;
+import com.comapi.internal.network.ComapiResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -68,6 +74,7 @@ import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
@@ -79,6 +86,8 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static in.yale.mobile.ApiTask.HTTP_TYPE.GET;
 import static in.yale.mobile.R.string.logOut;
@@ -123,6 +132,22 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        // dotdigital
+        FirebaseApp.initializeApp(this);
+        ComapiConfig config = new ComapiConfig() .apiSpaceId("ea59654c-3999-4311-b84f-b7d5792f68d9") .authenticator(new ChallengeHandler());
+        Comapi.initialiseShared(getApplication(), config, new Callback<ComapiClient>() {
+            @Override
+            public void success(ComapiClient client) {
+                //Use ComapiClient object to communicate with services
+                compapiCommunicate(client);
+            }
+
+            @Override
+            public void error(Throwable t) {
+                //Toast.makeText(MainActivity.this, t.getMessage() + " :Fail initializeComapi", Toast.LENGTH_LONG).show();
+            }
+        });
+        // end dotdigital
         params = new Bundle();
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -213,7 +238,6 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-
 
         webLoad.setWebChromeClient(new WebChromeClient() {
 
@@ -314,7 +338,7 @@ public class MainActivity extends AppCompatActivity
                     popfeedBool = false;
                 } else if (poplocBool) {
                     strLocationClicked = "clicked";
-                    webLoad.evaluateJavascript("jQuery(document).ready(function($) { if ($('.pickup-modal').css('display') != 'none') { $('.hidden-xs').click(); } $(window.branchChangeModalContainer).modal('toggleModal'); })", null);
+                    webLoad.evaluateJavascript("(function() { if(jQuery('.pickup-modal').css('display') != 'none'){  jQuery('.hidden-xs').trigger('click'); } jQuery(window.branchChangeModalContainer).modal('toggleModal');  jQuery('#branchchanger-button').trigger('click'); })();", null);
                     poplocBool = false;
                 }
 
@@ -456,6 +480,55 @@ public class MainActivity extends AppCompatActivity
         });
 
         navigationView.setNavigationItemSelectedListener(this);
+        barcodeIntentListener(webLoad);
+    }
+
+    private void compapiCommunicate(final ComapiClient client)
+    {
+        if(client.getSession() != null && client.getSession().isSuccessfullyCreated()) {
+            client.service().profile().getProfile(client.getSession().getProfileId(), new Callback<ComapiResult<Map<String, Object>>>() {
+                @Override
+                public void success(ComapiResult<Map<String, Object>> result) {
+                    //Toast.makeText(MainActivity.this, result+ " :Success AccountCreation", Toast.LENGTH_LONG).show();
+                    Map<String, Object> additionalMap = new HashMap<>();
+                    //Add the user's email address to the profile
+                    additionalMap.put("email", "gokul.rangasamy+2205@ziffity.com");
+                    client.service().profile().patchMyProfile(additionalMap, result.getETag(), new Callback<ComapiResult<Map<String, Object>>>() {
+                        @Override
+                        public void success(ComapiResult<Map<String, Object>> result) {
+                            //Toast.makeText(MainActivity.this, result+" :Success PatchProfile", Toast.LENGTH_LONG).show();
+                        }
+
+                        @Override
+                        public void error(Throwable t) {
+                            //Toast.makeText(MainActivity.this, t.getMessage()+" :Fail PatchProfile", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
+                @Override
+                public void error(Throwable t) {
+                    //Toast.makeText(MainActivity.this, t.getMessage() +" :Fail AccountCreation", Toast.LENGTH_LONG).show();
+                }
+            });
+        } else {
+            client.service().session().startSession(new Callback<Session>() {
+                @Override
+                public void success(Session result) {
+                    //Toast.makeText(MainActivity.this, result+" :Success startSession", Toast.LENGTH_LONG).show();
+                    compapiCommunicate(client);
+                }
+
+                @Override
+                public void error(Throwable t) {
+                    //Toast.makeText(MainActivity.this, t.getMessage() + " :Fail startSession", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+
+    private void barcodeIntentListener(WebView webLoad)
+    {
         if (getIntent().getBooleanExtra("from_scanner", false)) {
             String CustomrUrl = getIntent().getStringExtra("custom_url");
             webLoad.loadUrl(Constants.BASE_URL + CustomrUrl);
@@ -526,7 +599,7 @@ public class MainActivity extends AppCompatActivity
             webLoad.loadUrl(getIntent().getStringExtra("three_url"));
 
         } else if (getIntent().getBooleanExtra("pushNotifyBoolean", false)) {
-           try {
+            try {
                 if (Patterns.WEB_URL.matcher(getIntent().getStringExtra("pushNotify")).matches()) {
                     webLoad.loadUrl(getIntent().getStringExtra("pushNotify"));
                 }
@@ -677,7 +750,7 @@ public class MainActivity extends AppCompatActivity
                                 mFirebaseAnalytics.logEvent("navdrawer_BranchChange", params);
                                 strLocationClicked = "clicked";
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                                    webLoad.evaluateJavascript("jQuery(document).ready(function($) { if ($('.pickup-modal').css('display') != 'none') { $('.hidden-xs').click(); } $(window.branchChangeModalContainer).modal('toggleModal'); })", null);
+                                    webLoad.evaluateJavascript("(function() { if(jQuery('.pickup-modal').css('display') != 'none'){  jQuery('.hidden-xs').trigger('click'); } jQuery(window.branchChangeModalContainer).modal('toggleModal');  jQuery('#branchchanger-button').trigger('click'); })();", null);
                                 }
                                 drawer.closeDrawer(GravityCompat.START);
                             }
@@ -743,7 +816,7 @@ public class MainActivity extends AppCompatActivity
             if (data.getBooleanExtra("action_location_barcode",false)) {
                 strLocationClicked = "clicked";
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    webLoad.evaluateJavascript("jQuery(document).ready(function($) { if ($('.pickup-modal').css('display') != 'none') { $('.hidden-xs').click(); } $(window.branchChangeModalContainer).modal('toggleModal'); })", null);
+                    webLoad.evaluateJavascript("(function() { if(jQuery('.pickup-modal').css('display') != 'none'){  jQuery('.hidden-xs').trigger('click'); } jQuery(window.branchChangeModalContainer).modal('toggleModal');  jQuery('#branchchanger-button').trigger('click'); })();", null);
                 }
             } else {
                 String result = data.getStringExtra("result");
@@ -911,7 +984,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.action_location) {
             mFirebaseAnalytics.logEvent("navbar_Branch", params);
             strLocationClicked = "clicked";
-            webLoad.evaluateJavascript("jQuery(document).ready(function($) { if ($('.pickup-modal').css('display') != 'none') { $('.hidden-xs').click(); } $(window.branchChangeModalContainer).modal('toggleModal'); })", null);
+            webLoad.evaluateJavascript("(function() { if(jQuery('.pickup-modal').css('display') != 'none'){  jQuery('.hidden-xs').trigger('click'); } jQuery(window.branchChangeModalContainer).modal('toggleModal');  jQuery('#branchchanger-button').trigger('click'); })();", null);
         } else if (id == R.id.action_login) {
             mFirebaseAnalytics.logEvent("navbar_Login", params);
             webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
