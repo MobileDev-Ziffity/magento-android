@@ -60,7 +60,6 @@ public class SubmitPhoto extends Activity {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
-                imgProfile.setBackgroundResource(0);
                 mFirebaseAnalytics.logEvent("submitPhoto_Camera", params);
             }
         });
@@ -69,7 +68,6 @@ public class SubmitPhoto extends Activity {
             @Override
             public void onClick(View v) {
                 uploadPhotoFromGallery();
-                imgProfile.setBackgroundResource(0);
                 mFirebaseAnalytics.logEvent("submitPhoto_Gallery", params);
             }
         });
@@ -165,6 +163,7 @@ public class SubmitPhoto extends Activity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             ImageView imageView;
             imageView = findViewById(R.id.image);
+            imgProfile.setBackgroundResource(0);
             this.grabImage(imageView);
         } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
@@ -172,6 +171,7 @@ public class SubmitPhoto extends Activity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                 ImageView imageView = findViewById(R.id.image);
+                imgProfile.setBackgroundResource(0);
                 imageView.setImageBitmap(bitmap);
                 hasImg = 1;
             } catch (IOException e) {

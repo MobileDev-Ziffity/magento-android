@@ -11,4 +11,9 @@
     <string name="search_alert"><font size="10">Search by keyword or part number</font></string>
     <string name="permission_location_rationale">We require access to your location to find the closest branch</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+    <string name="imageselect">ImageSelect</string>
+    <string name="send">Send</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="message">Message</string>
 </resources>

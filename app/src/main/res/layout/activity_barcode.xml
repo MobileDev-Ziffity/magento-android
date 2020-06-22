@@ -13,26 +13,11 @@
         android:layout_height="match_parent"
         tools:context="in.yale.mobile.MainActivity">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
-
-                <ImageView
-                    android:id="@+id/logo"
-                    android:layout_width="@dimen/flavored_layout_width"
-                    android:layout_height="@dimen/flavored_layout_height"
-                    android:background="@string/flavored_splash_icon" />
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
             android:id="@+id/relativeBarcode"
@@ -49,14 +34,17 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:elevation="6dp"
-                android:layout_margin="5dp" >
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="75dp" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Auto Scan  "
                     android:textColor="@android:color/white"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="2dp"
                     android:shadowColor="#000000"
                     android:shadowRadius="10.0"
                     android:textStyle="bold"/>
@@ -85,6 +73,31 @@
                 android:elevation="6dp" />
 
         </RelativeLayout>
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme.AppBarOverlay"
+                android:background="@android:color/transparent"
+                app:elevation="0dp">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/bg_actionbar"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                    <ImageView
+                        android:id="@+id/logo"
+                        android:layout_width="@dimen/flavored_layout_width"
+                        android:layout_height="@dimen/flavored_layout_height"
+                        android:background="@string/flavored_splash_icon" />
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+        </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -12,7 +12,9 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -170,6 +172,7 @@ public class MainActivity extends AppCompatActivity
 
         progressView = findViewById(R.id.progressBar);
         progressView.setMax(100);
+        //progressView.setProgressTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryDark)));
         getVersionInfo();
         CookieManager.getInstance().setCookie(Constants.BASE_URL + "?mobileapp=1", "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
         webLoad = findViewById(R.id.webLoad);
@@ -358,7 +361,8 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-
+                String myvar = "<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\" />   <title>No connection to the internet</title>   <style>       html,body { margin:0; padding:0; }       html {         background: #FFFFFF -webkit-linear-gradient(top, #FFF 0%, #FFFFFF 100%) no-repeat;         background: #FFFFFF linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%) no-repeat;       }       body {         font-family: sans-serif;         color: #000;         text-align: center;         font-size: 150%;       }       h1, h2 { font-weight: normal; }       h1 { margin: 0 auto; padding: 0.15em; font-size: 10em; text-shadow: 0 2px 2px #000; }       h2 { margin-bottom: 2em; }     </style> </head> <body> <h1>⚠</h1> <h2>"+description+"</h2> <h4>Error or Disconnected</h4> </body> </html>";
+                webLoad.loadDataWithBaseURL("", myvar, "text/html", "UTF-8", "");
             }
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -804,8 +808,10 @@ public class MainActivity extends AppCompatActivity
             });
             apiTask.setParams(null, Constants.BASE_URL + "customer/index/status?mobileapp=1");
 
-        } else
+        } else {
             Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+            webLoad.loadUrl("file:///android_asset/nointernet.html");
+        }
     }
 
 
@@ -962,6 +968,7 @@ public class MainActivity extends AppCompatActivity
                                 });
 
                 final AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+                alertDialogAndroid.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.alert_roundedcorner));
                 userInputDialogImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

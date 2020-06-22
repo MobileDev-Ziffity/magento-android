@@ -24,7 +24,7 @@
             android:label="@string/flavored_app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ActivityList" />
-        <activity android:name=".Barcode" />
+        <activity android:name=".Barcode" android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ScannerItemActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />

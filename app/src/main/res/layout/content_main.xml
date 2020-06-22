@@ -12,6 +12,8 @@
     android:id="@+id/frameProgress"
     android:layout_width="match_parent"
     android:background="@android:color/transparent"
+    android:layout_marginRight="16dp"
+    android:layout_marginLeft="16dp"
     android:layout_height="3dp">
 
     <ProgressBar
@@ -20,8 +22,9 @@
         android:layout_width="match_parent"
         android:layout_gravity="top"
         android:layout_marginTop="-3dp"
-        android:progress="20"
+        android:progress="10"
         style = "?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/curved_progress_bar"
         />
     </FrameLayout>
 
@@ -44,23 +47,6 @@
             android:layout_alignParentTop="true"
             />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
-    <FrameLayout
-        android:id="@+id/fab_rootLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|right|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:visibility="gone"
-        app:srcCompat="@drawable/ic_action_print" />
-
-    </FrameLayout>
 
 
 </RelativeLayout>

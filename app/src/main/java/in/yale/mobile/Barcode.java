@@ -258,6 +258,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                                 });
 
                 final android.app.AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+                alertDialogAndroid.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.alert_roundedcorner));
                 userInputDialogImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
