@@ -4,7 +4,12 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,15 +22,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class SubmitPhoto extends Activity {
@@ -60,6 +71,7 @@ public class SubmitPhoto extends Activity {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
+                //imgProfile.setBackgroundResource(0);
                 mFirebaseAnalytics.logEvent("submitPhoto_Camera", params);
             }
         });
@@ -68,6 +80,7 @@ public class SubmitPhoto extends Activity {
             @Override
             public void onClick(View v) {
                 uploadPhotoFromGallery();
+                //imgProfile.setBackgroundResource(0);
                 mFirebaseAnalytics.logEvent("submitPhoto_Gallery", params);
             }
         });
@@ -117,7 +130,7 @@ public class SubmitPhoto extends Activity {
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                Log.e("SubmitPhoto Err", "ERROR creating image file");
+                //Log.e("SubmitPhoto Err", "ERROR creating image file");
             }
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this, BuildConfig.FLAVOURED_AUTHORITIES,
@@ -129,16 +142,79 @@ public class SubmitPhoto extends Activity {
         }
     }
 
-    public void grabImage(ImageView imageView) {
+    public void grabImage(final ImageView imageView) {
         this.getContentResolver().notifyChange(mImageUri, null);
         ContentResolver cr = this.getContentResolver();
-        Bitmap bitmap;
+        //Bitmap bitmap;
         try {
+            /* Without reducing large bitmap size
             bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, mImageUri);
-            imageView.setImageBitmap(bitmap);
+            imageView.setImageBitmap(bitmap); */
+
+            /* Reducing large bitmap size for Imageview */
+            imageView.setImageBitmap(reduceLargeUri(cr));
             hasImg = 1;
         } catch (Exception e) {
-            Log.e("grabImage()", e.getMessage());
+            Toast.makeText(this, "Error Loading Image, TryAgain", Toast.LENGTH_SHORT).show();
+            //Log.e("grabImage()", e.getMessage());
+        }
+    }
+
+    private Bitmap reduceLargeUri(ContentResolver cr)
+    {
+        InputStream in = null;
+        try {
+            final int IMAGE_MAX_SIZE = 1200000; // 1.2MP
+            in = cr.openInputStream(mImageUri);
+
+            /* Decode image size */
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(in, null, options);
+            in.close();
+            int scale = 1;
+            while ((options.outWidth * options.outHeight) * (1 / Math.pow(scale, 2)) >
+                    IMAGE_MAX_SIZE) {
+                scale++;
+            }
+            //Log.d("debug", "scale = " + scale + ", orig-width: " + options.outWidth + ", orig-height: " + options.outHeight);
+
+            Bitmap resultBitmap = null;
+            in = cr.openInputStream(mImageUri);
+            if (scale > 1) {
+                scale--;
+                /* scale to max possible inSampleSize that still yields an image
+                   larger than target */
+                options = new BitmapFactory.Options();
+                options.inSampleSize = scale;
+                resultBitmap = BitmapFactory.decodeStream(in, null, options);
+
+                /* resize to desired dimensions */
+                int height = resultBitmap.getHeight();
+                int width = resultBitmap.getWidth();
+                //Log.d("debug", "1th scale operation dimenions - width: " + width + ", height: " + height);
+
+                double y = Math.sqrt(IMAGE_MAX_SIZE
+                        / (((double) width) / height));
+                double x = (y / height) * width;
+
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(resultBitmap, (int) x,
+                        (int) y, true);
+                resultBitmap.recycle();
+                resultBitmap = scaledBitmap;
+
+                System.gc();
+            } else {
+                resultBitmap = BitmapFactory.decodeStream(in);
+            }
+            in.close();
+
+            //Log.d("debug", "bitmap size - width: " +resultBitmap.getWidth() + ", height: " + resultBitmap.getHeight());
+
+            return resultBitmap;
+        } catch (IOException e) {
+            //Log.e("debug", e.getMessage(),e);
+            return null;
         }
     }
 
@@ -169,12 +245,16 @@ public class SubmitPhoto extends Activity {
             Uri selectedImage = data.getData();
             mImageUri = selectedImage;
             try {
+                /* Without reducing large bitmap size
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                imageView.setImageBitmap(bitmap); */
                 ImageView imageView = findViewById(R.id.image);
                 imgProfile.setBackgroundResource(0);
-                imageView.setImageBitmap(bitmap);
+                /* Reducing large bitmap size for Imageview */
+                imageView.setImageBitmap(reduceLargeUri(getContentResolver()));
                 hasImg = 1;
-            } catch (IOException e) {
+            } catch (Exception e) {
+                Toast.makeText(this, "Error Loading Image, TryAgain", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }

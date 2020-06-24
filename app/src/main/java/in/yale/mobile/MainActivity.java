@@ -46,14 +46,19 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.util.Patterns;
+import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
+import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
@@ -90,8 +95,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import static in.yale.mobile.ApiTask.HTTP_TYPE.GET;
 import static in.yale.mobile.R.string.logOut;
 import static java.lang.Boolean.FALSE;
 
@@ -218,7 +221,7 @@ public class MainActivity extends AppCompatActivity
         webSettings.setUseWideViewPort(true);
 
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-
+        webLoad.addJavascriptInterface(new WebAppInterface(), "StatusHandler");
         webLoad.setDownloadListener(new DownloadListener() {
             public void onDownloadStart(String url, String userAgent,
                                         String contentDisposition, String mimetype,
@@ -278,10 +281,13 @@ public class MainActivity extends AppCompatActivity
             public void onProgressChanged(WebView view, int Progress) {
                 progressView.setVisibility(View.VISIBLE);
                 progressView.setProgress(Progress);
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 if (Progress == 100) {
                     progressView.setVisibility(View.GONE);
+                   // drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 } else
                     progressView.setVisibility(View.VISIBLE);
+                   // drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 super.onProgressChanged(view, Progress);
             }
 
@@ -317,7 +323,7 @@ public class MainActivity extends AppCompatActivity
 
                 if (strLocationClicked.equals("clicked")) {
                     if (url.contains(Constants.BASE_URL)) {
-                        callLoginWebService();
+                        //callLoginWebService();
                         strLocationClicked = "notclicked";
                     }
                 }
@@ -328,13 +334,13 @@ public class MainActivity extends AppCompatActivity
             public void onPageFinished(final WebView view, String url) {
                 super.onPageFinished(webLoad, url);
 
-                if (url.equals(Constants.BASE_URL + "customer/account/logoutSuccess/")) {
+                /*if (url.equals(Constants.BASE_URL + "customer/account/logoutSuccess/")) {
                     callLoginWebService();
                 } else if (url.equals(Constants.BASE_URL + "customer/account/")) {
                     callLoginWebService();
                 } else if (url.equals(Constants.BASE_URL + "checkout/cart/delete/")) {
                     callLoginWebService();
-                }
+                } */
 
                 if (popfeedBool) {
                     webLoad.evaluateJavascript(" jQuery(document).ready(function(){jQuery('#report-bug-link').click();})", null);
@@ -361,7 +367,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                String myvar = "<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\" />   <title>No connection to the internet</title>   <style>       html,body { margin:0; padding:0; }       html {         background: #FFFFFF -webkit-linear-gradient(top, #FFF 0%, #FFFFFF 100%) no-repeat;         background: #FFFFFF linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%) no-repeat;       }       body {         font-family: sans-serif;         color: #000;         text-align: center;         font-size: 150%;       }       h1, h2 { font-weight: normal; }       h1 { margin: 0 auto; padding: 0.15em; font-size: 10em; text-shadow: 0 2px 2px #000; }       h2 { margin-bottom: 2em; }     </style> </head> <body> <h1>⚠</h1> <h2>"+description+"</h2> <h4>Error or Disconnected</h4> </body> </html>";
+                String myvar = "<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\" />   <title>No connection to the internet</title>   <style>       html,body { margin:0; padding:0; }       html {         background: #FFFFFF -webkit-linear-gradient(top, #FFF 0%, #FFFFFF 100%) no-repeat;         background: #FFFFFF linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%) no-repeat;       }       body {         font-family: sans-serif;         color: #000;         text-align: center;         font-size: 150%;       }       h1, h2 { font-weight: normal; }       h1 { margin: 0 auto; padding: 0.15em; font-size: 10em; text-shadow: 0 2px 2px #000; }       h2 { margin-bottom: 2em; }     </style> </head> <body> <h1>⚠</h1> <h2>"+description+"</h2> <h4>Error or Disconnected</h4> <button><a href=\""+Constants.BASE_URL+"\">Retry</a></button> </body> </html>";
                 webLoad.loadDataWithBaseURL("", myvar, "text/html", "UTF-8", "");
             }
 
@@ -404,35 +410,40 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-                if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=cart%2Cmessages&update_section_id=true")) {
+                /*if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=cart%2Cmessages&update_section_id=true")) {
                     webLoad.post(new Runnable() {
                         @Override
                         public void run() {
-                            callLoginWebService();
+                            //callLoginWebService();
                         }
                     });
                 } else if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=shoppinglist&update_section_id=true")) {
                     webLoad.post(new Runnable() {
                         @Override
                         public void run() {
-                            callLoginWebService();
+                            //callLoginWebService();
                         }
                     });
                 } else if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=cart")) {
                     webLoad.post(new Runnable() {
                         @Override
                         public void run() {
-                            callLoginWebService();
+                            //callLoginWebService();
                         }
                     });
-                }
+                }*/
                 return super.shouldInterceptRequest(view, url);
             }
         });
 
-
-        webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
-        callLoginWebService();
+        //callLoginWebService();
+        if (Utils.checkInternet(MainActivity.this)) {
+            webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
+        } else {
+            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+            String myvar = "<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\" />   <title>No connection to the internet</title>   <style>       html,body { margin:0; padding:0; }       html {         background: #FFFFFF -webkit-linear-gradient(top, #FFF 0%, #FFFFFF 100%) no-repeat;         background: #FFFFFF linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%) no-repeat;       }       body {         font-family: sans-serif;         color: #000;         text-align: center;         font-size: 150%;       }       h1, h2 { font-weight: normal; }       h1 { margin: 0 auto; padding: 0.15em; font-size: 10em; text-shadow: 0 2px 2px #000; }       h2 { margin-bottom: 2em; }     </style> </head> <body> <h1>⚠</h1> <h2>No connection to the internet</h2> <button><a href=\""+Constants.BASE_URL+"\">Retry</a></button> </body> </html>";
+            webLoad.loadDataWithBaseURL("", myvar, "text/html", "UTF-8", "");
+        }
         callShopbyList();
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
@@ -701,35 +712,25 @@ public class MainActivity extends AppCompatActivity
         // TODO: Implement this method to send token to your app server.
     }
 
-    private void callLoginWebService() {
-        String getUrl = webLoad.getUrl();
-        Constants.apiCall = FALSE;
-        String cookies = CookieManager.getInstance().getCookie(getUrl);
-        if (Utils.checkInternet(MainActivity.this)) {
-
-            ApiTask apiTask = new ApiTask(MainActivity.this);
-            apiTask.setHttpType(GET);
-            apiTask.setCookie(cookies);
-
-            apiTask.responseCallBack(new ApiTask.ResponseListener() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void jsonResponse(String result) {
+    private void callLoginWebService(String data) {
+        Log.i("jes","message : "+data);
+        //Constants.apiCall = FALSE;
+        //if (Utils.checkInternet(MainActivity.this)) {
                     try {
-                        JSONObject jsonObject = new JSONObject(result);
+                        JSONObject jsonObject = new JSONObject(data);
 
                         loggedIn = jsonObject.getBoolean("loggedIn");
-
+                        Log.i("jes","loggedin : "+loggedIn);
                         JSONObject branch_number = jsonObject.getJSONObject("branch");
                         phone_number = branch_number.getString("phone");
-
+                        Log.i("jes","phone : "+phone_number);
                         JSONObject address = jsonObject.getJSONObject("branch");
                         String addressLine1 = address.getString("addressLine1");
-
+                        Log.i("jes","address : "+addressLine1);
                         String city_name = address.getString("city");
-
+                        Log.i("jes","city : "+city_name);
                         String state_name = address.getString("state");
-
+                        Log.i("jes","state : "+state_name);
                         NavigationView navigationView = findViewById(R.id.nav_view);
                         Menu menu = navigationView.getMenu();
 
@@ -804,14 +805,6 @@ public class MainActivity extends AppCompatActivity
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
-            });
-            apiTask.setParams(null, Constants.BASE_URL + "customer/index/status?mobileapp=1");
-
-        } else {
-            Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
-            webLoad.loadUrl("file:///android_asset/nointernet.html");
-        }
     }
 
 
@@ -1132,6 +1125,34 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void postMessage(String message) {
+        String hash = "";
+        Log.i("jes",message);
+        try {
+            final JSONObject object = new JSONObject(message);
+            if (!hash.equals(object.getString("hashKey"))) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            callLoginWebService(object.getString("data"));
+                        }catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                hash = object.getString("hashKey");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public class WebAppInterface {
+        @JavascriptInterface
+        public void postMessage(String message) {
+            MainActivity.this.postMessage(message);
+        }
+    }
 
 }

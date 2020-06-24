@@ -65,6 +65,8 @@ public class FirebaseMessageService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             title = remoteMessage.getNotification().getTitle();
             body = remoteMessage.getNotification().getBody();
+            resultIntent.putExtra("pushNotify",Constants.BASE_URL);
+            resultIntent.putExtra("pushNotifyBoolean", true);
         }
 
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0, resultIntent,
@@ -117,12 +119,15 @@ public class FirebaseMessageService extends FirebaseMessagingService {
             title = remoteMessage.getData().get("title");
             body = remoteMessage.getData().get("body");
             resultIntent.putExtra("pushNotify",remoteMessage.getData().get("url"));
+            resultIntent.putExtra("pushNotifyBoolean", true);
         }
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             title = remoteMessage.getNotification().getTitle();
             body = remoteMessage.getNotification().getBody();
+            resultIntent.putExtra("pushNotify",Constants.BASE_URL);
+            resultIntent.putExtra("pushNotifyBoolean", true);
         }
 
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),0, resultIntent,

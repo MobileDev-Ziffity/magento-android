@@ -47,6 +47,7 @@
             android:inputType="textCapSentences|textMultiLine"
             android:text=""
             android:textStyle="bold"
+            android:background="@drawable/edit_text_bg"
             app:layout_constraintBottom_toTopOf="@+id/camera"
             app:layout_constraintDimensionRatio="w,9:20"
             app:layout_constraintEnd_toEndOf="parent"
