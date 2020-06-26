@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.MotionEvent;
@@ -51,7 +53,7 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
     private int qty = 0;
     private ApiTask apiTask;
     private ShimmerFrameLayout shimmerFrameLayout;
-    private RelativeLayout relativeSecond;
+    private ConstraintLayout relativeSecond;
     private Button addtoCart;
     public static Boolean apiAddToCart = false;
     private FirebaseAnalytics mFirebaseAnalytics;

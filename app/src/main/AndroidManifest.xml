@@ -27,6 +27,7 @@
         <activity android:name=".Barcode" android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ScannerItemActivity"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".SubmitPhoto" />
         <activity android:name=".SplashScreen">

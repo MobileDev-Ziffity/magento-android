@@ -1127,7 +1127,6 @@ public class MainActivity extends AppCompatActivity
 
     public void postMessage(String message) {
         String hash = "";
-        Log.i("jes",message);
         try {
             final JSONObject object = new JSONObject(message);
             if (!hash.equals(object.getString("hashKey"))) {
