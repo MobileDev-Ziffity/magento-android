@@ -135,6 +135,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            getWindow().setStatusBarColor(Color.WHITE);
+        }
         setContentView(R.layout.activity_main);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         // dotdigital
@@ -367,7 +371,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                String myvar = "<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\" />   <title>No connection to the internet</title>   <style>       html,body { margin:0; padding:0; }       html {         background: #FFFFFF -webkit-linear-gradient(top, #FFF 0%, #FFFFFF 100%) no-repeat;         background: #FFFFFF linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%) no-repeat;       }       body {         font-family: sans-serif;         color: #000;         text-align: center;         font-size: 150%;       }       h1, h2 { font-weight: normal; }       h1 { margin: 0 auto; padding: 0.15em; font-size: 10em; text-shadow: 0 2px 2px #000; }       h2 { margin-bottom: 2em; }     </style> </head> <body> <h1>⚠</h1> <h2>"+description+"</h2> <h4>Error or Disconnected</h4> <button><a href=\""+Constants.BASE_URL+"\">Retry</a></button> </body> </html>";
+                String myvar = "<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\" />   <title>No connection to the internet</title>   <style>       html,body { margin:0; padding:0; }       html {         background: #FFFFFF -webkit-linear-gradient(top, #FFF 0%, #FFFFFF 100%) no-repeat;         background: #FFFFFF linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%) no-repeat;       }       body {         font-family: sans-serif;         color: #000;         text-align: center;         font-size: 150%;       }       h1, h2 { font-weight: normal; }       h1 { margin: 0 auto; padding: 0.15em; font-size: 10em; text-shadow: 0 2px 2px #000; }       h2 { margin-bottom: 2em; }  .btn {   box-sizing: border-box;   appearance: none;   background-color: transparent;   border: 2px solid #000000;   border-radius: 0.6em;   color: #000000;   cursor: pointer;   align-self: center;   font-size: 1rem;   font-weight: 400;   line-height: 1;   margin: 20px;   padding: 1.2em 2.8em;   text-decoration: none;   text-align: center;   text-transform: uppercase;   font-weight: 700; } a {   text-decoration: none;   color: inherit; }  .btn:hover, .btn:focus {   color: #fff;   outline: 0; }  .first {   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out; }  .first:hover {   box-shadow: 0 0 40px 40px #000000 inset; }     </style> </head> <body> <h1>⚠</h1> <h2>"+description+"</h2> <h4>Error or Disconnected</h4> <button class=\"btn first\"><a href=\""+Constants.BASE_URL+"\">Retry</a></button> </body> </html>";
                 webLoad.loadDataWithBaseURL("", myvar, "text/html", "UTF-8", "");
             }
 
@@ -441,7 +445,7 @@ public class MainActivity extends AppCompatActivity
             webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
         } else {
             Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
-            String myvar = "<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\" />   <title>No connection to the internet</title>   <style>       html,body { margin:0; padding:0; }       html {         background: #FFFFFF -webkit-linear-gradient(top, #FFF 0%, #FFFFFF 100%) no-repeat;         background: #FFFFFF linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%) no-repeat;       }       body {         font-family: sans-serif;         color: #000;         text-align: center;         font-size: 150%;       }       h1, h2 { font-weight: normal; }       h1 { margin: 0 auto; padding: 0.15em; font-size: 10em; text-shadow: 0 2px 2px #000; }       h2 { margin-bottom: 2em; }     </style> </head> <body> <h1>⚠</h1> <h2>No connection to the internet</h2> <button><a href=\""+Constants.BASE_URL+"\">Retry</a></button> </body> </html>";
+            String myvar = "<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\" />   <title>No connection to the internet</title>   <style>       html,body { margin:0; padding:0; }       html {         background: #FFFFFF -webkit-linear-gradient(top, #FFF 0%, #FFFFFF 100%) no-repeat;         background: #FFFFFF linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%) no-repeat;       }       body {         font-family: sans-serif;         color: #000;         text-align: center;         font-size: 150%;       }       h1, h2 { font-weight: normal; }       h1 { margin: 0 auto; padding: 0.15em; font-size: 10em; text-shadow: 0 2px 2px #000; }       h2 { margin-bottom: 2em; }  .btn {   box-sizing: border-box;   appearance: none;   background-color: transparent;   border: 2px solid #000000;   border-radius: 0.6em;   color: #000000;   cursor: pointer;   align-self: center;   font-size: 1rem;   font-weight: 400;   line-height: 1;   margin: 20px;   padding: 1.2em 2.8em;   text-decoration: none;   text-align: center;   text-transform: uppercase;   font-weight: 700; } a {   text-decoration: none;   color: inherit; }  .btn:hover, .btn:focus {   color: #fff;   outline: 0; }  .first {   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out; }  .first:hover {   box-shadow: 0 0 40px 40px #000000 inset; }     </style> </head> <body> <h1>⚠</h1> <h2>No connection to the internet</h2> <button class=\"btn first\"><a href=\""+Constants.BASE_URL+"\">Retry</a></button> </body> </html>";
             webLoad.loadDataWithBaseURL("", myvar, "text/html", "UTF-8", "");
         }
         callShopbyList();
@@ -637,7 +641,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         snackbar.setActionTextColor(
-                getResources().getColor(R.color.colorPrimary));
+                getResources().getColor(android.R.color.white));
         snackbar.show();
     }
 

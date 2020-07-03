@@ -26,6 +26,7 @@
             android:layout_weight="4"
             android:hint="@string/search_alert"
             android:background="@drawable/search_alert"
+            android:textCursorDrawable="@null"
             android:padding="8dp"
             android:inputType="text" />
 
