@@ -17,11 +17,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -50,6 +52,7 @@ public class SubmitPhoto extends Activity {
     private Uri mImageUri;
     private FirebaseAnalytics mFirebaseAnalytics;
     private Bundle params;
+    //private boolean isImageFitToScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,21 @@ public class SubmitPhoto extends Activity {
         String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
         params.putString("date",dateStr);
         imgProfile = findViewById(R.id.image);
+//        On click image to show full screen
+//        imgProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(isImageFitToScreen) {
+//                    isImageFitToScreen = false;
+//                    imgProfile.setLayoutParams(new ConstraintLayout.LayoutParams(0, 0));
+//                    imgProfile.setAdjustViewBounds(true);
+//                }else{
+//                    isImageFitToScreen = true;
+//                    imgProfile.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT));
+//                    imgProfile.setScaleType(ImageView.ScaleType.FIT_XY);
+//                }
+//            }
+//        });
 
         findViewById(R.id.camera).setOnClickListener(new View.OnClickListener() {
             @Override

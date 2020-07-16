@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private FirebaseAnalytics mFirebaseAnalytics;
     private Bundle params;
+    private String messageForEmployee = "";
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled"})
@@ -360,6 +361,7 @@ public class MainActivity extends AppCompatActivity
                     public void onReceiveValue(String s) {
                         if(s.equals("1")){
                             employLoggedIn = true;
+                            MainActivity.this.postMessage(messageForEmployee);
                         }else{
                             employLoggedIn = false;
                         }
@@ -485,18 +487,22 @@ public class MainActivity extends AppCompatActivity
 
 
         View login = headerview.findViewById(R.id.textView);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Bundle params = new Bundle();
-                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
-                params.putString("date",dateStr);
-                mFirebaseAnalytics.logEvent("navdrawer_LOGINREGISTER", params);
-                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-            }
-        });
+
+            login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!employLoggedIn) {
+                        //Bundle params = new Bundle();
+                        String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                        params.putString("date", dateStr);
+                        mFirebaseAnalytics.logEvent("navdrawer_LOGINREGISTER", params);
+                        webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
+                        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                        drawer.closeDrawer(GravityCompat.START);
+                    }
+                }
+            });
+
 
         navigationView.setNavigationItemSelectedListener(this);
         barcodeIntentListener(webLoad);
@@ -801,11 +807,20 @@ public class MainActivity extends AppCompatActivity
                         } else {
                             View header = navigationView.getHeaderView(0);
                             userName = header.findViewById(R.id.textView);
-                            userName.setText("LOGIN / REGISTER");
+                            MenuItem nav_employee = menu.findItem(R.id.nav_employee);
+                            if (employLoggedIn) {
+                                userName.setText(jsonObject.getString("name"));
+                                nav_employee.setVisible(false);
+                            } else {
+                                userName.setText("LOGIN / REGISTER");
+                                nav_employee.setVisible(true);
+                            }
                             nav_account.setTitle("Login");
                             MenuItem nav_login = menu.findItem(R.id.nav_login);
                             nav_login.setVisible(false);
                         }
+
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -1131,6 +1146,7 @@ public class MainActivity extends AppCompatActivity
 
     public void postMessage(String message) {
         String hash = "";
+        messageForEmployee = message;
         try {
             final JSONObject object = new JSONObject(message);
             if (!hash.equals(object.getString("hashKey"))) {
@@ -1146,7 +1162,7 @@ public class MainActivity extends AppCompatActivity
                 });
                 hash = object.getString("hashKey");
             }
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
