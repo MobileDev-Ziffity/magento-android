@@ -89,6 +89,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity
     private String messageForEmployee = "";
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled"})
+    @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled", "MissingPermission"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -339,14 +340,6 @@ public class MainActivity extends AppCompatActivity
             public void onPageFinished(final WebView view, String url) {
                 super.onPageFinished(webLoad, url);
 
-                /*if (url.equals(Constants.BASE_URL + "customer/account/logoutSuccess/")) {
-                    callLoginWebService();
-                } else if (url.equals(Constants.BASE_URL + "customer/account/")) {
-                    callLoginWebService();
-                } else if (url.equals(Constants.BASE_URL + "checkout/cart/delete/")) {
-                    callLoginWebService();
-                } */
-
                 if (popfeedBool) {
                     webLoad.evaluateJavascript(" jQuery(document).ready(function(){jQuery('#report-bug-link').click();})", null);
                     popfeedBool = false;
@@ -364,6 +357,7 @@ public class MainActivity extends AppCompatActivity
                             MainActivity.this.postMessage(messageForEmployee);
                         }else{
                             employLoggedIn = false;
+                            //MainActivity.this.postMessage(messageForEmployee);
                         }
                     }
                 });
@@ -381,6 +375,12 @@ public class MainActivity extends AppCompatActivity
 
                 if(!(!url.contains("cart") && url.contains("checkout")) && !url.contains("?mobileapp=1") && url.contains(Constants.BASE_URL)){
                     url = url + "?mobileapp=1";
+                }
+
+                if (url.endsWith(".pdf")) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(browserIntent);
+                    return true;
                 }
 
                 if (url.startsWith("tel:")) {
@@ -416,28 +416,7 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-                /*if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=cart%2Cmessages&update_section_id=true")) {
-                    webLoad.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //callLoginWebService();
-                        }
-                    });
-                } else if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=shoppinglist&update_section_id=true")) {
-                    webLoad.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //callLoginWebService();
-                        }
-                    });
-                } else if (url.contains(Constants.BASE_URL + "customer/section/load/?sections=cart")) {
-                    webLoad.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //callLoginWebService();
-                        }
-                    });
-                }*/
+
                 return super.shouldInterceptRequest(view, url);
             }
         });
@@ -517,7 +496,7 @@ public class MainActivity extends AppCompatActivity
                     //Toast.makeText(MainActivity.this, result+ " :Success AccountCreation", Toast.LENGTH_LONG).show();
                     Map<String, Object> additionalMap = new HashMap<>();
                     //Add the user's email address to the profile
-                    additionalMap.put("email", "gokul.rangasamy+2205@ziffity.com");
+                    additionalMap.put("email", "rajkumar.t+200701@ziffity.com");
                     client.service().profile().patchMyProfile(additionalMap, result.getETag(), new Callback<ComapiResult<Map<String, Object>>>() {
                         @Override
                         public void success(ComapiResult<Map<String, Object>> result) {

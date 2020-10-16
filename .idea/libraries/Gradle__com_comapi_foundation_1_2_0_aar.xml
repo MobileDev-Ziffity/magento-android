@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: com.comapi:foundation:1.2.0@aar">
     <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cc7adfe51e158ad3e229b18abb2977e5/jetified-foundation-1.2.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cc7adfe51e158ad3e229b18abb2977e5/jetified-foundation-1.2.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cc7adfe51e158ad3e229b18abb2977e5/jetified-foundation-1.2.0/res" />
     </CLASSES>
