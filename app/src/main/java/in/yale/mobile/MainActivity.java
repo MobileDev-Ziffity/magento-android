@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity
                             MainActivity.this.postMessage(messageForEmployee);
                         }else{
                             employLoggedIn = false;
-                            //MainActivity.this.postMessage(messageForEmployee);
+                            MainActivity.this.postMessage(messageForEmployee);
                         }
                     }
                 });

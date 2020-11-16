@@ -38,7 +38,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/roboto_black"
                 android:text="@string/add_to_cart"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp" />
 
 

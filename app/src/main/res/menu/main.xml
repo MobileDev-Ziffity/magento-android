@@ -12,6 +12,7 @@
     <item android:id="@+id/action_search"
         android:icon="@drawable/ic_action_search_white"
         app:showAsAction="ifRoom"
+        app:iconTint="@color/colorPrimaryDark"
         android:title="Search" />
 
     <item
@@ -19,6 +20,7 @@
         android:icon="@drawable/ic_action_menu"
         android:orderInCategory="101"
         android:title="Menu"
+        app:iconTint="@color/colorPrimaryDark"
         app:showAsAction="always"
         tools:ignore="MenuTitle">
 

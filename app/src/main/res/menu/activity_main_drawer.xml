@@ -81,7 +81,7 @@
         <item
             android:id="@+id/nav_service"
             android:icon="@drawable/ic_action_customer"
-            android:title="CUSTOMER SERVICE" />
+            android:title="ONLINE CUSTOMER SUPPORT" />
 
         <item
              android:id="@+id/nav_customer"
