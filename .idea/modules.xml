@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="magento-android-landscape/app" />
-      <module fileurl="file://$PROJECT_DIR$/magento-android-landscape.iml" filepath="$PROJECT_DIR$/magento-android-landscape.iml" group="magento-android-landscape" />
+      <module fileurl="file://$PROJECT_DIR$/magento-android-landscape.iml" filepath="$PROJECT_DIR$/magento-android-landscape.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/magento-android-landscape.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/magento-android-landscape.app.iml" />
     </modules>
   </component>
 </project>

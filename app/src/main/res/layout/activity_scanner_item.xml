@@ -83,13 +83,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+                <in.yale.mobile.CustomTextView
                     android:id="@+id/txt_item_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
                     android:text=" "
                     android:textColor="#1A3E5D"
+                    app:typefamily="OpenSans-Regular.ttf"
                     android:textSize="16sp" />
 
                 <TextView
