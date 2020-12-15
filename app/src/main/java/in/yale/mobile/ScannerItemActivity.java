@@ -298,7 +298,7 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
                         }
                         pdata = obj.getString("magentopid");
                         placecode = obj.getString("PickupBranch");
-                        priceText.loadData(strPrice, "text/html", "UTF-8");
+                        priceText.loadDataWithBaseURL(null,strPrice,"text/html", "utf-8", null);
                         pickupText.setText(Html.fromHtml(obj.getString("Pickup")));
                         deliverText.setText(obj.getString("Deliver"));
                         txtMinQuantity.setText(obj.getString("pickupBranchMinSaleQty"));
