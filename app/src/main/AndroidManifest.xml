@@ -17,13 +17,14 @@
         android:label="@string/flavored_app_name"
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/flavored_app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ActivityList" />
+        <activity android:name=".ActivityList" android:configChanges="orientation|screenSize" />
         <activity android:name=".Barcode" android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ScannerItemActivity"

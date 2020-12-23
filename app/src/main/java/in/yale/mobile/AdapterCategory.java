@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +24,11 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
 
     private Activity context;
 
-    private List<String> listCategory, listDoubleData, listThreeData = new ArrayList<>();
+    private List<String> listCategory, listDoubleData, listThreeData, listFourData, checkPath = new ArrayList<>();
 
     private List<ThirdData> listThirdData = new ArrayList<>();
+
+    private List<FourthData> listFourthData = new ArrayList<>();
 
     private List<SecondData> listSecondData = new ArrayList<>();
 
@@ -71,7 +74,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
             holder.txtCategory.setText(listCategory.get(holder.getAdapterPosition()));
             holder.imgNav.setVisibility(View.VISIBLE);
             if (titleSelected != null)
-                 titleSelected.showTitle("Shop By Category", j);
+                titleSelected.showTitle("Shop By Category", j);
         }
         if (j == 2) {
             listThreeData = new ArrayList<>();
@@ -80,11 +83,24 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
             SharedPreferences sp = context.getSharedPreferences("MyPreferences", Activity.MODE_PRIVATE);
             String secondTitle = sp.getString("SecondTitle", "Default");
             if (titleSelected != null)
-               titleSelected.showTitle(secondTitle, j);
+                titleSelected.showTitle(secondTitle, j);
         }
         if (j == 3) {
-
+            listFourData = new ArrayList<>();
             holder.txtCategory.setText(listThreeData.get(holder.getAdapterPosition()));
+            if (!checkPath.contains(listThreeData.get(holder.getAdapterPosition()))) {
+                holder.imgNav.setVisibility(View.VISIBLE);
+            } else {
+                holder.imgNav.setVisibility(View.GONE);
+            }
+            SharedPreferences sp = context.getSharedPreferences("MyPreferences", Activity.MODE_PRIVATE);
+            String thirdTitle = sp.getString("ThreeTitle", "Default");
+            if (titleSelected != null)
+                titleSelected.showTitle(thirdTitle, j);
+
+        }
+        if (j == 4) {
+            holder.txtCategory.setText(listFourData.get(holder.getAdapterPosition()));
             holder.imgNav.setVisibility(View.GONE);
         }
 
@@ -116,8 +132,25 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
                             if (separatorData.get(1).equalsIgnoreCase(path)) {
                                 listThirdData.add(new ThirdData(separatorData.get(2), label));
                                 listThreeData.add(separatorData.get(2));
+                                checkPath.add(separatorData.get(2));
+                                titleSelected.showTitle(path, j);
+                                SharedPreferences preferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("ThreeTitle", path);
+                                editor.commit();
+                                notifyDataSetChanged();
+                            }
+                        } else if (separatorData.size() == 4 && j == 4) {
+                            if (separatorData.get(2).equalsIgnoreCase(path)) {
+                                listFourthData.add(new FourthData(separatorData.get(3), label));
+                                listFourData.add(separatorData.get(3));
                                 titleSelected.showTitle(path, j);
                                 notifyDataSetChanged();
+                            }
+                        }
+                        if (separatorData.size() == 4 && j == 3) {
+                            if (checkPath.contains(separatorData.get(2))) {
+                                checkPath.remove(separatorData.get(2));
                             }
                         }
                     }
@@ -129,7 +162,22 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
             @Override
             public void onClick(View v) {
 
-             if (j == 3) {
+                if (j == 4) {
+                    String fourthLabel = listFourthData.get(holder.getAdapterPosition()).getFourthLabel();
+
+                    StringTokenizer tokens = new StringTokenizer(fourthLabel, "|");
+                    String first = tokens.nextToken();
+                    String loadURL = tokens.nextToken();
+
+
+                    if ((loadURL.length() > 0)){
+                        Intent returnIntent;
+                        returnIntent = new Intent(context, MainActivity.class);
+                        returnIntent.putExtra("result",loadURL);
+                        context.setResult(MainActivity.RESULT_OK,returnIntent);
+                        context.finish();
+                    }
+                } else if (j == 3) {
                     String thirdLabel = listThirdData.get(holder.getAdapterPosition()).getThirdLabel();
 
                     StringTokenizer tokens = new StringTokenizer(thirdLabel, "|");
@@ -172,8 +220,10 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
             return listCategory.size();
         else if (j == 2)
             return listDoubleData.size();
-        else {
+        else if (j == 3)
             return listThreeData.size();
+        else {
+            return listFourData.size();
         }
     }
 

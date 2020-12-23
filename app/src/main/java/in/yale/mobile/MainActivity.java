@@ -679,8 +679,8 @@ public class MainActivity extends AppCompatActivity
                         Menu menu = navigationView.getMenu();
                         MenuItem nav_shopbylist = menu.findItem(R.id.nav_shopbylist);
                         nav_shopbylist.setVisible(FALSE);
-                        e.printStackTrace();
-                    } catch (Exception ef) { }
+                        //e.printStackTrace();
+                    } catch (Exception unused) { }
                 }
             });
 
@@ -702,24 +702,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void callLoginWebService(String data) {
-        Log.i("jes","message : "+data);
+
         //Constants.apiCall = FALSE;
         //if (Utils.checkInternet(MainActivity.this)) {
                     try {
                         JSONObject jsonObject = new JSONObject(data);
 
                         loggedIn = jsonObject.getBoolean("loggedIn");
-                        Log.i("jes","loggedin : "+loggedIn);
+
                         JSONObject branch_number = jsonObject.getJSONObject("branch");
                         phone_number = branch_number.getString("phone");
-                        Log.i("jes","phone : "+phone_number);
+
                         JSONObject address = jsonObject.getJSONObject("branch");
                         String addressLine1 = address.getString("addressLine1");
-                        Log.i("jes","address : "+addressLine1);
+
                         String city_name = address.getString("city");
-                        Log.i("jes","city : "+city_name);
+
                         String state_name = address.getString("state");
-                        Log.i("jes","state : "+state_name);
+
                         NavigationView navigationView = findViewById(R.id.nav_view);
                         Menu menu = navigationView.getMenu();
 

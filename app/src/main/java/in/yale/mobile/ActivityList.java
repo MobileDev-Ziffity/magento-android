@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.Gson;
@@ -123,7 +124,10 @@ public class ActivityList extends AppCompatActivity {
                     recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(adapterCategory);
                     adapterCategory.notifyDataSetChanged();
-                }catch(Exception e){  Log.e("List Err", "ERROR getting list"); }
+                }catch(Exception unused){
+                    Toast.makeText(ActivityList.this, "Error Occurred! ReOpen this menu", Toast.LENGTH_SHORT).show();
+                    //Log.e("List Err", "ERROR getting list");
+                }
             }
         });
     }
