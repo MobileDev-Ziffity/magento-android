@@ -25,30 +25,70 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bug" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bug" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9caf5106-0fcd-47bf-a3cd-a9fd2da8f1c2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/magento-android-landscape.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/magento-android-landscape.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/ActivityList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/ActivityList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/AdapterCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/AdapterCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/usesi/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/usesi/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[192.168.1.101:5555]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -97,8 +137,8 @@
     <property name="DEBUGGABLE_DEVICE" value="Nexus_6P_API_27 [emulator-5554]" />
     <property name="DEBUGGABLE_PROCESS" value="in.lade.mobile" />
     <property name="DEBUGGER_ID" value="Auto" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="192.168.1.105:5555" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-16T14:45:36.949Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="1080x1920_Pixel_2_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-27T18:12:16.944Z" />
     <property name="ExportApk.ApkPath" value="$USER_HOME$/Documents" />
     <property name="ExportApk.BuildType" value="release" />
     <property name="ExportApk.BuildVariants" value="yaleRelease" />
@@ -301,32 +341,32 @@
       <screen x="0" y="23" width="1920" height="973" />
     </state>
     <state width="937" height="639" key="DebuggerActiveHint/0.23.1920.973@0.23.1920.973" timestamp="1608645564041" />
-    <state width="1878" height="570" key="GridCell.Tab.0.bottom" timestamp="1608730630278">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1422" height="337" key="GridCell.Tab.0.bottom" timestamp="1609151154728">
+      <screen x="0" y="23" width="1920" height="973" />
     </state>
     <state width="1878" height="570" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1608730630278" />
-    <state width="1756" height="425" key="GridCell.Tab.0.bottom/0.23.1920.973@0.23.1920.973" timestamp="1608725928939" />
+    <state width="1422" height="337" key="GridCell.Tab.0.bottom/0.23.1920.973@0.23.1920.973" timestamp="1609151154728" />
     <state width="1327" height="187" key="GridCell.Tab.0.bottom/0.23.1920.980@0.23.1920.980" timestamp="1605539980844" />
     <state width="1327" height="187" key="GridCell.Tab.0.bottom/0.23.1920.982@0.23.1920.982" timestamp="1605538306319" />
-    <state width="1878" height="570" key="GridCell.Tab.0.center" timestamp="1608730630277">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1422" height="337" key="GridCell.Tab.0.center" timestamp="1609151154728">
+      <screen x="0" y="23" width="1920" height="973" />
     </state>
     <state width="1878" height="570" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1608730630277" />
-    <state width="1756" height="425" key="GridCell.Tab.0.center/0.23.1920.973@0.23.1920.973" timestamp="1608725928938" />
+    <state width="1422" height="337" key="GridCell.Tab.0.center/0.23.1920.973@0.23.1920.973" timestamp="1609151154728" />
     <state width="1327" height="187" key="GridCell.Tab.0.center/0.23.1920.980@0.23.1920.980" timestamp="1605539980842" />
     <state width="1327" height="187" key="GridCell.Tab.0.center/0.23.1920.982@0.23.1920.982" timestamp="1605538306319" />
-    <state width="1878" height="570" key="GridCell.Tab.0.left" timestamp="1608730630276">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1422" height="337" key="GridCell.Tab.0.left" timestamp="1609151154726">
+      <screen x="0" y="23" width="1920" height="973" />
     </state>
     <state width="1878" height="570" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1608730630276" />
-    <state width="1756" height="425" key="GridCell.Tab.0.left/0.23.1920.973@0.23.1920.973" timestamp="1608725928937" />
+    <state width="1422" height="337" key="GridCell.Tab.0.left/0.23.1920.973@0.23.1920.973" timestamp="1609151154726" />
     <state width="1327" height="187" key="GridCell.Tab.0.left/0.23.1920.980@0.23.1920.980" timestamp="1605539980842" />
     <state width="1327" height="187" key="GridCell.Tab.0.left/0.23.1920.982@0.23.1920.982" timestamp="1605538306318" />
-    <state width="1878" height="570" key="GridCell.Tab.0.right" timestamp="1608730630277">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1422" height="337" key="GridCell.Tab.0.right" timestamp="1609151154728">
+      <screen x="0" y="23" width="1920" height="973" />
     </state>
     <state width="1878" height="570" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1608730630277" />
-    <state width="1756" height="425" key="GridCell.Tab.0.right/0.23.1920.973@0.23.1920.973" timestamp="1608725928938" />
+    <state width="1422" height="337" key="GridCell.Tab.0.right/0.23.1920.973@0.23.1920.973" timestamp="1609151154728" />
     <state width="1327" height="187" key="GridCell.Tab.0.right/0.23.1920.980@0.23.1920.980" timestamp="1605539980843" />
     <state width="1327" height="187" key="GridCell.Tab.0.right/0.23.1920.982@0.23.1920.982" timestamp="1605538306319" />
     <state width="1758" height="257" key="GridCell.Tab.1.bottom" timestamp="1608645953493">

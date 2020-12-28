@@ -5,7 +5,7 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
-        versionName "1.25"
+        versionName "1.26"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -125,7 +125,7 @@ android {
         yale {
             dimension "version"
             applicationId "in.yale.mobile"
-            versionCode 31
+            versionCode 32
             resValue "string", "flavored_app_name", "YALE"
             resValue "string", "flavored_splash_icon", "@drawable/yale_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -137,7 +137,7 @@ android {
         usesi {
             dimension "version"
             applicationId "in.usesi.mobile"
-            versionCode 32
+            versionCode 33
             resValue "string", "flavored_app_name", "USESI"
             resValue "string", "flavored_splash_icon", "@drawable/usesi_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -149,7 +149,7 @@ android {
         duplex {
             dimension "version"
             applicationId "in.duplex.mobile"
-            versionCode 35
+            versionCode 36
             resValue "string", "flavored_app_name", "DUPLEX"
             resValue "string", "flavored_splash_icon", "@drawable/duplex_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
@@ -161,7 +161,7 @@ android {
         ewct {
             dimension "version"
             applicationId "in.ewct.mobile"
-            versionCode 31
+            versionCode 32
             resValue "string", "flavored_app_name", "EWCT"
             resValue "string", "flavored_splash_icon", "@drawable/ewcy_logo"
             resValue "dimen", "flavored_layout_width", "80dp"
@@ -173,7 +173,7 @@ android {
         ewne {
             dimension "version"
             applicationId "in.ewne.mobile"
-            versionCode 31
+            versionCode 32
             resValue "string", "flavored_app_name", "EWNE"
             resValue "string", "flavored_splash_icon", "@drawable/ewne_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -185,7 +185,7 @@ android {
         hz {
             dimension "version"
             applicationId "in.hz.mobile"
-            versionCode 32
+            versionCode 33
             resValue "string", "flavored_app_name", "HZ"
             resValue "string", "flavored_splash_icon", "@drawable/hz_logo"
             resValue "dimen", "flavored_layout_width", "65dp"
@@ -197,7 +197,7 @@ android {
         lade {
             dimension "version"
             applicationId "in.lade.mobile"
-            versionCode 32
+            versionCode 33
             resValue "string", "flavored_app_name", "LADE"
             resValue "string", "flavored_splash_icon", "@drawable/ld_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -209,7 +209,7 @@ android {
         maurice {
             dimension "version"
             applicationId "in.maurice.mobile"
-            versionCode 34
+            versionCode 35
             resValue "string", "flavored_app_name", "Maurice Electric"
             resValue "string", "flavored_splash_icon", "@drawable/maurice_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
@@ -221,7 +221,7 @@ android {
         monarch {
             dimension "version"
             applicationId "in.monarch.mobile"
-            versionCode 33
+            versionCode 34
             resValue "string", "flavored_app_name", "MONARCH"
             resValue "string", "flavored_splash_icon", "@drawable/monarch_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -233,7 +233,7 @@ android {
         standard {
             dimension "version"
             applicationId "in.standard.mobile"
-            versionCode 33
+            versionCode 34
             resValue "string", "flavored_app_name", "STANDARD"
             resValue "string", "flavored_splash_icon", "@drawable/standard_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -245,7 +245,7 @@ android {
         usrs {
             dimension "version"
             applicationId "in.usrs.mobile"
-            versionCode 32
+            versionCode 33
             resValue "string", "flavored_app_name", "USRS"
             resValue "string", "flavored_splash_icon", "@drawable/usrs_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -257,7 +257,7 @@ android {
         walters {
             dimension "version"
             applicationId "in.walters.mobile"
-            versionCode 34
+            versionCode 35
             resValue "string", "flavored_app_name", "WALTERS"
             resValue "string", "flavored_splash_icon", "@drawable/walters_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -269,7 +269,7 @@ android {
         franklingriffith {
             dimension "version"
             applicationId "in.franklingriffith.mobile"
-            versionCode 9
+            versionCode 10
             resValue "string", "flavored_app_name", "Franklin Griffith"
             resValue "string", "flavored_splash_icon", "@drawable/franklingriffith_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
@@ -281,7 +281,7 @@ android {
         mainelectric {
             dimension "version"
             applicationId "in.mainelectric.mobile"
-            versionCode 8
+            versionCode 9
             resValue "string", "flavored_app_name", "Main Electric"
             resValue "string", "flavored_splash_icon", "@drawable/mainelectric_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
@@ -323,6 +323,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -344,6 +349,7 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
     implementation 'com.google.android.play:core:1.6.4'
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
+    implementation "androidx.browser:browser:1.3.0"
     implementation 'com.comapi:foundation:1.2.0'
     implementation('io.jsonwebtoken:jjwt:0.9.1')
     //implementation ('com.google.android.gms:play-services-base:15.0.1') {force = true}

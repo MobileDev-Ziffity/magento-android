@@ -36,6 +36,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.browser.customtabs.CustomTabColorSchemeParams;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -378,8 +381,30 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 if (url.endsWith(".pdf")) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(browserIntent);
+                    try {
+                        boolean appEnabled = getPackageManager().getApplicationInfo("com.android.chrome", 0).enabled;
+                        if (checkChromeInstalled("com.android.chrome") && appEnabled) {
+                            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                            CustomTabColorSchemeParams params = new CustomTabColorSchemeParams.Builder()
+                                    .setNavigationBarColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary))
+                                    .setToolbarColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark))
+                                    .setSecondaryToolbarColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary))
+                                    .build();
+                            builder.setColorSchemeParams(CustomTabsIntent.COLOR_SCHEME_DARK, params);
+                            builder.setStartAnimations(MainActivity.this, R.anim.slide_in_right, R.anim.slide_out_left);
+                            builder.setExitAnimations(MainActivity.this, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                            CustomTabsIntent customTabsIntent = builder.build();
+                            customTabsIntent.launchUrl(MainActivity.this, Uri.parse(url));
+                        } else {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                            startActivity(browserIntent);
+                        }
+                    } catch(PackageManager.NameNotFoundException ignored) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(browserIntent);
+                    } catch (Exception ignored) {
+                        Toast.makeText(MainActivity.this, "Cant Open file at this Moment!", Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
 
@@ -485,6 +510,15 @@ public class MainActivity extends AppCompatActivity
 
         navigationView.setNavigationItemSelectedListener(this);
         barcodeIntentListener(webLoad);
+    }
+
+    private boolean checkChromeInstalled(String str) {
+        try {
+            getPackageManager().getPackageInfo(str, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException unused) {
+            return false;
+        }
     }
 
     private void compapiCommunicate(final ComapiClient client)
