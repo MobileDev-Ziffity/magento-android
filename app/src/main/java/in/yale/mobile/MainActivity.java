@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private FirebaseAnalytics mFirebaseAnalytics;
     private Bundle params;
-    private String messageForEmployee = "";
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled", "MissingPermission"})
@@ -357,11 +357,10 @@ public class MainActivity extends AppCompatActivity
                     public void onReceiveValue(String s) {
                         if(s.equals("1")){
                             employLoggedIn = true;
-                            MainActivity.this.postMessage(messageForEmployee);
                         }else{
                             employLoggedIn = false;
-                            MainActivity.this.postMessage(messageForEmployee);
                         }
+
                     }
                 });
 
@@ -1159,7 +1158,9 @@ public class MainActivity extends AppCompatActivity
 
     public void postMessage(String message) {
         String hash = "";
-        messageForEmployee = message;
+
+        //Toast.makeText(this, "message: "+message, Toast.LENGTH_SHORT).show();
+        //Log.i("DebuggingJesro", message);
         try {
             final JSONObject object = new JSONObject(message);
             if (!hash.equals(object.getString("hashKey"))) {

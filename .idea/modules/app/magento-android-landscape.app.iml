@@ -10,24 +10,24 @@
     </facet>
     <facet type="android" name="Android">
       <configuration>
-        <option name="SELECTED_BUILD_VARIANT" value="usrsDebug" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleUsrsDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileUsrsDebugSources" />
+        <option name="SELECTED_BUILD_VARIANT" value="standardDebug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleStandardDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileStandardDebugSources" />
         <afterSyncTasks>
-          <task>generateUsrsDebugSources</task>
+          <task>generateStandardDebugSources</task>
         </afterSyncTasks>
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../app/src/main/res;file://$MODULE_DIR$/../../../app/src/usrs/res;file://$MODULE_DIR$/../../../app/src/debug/res;file://$MODULE_DIR$/../../../app/src/usrsDebug/res;file://$MODULE_DIR$/../../../app/build/generated/res/google-services/usrs/debug;file://$MODULE_DIR$/../../../app/build/generated/res/rs/usrs/debug;file://$MODULE_DIR$/../../../app/build/generated/res/resValues/usrs/debug" />
-        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../app/src/androidTest/res;file://$MODULE_DIR$/../../../app/src/androidTestUsrs/res;file://$MODULE_DIR$/../../../app/src/androidTestDebug/res;file://$MODULE_DIR$/../../../app/src/androidTestUsrsDebug/res;file://$MODULE_DIR$/../../../app/build/generated/res/rs/androidTest/usrs/debug;file://$MODULE_DIR$/../../../app/build/generated/res/resValues/androidTest/usrs/debug" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../app/src/main/res;file://$MODULE_DIR$/../../../app/src/standard/res;file://$MODULE_DIR$/../../../app/src/debug/res;file://$MODULE_DIR$/../../../app/src/standardDebug/res;file://$MODULE_DIR$/../../../app/build/generated/res/google-services/standard/debug;file://$MODULE_DIR$/../../../app/build/generated/res/rs/standard/debug;file://$MODULE_DIR$/../../../app/build/generated/res/resValues/standard/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../app/src/androidTest/res;file://$MODULE_DIR$/../../../app/src/androidTestStandard/res;file://$MODULE_DIR$/../../../app/src/androidTestDebug/res;file://$MODULE_DIR$/../../../app/src/androidTestStandardDebug/res;file://$MODULE_DIR$/../../../app/build/generated/res/rs/androidTest/standard/debug;file://$MODULE_DIR$/../../../app/build/generated/res/resValues/androidTest/standard/debug" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
-    <output url="file://$MODULE_DIR$/../../../app/build/intermediates/javac/usrsDebug/classes" />
-    <output-test url="file://$MODULE_DIR$/../../../app/build/intermediates/javac/usrsDebugUnitTest/classes" />
+    <output url="file://$MODULE_DIR$/../../../app/build/intermediates/javac/standardDebug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../app/build/intermediates/javac/standardDebugUnitTest/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../app">
       <sourceFolder url="file://$MODULE_DIR$/../../../app/src/main/java" isTestSource="false" />
@@ -35,11 +35,11 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../app/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/src/main/assets" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/src/main/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/usrsDebug/out" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/usrs/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../app/src/usrs/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/google-services/usrs/debug" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/resValues/usrs/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/src/standard/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/resValues/standard/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/google-services/standard/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/standardDebug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/standard/debug" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../app/build" />
     </content>

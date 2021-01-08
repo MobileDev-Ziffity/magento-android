@@ -16,7 +16,7 @@
         <item
             android:id="@+id/nav_city"
             android:paddingTop="16dp"
-            android:title=" "
+            android:title="Loading..."
             app:actionLayout="@layout/drawer_change" />
     </group>
 
@@ -86,7 +86,7 @@
         <item
              android:id="@+id/nav_customer"
              android:paddingTop="-16dp"
-             android:title=""/>
+             android:title="Loading..."/>
     </group>
 
     <group android:id="@+id/grp2" android:checkableBehavior="single" >
@@ -97,7 +97,7 @@
 
         <item
             android:id="@+id/nav_contact"
-            android:title=""/>
+            android:title="Loading..."/>
     </group>
 
         <group android:id="@+id/grp14" android:checkableBehavior="single" >
