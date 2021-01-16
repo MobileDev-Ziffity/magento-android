@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private FirebaseAnalytics mFirebaseAnalytics;
     private Bundle params;
+    private String messageForEmployee = "";
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -231,6 +232,7 @@ public class MainActivity extends AppCompatActivity
 
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         webLoad.addJavascriptInterface(new WebAppInterface(), "StatusHandler");
+        webLoad.addJavascriptInterface(new WebAppClickInterface(), "ClickHandler");
         webLoad.setDownloadListener(new DownloadListener() {
             public void onDownloadStart(String url, String userAgent,
                                         String contentDisposition, String mimetype,
@@ -360,7 +362,9 @@ public class MainActivity extends AppCompatActivity
                         }else{
                             employLoggedIn = false;
                         }
-
+                        if(!messageForEmployee.equals("")) {
+                            MainActivity.this.postMessage(messageForEmployee);
+                        }
                     }
                 });
 
@@ -841,7 +845,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        super.onActivityResult(requestCode, resultCode,data);
         if (requestCode == 1 && resultCode == Barcode.RESULT_OK) {
             if (data.getBooleanExtra("action_location_barcode",false)) {
                 strLocationClicked = "clicked";
@@ -1158,11 +1162,10 @@ public class MainActivity extends AppCompatActivity
 
     public void postMessage(String message) {
         String hash = "";
-
-        //Toast.makeText(this, "message: "+message, Toast.LENGTH_SHORT).show();
-        //Log.i("DebuggingJesro", message);
+        messageForEmployee = message;
         try {
             final JSONObject object = new JSONObject(message);
+            Log.i("joo",object.toString());
             if (!hash.equals(object.getString("hashKey"))) {
                 runOnUiThread(new Runnable() {
                     @Override
@@ -1181,10 +1184,44 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void postClickMessage(String message) {
+        try {
+            final JSONObject object = new JSONObject(message);
+            Log.i("joo",object.toString());
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        if ("ShopByCategory".equals(object.getString("Event"))){
+                            Intent i = new Intent(MainActivity.this, ActivityList.class);
+                            startActivityForResult(i, 2);
+                        }else if ("ShopByList".equals(object.getString("Event")))
+                        {
+                            Intent i = new Intent(MainActivity.this, ActivityShopList.class);
+                            startActivityForResult(i, 3);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(MainActivity.this, "Error! Try Again Later", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public class WebAppInterface {
         @JavascriptInterface
         public void postMessage(String message) {
             MainActivity.this.postMessage(message);
+        }
+    }
+
+    public class WebAppClickInterface {
+        @JavascriptInterface
+        public void postMessage(String message) {
+            MainActivity.this.postClickMessage(message);
         }
     }
 
