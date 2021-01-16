@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 
@@ -88,7 +89,8 @@ public class ActivityShopList extends AppCompatActivity {
                     adapterShoobyList.notifyDataSetChanged();
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    Toast.makeText(ActivityShopList.this, "Error Occurred! ReOpen this menu", Toast.LENGTH_SHORT).show();
                 }
 
             }

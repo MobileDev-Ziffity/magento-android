@@ -1165,7 +1165,7 @@ public class MainActivity extends AppCompatActivity
         messageForEmployee = message;
         try {
             final JSONObject object = new JSONObject(message);
-            Log.i("joo",object.toString());
+
             if (!hash.equals(object.getString("hashKey"))) {
                 runOnUiThread(new Runnable() {
                     @Override
@@ -1187,7 +1187,7 @@ public class MainActivity extends AppCompatActivity
     public void postClickMessage(String message) {
         try {
             final JSONObject object = new JSONObject(message);
-            Log.i("joo",object.toString());
+
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
