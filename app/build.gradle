@@ -303,7 +303,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            resValue("bool", "FIREBASE_ANALYTICS_ENABLED", "false")
+        }
         release {
+            resValue("bool", "FIREBASE_ANALYTICS_ENABLED", "true")
             productFlavors.yale.signingConfig signingConfigs.yale
             productFlavors.usesi.signingConfig signingConfigs.usesi
             productFlavors.duplex.signingConfig signingConfigs.duplex
