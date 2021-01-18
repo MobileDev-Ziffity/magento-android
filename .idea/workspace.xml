@@ -73,10 +73,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/magento-android-landscape.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/magento-android-landscape.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/Barcode.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/Barcode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/in/yale/mobile/MainActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,11 +389,11 @@
       <screen x="0" y="23" width="1920" height="973" />
     </state>
     <state x="526" y="322" key="com.intellij.ide.util.TipDialog/0.23.1920.973@0.23.1920.973" timestamp="1606069080987" />
-    <state x="568" y="270" width="667" height="490" key="find.popup" timestamp="1610196900062">
+    <state x="568" y="270" width="667" height="490" key="find.popup" timestamp="1610959240430">
       <screen x="0" y="23" width="1920" height="973" />
     </state>
     <state x="568" y="274" width="667" height="544" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1608730615884" />
-    <state x="568" y="270" width="667" height="490" key="find.popup/0.23.1920.973@0.23.1920.973" timestamp="1610196900062" />
+    <state x="568" y="270" width="667" height="490" key="find.popup/0.23.1920.973@0.23.1920.973" timestamp="1610959240430" />
     <state x="568" y="271" width="667" height="490" key="find.popup/0.23.1920.975@0.23.1920.975" timestamp="1608643146242" />
   </component>
   <component name="XDebuggerManager">

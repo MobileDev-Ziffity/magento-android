@@ -49,6 +49,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.GestureDetector;
@@ -1081,22 +1082,34 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_contact) {
             mFirebaseAnalytics.logEvent("navdrawer_BRANCHNUMBER", params);
             String number = phone_number;
-            if (checkPermission(Manifest.permission.CALL_PHONE)) {
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + number));
-                startActivity(intent);
+            if (((TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType()
+                    != TelephonyManager.PHONE_TYPE_NONE)
+            {
+                if (checkPermission(Manifest.permission.CALL_PHONE)) {
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse("tel:" + number));
+                    startActivity(intent);
+                } else {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
+                }
             } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
+                Toast.makeText(this, "Phone call not available", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.nav_customer) {
             mFirebaseAnalytics.logEvent("navdrawer_CUSTOMERSERVICE", params);
             String number = Constants.SERVICE_NUMBER;
-            if (checkPermission(Manifest.permission.CALL_PHONE)) {
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + number));
-                startActivity(intent);
+            if (((TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType()
+                    != TelephonyManager.PHONE_TYPE_NONE)
+            {
+                if (checkPermission(Manifest.permission.CALL_PHONE)) {
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse("tel:" + number));
+                    startActivity(intent);
+                } else {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
+                }
             } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
+                Toast.makeText(this, "Phone call not available", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.nav_login) {
             mFirebaseAnalytics.logEvent("navdrawer_LOGOUT", params);
