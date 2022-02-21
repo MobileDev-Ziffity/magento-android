@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="in.yale.mobile">
+    package="in.yale.mobile" >
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -18,22 +23,30 @@
         android:label="@string/flavored_app_name"
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <meta-data android:name="firebase_analytics_collection_enabled" android:value="@bool/FIREBASE_ANALYTICS_ENABLED" />
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
+
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="@bool/FIREBASE_ANALYTICS_ENABLED" />
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/flavored_app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ActivityList" android:configChanges="orientation|screenSize" />
-        <activity android:name=".Barcode" android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityList"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".Barcode"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ScannerItemActivity"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".SubmitPhoto" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,23 +58,23 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="@string/flavored_authorities_name"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".ActivityShopList"/>
-
-        <activity android:name="com.gun0912.tedpermission.TedPermissionActivity"
+        <activity android:name=".ActivityShopList" />
+        <activity
+            android:name="com.gun0912.tedpermission.TedPermissionActivity"
             android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|screenLayout|fontScale|uiMode|orientation|screenSize|layoutDirection"
             android:screenOrientation="unspecified"
             android:theme="@style/Theme.Transparent.Permission"
-            tools:replace="android:screenOrientation"/>
+            tools:replace="android:screenOrientation" />
 
         <service
             android:name=".FirebaseMessageService"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

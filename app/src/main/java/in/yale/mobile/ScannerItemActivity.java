@@ -26,11 +26,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,6 +60,7 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
     private ProgressDialog progressDialog;
     private ImageView imgItem;
     private String CustomURL = "";
+    private String URLcheck = "";
     private String formKey;
     private String addToCart;
     private int quantity = 1;
@@ -60,7 +72,7 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
     public static Boolean apiAddToCart = false;
     private FirebaseAnalytics mFirebaseAnalytics;
     private Bundle params;
-
+    public RequestQueue req;
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +86,7 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
         params = new Bundle();
         LinearLayout llr_deliveryDetails = (LinearLayout) findViewById(R.id.llr_deliveryDetails);
         llr_shipment_deliver_details = (LinearLayout) findViewById(R.id.llr_shipment_deliver_details);
-
+        req = Volley.newRequestQueue(this);
         relativeSecond = findViewById(R.id.relativeSecond);
         shimmerFrameLayout = findViewById(R.id.shimmer);
         ImageView imgAdd = findViewById(R.id.img_add);
@@ -216,31 +228,37 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
 
     private void skuScannedItem() {
 
-        String skuUrl = "https://manage.hawksearch.com/sites/uselectric/?mpp=&pg=&category=&hawkcustom=&sort=&hawkspellcheck=0&hawkoutput=json&gzip=1&branch_id=&search=1&keyword=";
+         String OB_Urla = Constants.BASE_URL + Constants.SCANNER_URL + barcodeText;
+        //String skuUrl = "https://manage.hawksearch.com/sites/uselectric/?mpp=&pg=&category=&hawkcustom=&sort=&hawkspellcheck=0&hawkoutput=json&gzip=1&branch_id=&search=1&keyword=";
         Constants.apiCall = Boolean.TRUE;
         ApiTask apiTask = new ApiTask(ScannerItemActivity.this);
         apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
-        apiTask.setParams(null, skuUrl + barcodeText + ".");
+        apiTask.setParams(null, OB_Urla);
 
         apiTask.responseCallBack(new ApiTask.ResponseListener() {
             @Override
             public void jsonResponse(String result) {
                 try {
 
-                    JSONObject jsonObject = new JSONObject(result.trim());
+                    JSONObject jj = new JSONObject(result);
+                   // JSONObject jsonobject = jj.getJSONObject(0);
+                    if (jj.length() > 0) {
+                    String dame = jj.getString("sku");
+                    String dname = jj.getString("name");
+                    txtSku.setText("SKU: "  + dame);
+                    txtItemName.setText(dname);
 
-                    if (jsonObject.getJSONArray("Results").length() > 0) {
-
-                        JSONObject obj = jsonObject.getJSONArray("Results").getJSONObject(0);
-
-
-                        txtSku.setText("SKU: "  +obj.getString("SKU"));
-                        txtItemName.setText(Html.fromHtml(obj.getString("ItemName")));
-                        CustomURL = obj.getString("CustomURL");
-
-                        Glide.with(ScannerItemActivity.this).load(obj.getJSONObject("Custom").getString("image")).into(imgItem);
-
-                        proxyCallSku(obj.getString("SKU"));
+                        String idd1 = jj.optString("url");
+                        if(idd1 != ""){
+                            CustomURL = jj.getString("url");
+                        }else{
+                            CustomURL = jj.getString("url_key");
+                        }
+                        String cg = "/"+CustomURL;
+                        URLcheck = cg.replace("//", "/");
+                        CustomURL = URLcheck;
+                    Glide.with(ScannerItemActivity.this).load(jj.getString("image")).into(imgItem);
+                        proxyCallSku(dame);
 
 
                     }else {

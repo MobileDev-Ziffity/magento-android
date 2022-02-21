@@ -1,5 +1,6 @@
 package in.yale.mobile;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,229 +21,234 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 
-public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyViewHolder> {
 
-    private Activity context;
+import androidx.recyclerview.widget.RecyclerView;
 
-    private List<String> listCategory, listDoubleData, listThreeData, listFourData, checkPath = new ArrayList<>();
+class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHolder>{
+    public ArrayList<ActivityList.mainaray> menulist;
+    public ArrayList<ActivityList.mainaray> menulist1;
+    public ArrayList<ActivityList.mainaray> menulist1_sort;
+    public ArrayList<ActivityList.mainaray> menulist2;
+    public ArrayList<ActivityList.mainaray> menulist2_sort;
+    private Activity vcontext;
+    private Context mContext;
+    private int jj;
 
-    private List<ThirdData> listThirdData = new ArrayList<>();
+//    private OnTitleSelecteds titleSelecteds;
+//
+//
+//    public interface OnTitleSelecteds {
+//        void showTitle(String title);
+//    }
 
-    private List<FourthData> listFourthData = new ArrayList<>();
 
-    private List<SecondData> listSecondData = new ArrayList<>();
 
-    private List<Values> listValues;
+//    void setListener(OnTitleSelecteds ch) {
+//
+//        this.titleSelecteds = ch;
+//    }
+    AdapterCategory(Activity context) {
 
-    private int j;
+        this.mContext = context;
+    }
+
 
     void setListTitle() {
-        j--;
-        if (j > 0) {
+        jj--;
+        if (jj == 0 || jj == 1 || jj == 2 ) {
             notifyDataSetChanged();
         }
         else
-            ((ActivityList)context).finish();
+            ((ActivityList)mContext).finish();
     }
-
-    public interface OnTitleSelected {
-        void showTitle(String title, int value);
-    }
-
-    private OnTitleSelected titleSelected;
-
-    void setListener(OnTitleSelected onTitleSelected) {
-        this.titleSelected = onTitleSelected;
-    }
-
-
-    AdapterCategory(Activity context) {
-        this.context = context;
-    }
-
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_list_category, parent, false);
-        return new MyViewHolder(view);
-    }
+    public int getItemCount() {
 
+        if (jj == 0)
+            return menulist.size();
+        else if (jj == 1)
+            return menulist1_sort.size();
+
+        else {
+            return menulist2_sort.size();
+        }
+    }
+    public AdapterCategory(Context context, ArrayList<ActivityList.mainaray> exampleList,ArrayList<ActivityList.mainaray> exampleList1,ArrayList<ActivityList.mainaray> exampleList2) {
+        this.mContext = context;
+        menulist = exampleList;
+        menulist1 = exampleList1;
+        menulist2 = exampleList2;
+
+        // Log.d("tag","these are the value in example list"+exampleList.toString());
+    }
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
-        if (j == 1) {
-            listDoubleData = new ArrayList<>();
-            listSecondData = new ArrayList<>();
-            holder.txtCategory.setText(listCategory.get(holder.getAdapterPosition()));
-            holder.imgNav.setVisibility(View.VISIBLE);
-            if (titleSelected != null)
-                titleSelected.showTitle("Shop By Category", j);
-        }
-        if (j == 2) {
-            listThreeData = new ArrayList<>();
-            holder.txtCategory.setText(listDoubleData.get(holder.getAdapterPosition()));
-            holder.imgNav.setVisibility(View.VISIBLE);
-            SharedPreferences sp = context.getSharedPreferences("MyPreferences", Activity.MODE_PRIVATE);
-            String secondTitle = sp.getString("SecondTitle", "Default");
-            if (titleSelected != null)
-                titleSelected.showTitle(secondTitle, j);
-        }
-        if (j == 3) {
-            listFourData = new ArrayList<>();
-            holder.txtCategory.setText(listThreeData.get(holder.getAdapterPosition()));
-            if (!checkPath.contains(listThreeData.get(holder.getAdapterPosition()))) {
+    public ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(mContext).inflate(R.layout.layout_list_category, parent, false);
+        return new AdapterCategory.ExampleViewHolder(view);
+    }
+    @Override
+    public void onBindViewHolder(final ExampleViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+
+        if (jj == 0) {
+
+            menulist1_sort = new ArrayList<>();
+            ActivityList.mainaray currentItem = menulist.get(position);
+            ActivityList.mainaray po = menulist.get(position);
+            String labelname = currentItem.getlab();
+            holder.txtCategory.setText(labelname);
+            String chi = currentItem.getchild();
+            if (chi.equals("true")) {
                 holder.imgNav.setVisibility(View.VISIBLE);
             } else {
                 holder.imgNav.setVisibility(View.GONE);
             }
-            SharedPreferences sp = context.getSharedPreferences("MyPreferences", Activity.MODE_PRIVATE);
+
+//            if (this.titleSelecteds != null)
+//                this.titleSelecteds.showTitle("Shop By Category");
+            ((ActivityList)mContext).txtTitle.setText("Shop By Category");
+        }else if (jj == 1) {
+            menulist2_sort = new ArrayList<>();
+            // ActivityList.mainaray currentItem = menulist1_sort.get(position);
+            ActivityList.mainaray po = menulist1_sort.get(position);
+            String labelname = po.getlab();
+            holder.txtCategory.setText(labelname);
+            String chi = po.getchild();
+            if (chi.equals("true")) {
+                holder.imgNav.setVisibility(View.VISIBLE);
+            } else {
+                holder.imgNav.setVisibility(View.GONE);
+            }
+            SharedPreferences sp = mContext.getSharedPreferences("MyPreferences", Activity.MODE_PRIVATE);
+            String secondTitle = sp.getString("SecondTitle", "Default");
+
+//            if (titleSelecteds != null)
+//                titleSelecteds.showTitle(secondTitle);
+            ((ActivityList)mContext).txtTitle.setText(secondTitle);
+        }else if (jj == 2) {
+
+            // ActivityList.mainaray currentItem = menulist1_sort.get(position);
+            ActivityList.mainaray po = menulist2_sort.get(position);
+            String labelname = po.getlab();
+            holder.txtCategory.setText(labelname);
+            String chi = po.getchild();
+            if (chi.equals("true")) {
+                holder.imgNav.setVisibility(View.VISIBLE);
+            } else {
+                holder.imgNav.setVisibility(View.GONE);
+            }
+            SharedPreferences sp = mContext.getSharedPreferences("MyPreferences", Activity.MODE_PRIVATE);
             String thirdTitle = sp.getString("ThreeTitle", "Default");
-            if (titleSelected != null)
-                titleSelected.showTitle(thirdTitle, j);
-
+//            if (titleSelecteds != null)
+//                titleSelecteds.showTitle(thirdTitle);
+            ((ActivityList)mContext).txtTitle.setText(thirdTitle);
         }
-        if (j == 4) {
-            holder.txtCategory.setText(listFourData.get(holder.getAdapterPosition()));
-            holder.imgNav.setVisibility(View.GONE);
-        }
-
         holder.imgNav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                j++;
-                String path = holder.txtCategory.getText().toString().trim();
+                jj++;
+                if (jj == 1) {
+                    String path = holder.txtCategory.getText().toString().trim();
+//                    if (titleSelecteds != null)
+//                        titleSelecteds.showTitle(path);
 
-                for (int i = 0; i < listValues.size(); i++) {
-                    String pat = listValues.get(i).getPath();
-                    String label = listValues.get(i).getLabel();
+                    ((ActivityList)mContext).txtTitle.setText(path);
+                    //  ((MainActivity) getActivity()).logoimg.setBackgroundResource(R.drawable.onboard_logo);
+                    ActivityList.mainaray po = menulist.get(position);
+                    String id = po.getid();
+                    for(int i = 0; i < menulist1.size(); i++){
+                        ActivityList.mainaray i1 = menulist1.get(i);
+                        String pid = i1.getparentid();
 
-                    if (pat.contains("/")) {
-                        List<String> separatorData = Arrays.asList(pat.split("/"));
-                        if (separatorData.size() == 2 && j == 2) {
-                            if (separatorData.get(0).equalsIgnoreCase(path)) {
-                                listSecondData.add(new SecondData(separatorData.get(1), label));
-                                listDoubleData.add(separatorData.get(1));
-                                titleSelected.showTitle(path, j);
-                                SharedPreferences preferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString("SecondTitle", path);
-                                editor.commit();
-
-                                notifyDataSetChanged();
-                            }
-                        } else if (separatorData.size() == 3 && j == 3) {
-                            if (separatorData.get(1).equalsIgnoreCase(path)) {
-                                listThirdData.add(new ThirdData(separatorData.get(2), label));
-                                listThreeData.add(separatorData.get(2));
-                                checkPath.add(separatorData.get(2));
-                                titleSelected.showTitle(path, j);
-                                SharedPreferences preferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString("ThreeTitle", path);
-                                editor.commit();
-                                notifyDataSetChanged();
-                            }
-                        } else if (separatorData.size() == 4 && j == 4) {
-                            if (separatorData.get(2).equalsIgnoreCase(path)) {
-                                listFourthData.add(new FourthData(separatorData.get(3), label));
-                                listFourData.add(separatorData.get(3));
-                                titleSelected.showTitle(path, j);
-                                notifyDataSetChanged();
-                            }
-                        }
-                        if (separatorData.size() == 4 && j == 3) {
-                            if (checkPath.contains(separatorData.get(2))) {
-                                checkPath.remove(separatorData.get(2));
-                            }
+                        if(id.equals(pid) ) {
+                            String lab = i1.getlab();
+                            String va = i1.getvalue();
+                            String pva = i1.getparentid();
+                            String gid = i1.getid();
+                            String ch = i1.getchild();
+                            menulist1_sort.add(new ActivityList.mainaray(lab, va, pva, gid, ch));
                         }
                     }
+                    SharedPreferences preferences = mContext.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("SecondTitle", path);
+                    editor.commit();
+
+                    notifyDataSetChanged();
+                }else if (jj == 2) {
+                    String path = holder.txtCategory.getText().toString().trim();
+//                    if (titleSelecteds != null)
+//                        titleSelecteds.showTitle(path);
+                    ((ActivityList)mContext).txtTitle.setText(path);
+                    ActivityList.mainaray po = menulist1_sort.get(position);
+                    String id = po.getid();
+                    for(int i = 0; i < menulist2.size(); i++){
+                        ActivityList.mainaray i1 = menulist2.get(i);
+                        String pid = i1.getparentid();
+
+                        if(id.equals(pid) ) {
+                            String lab = i1.getlab();
+                            String va = i1.getvalue();
+                            String pva = i1.getparentid();
+                            String gid = i1.getid();
+                            String ch = i1.getchild();
+                            menulist2_sort.add(new ActivityList.mainaray(lab, va, pva, gid, ch));
+                        }
+                    }
+                    SharedPreferences preferences = mContext.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("ThreeTitle", path);
+                    editor.commit();
+
+                    notifyDataSetChanged();
+
+
+
                 }
             }
         });
-
         holder.txtCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(jj == 0){
+                    ActivityList.mainaray ss = menulist.get(position);
+                    String val = ss.getvalue();
 
-                if (j == 4) {
-                    String fourthLabel = listFourthData.get(holder.getAdapterPosition()).getFourthLabel();
+                    Intent returnIntent;
+                    returnIntent = new Intent(mContext, MainActivity.class);
+                    returnIntent.putExtra("result",val);
+                    ((ActivityList)mContext).setResult(MainActivity.RESULT_OK,returnIntent);
+                    ((ActivityList)mContext).finish();
 
-                    StringTokenizer tokens = new StringTokenizer(fourthLabel, "|");
-                    String first = tokens.nextToken();
-                    String loadURL = tokens.nextToken();
+                }else  if(jj == 1){
+                    ActivityList.mainaray ss = menulist1_sort.get(position);
+                    String val = ss.getvalue();
 
+                    Intent returnIntent;
+                    returnIntent = new Intent(mContext, MainActivity.class);
+                    returnIntent.putExtra("result",val);
+                    ((ActivityList)mContext).setResult(MainActivity.RESULT_OK,returnIntent);
+                    ((ActivityList)mContext).finish();
+                }else  if(jj == 2){
+                    ActivityList.mainaray ss = menulist2_sort.get(position);
+                    String val = ss.getvalue();
 
-                    if ((loadURL.length() > 0)){
-                        Intent returnIntent;
-                        returnIntent = new Intent(context, MainActivity.class);
-                        returnIntent.putExtra("result",loadURL);
-                        context.setResult(MainActivity.RESULT_OK,returnIntent);
-                        context.finish();
-                    }
-                } else if (j == 3) {
-                    String thirdLabel = listThirdData.get(holder.getAdapterPosition()).getThirdLabel();
-
-                    StringTokenizer tokens = new StringTokenizer(thirdLabel, "|");
-                    String first = tokens.nextToken();
-                    String loadURL = tokens.nextToken();
-
-
-                    if ((loadURL.length() > 0)){
-                        Intent returnIntent;
-                        returnIntent = new Intent(context, MainActivity.class);
-                        returnIntent.putExtra("result",loadURL);
-                        context.setResult(MainActivity.RESULT_OK,returnIntent);
-                        context.finish();
-                    }
-                }
-                else if (j == 2) {
-                    String thirdLabel = listSecondData.get(holder.getAdapterPosition()).getSecondLabel();
-                    StringTokenizer tokens = new StringTokenizer(thirdLabel, "|");
-                    String first = tokens.nextToken();
-                    String loadURL = tokens.nextToken();
-
-
-                    if ((loadURL.length() > 0)){
-                        Intent returnIntent;
-                        returnIntent = new Intent(context, MainActivity.class);
-                        returnIntent.putExtra("result",loadURL);
-                        context.setResult(MainActivity.RESULT_OK,returnIntent);
-                        context.finish();
-                    }
+                    Intent returnIntent;
+                    returnIntent = new Intent(mContext, MainActivity.class);
+                    returnIntent.putExtra("result",val);
+                    ((ActivityList)mContext).setResult(MainActivity.RESULT_OK,returnIntent);
+                    ((ActivityList)mContext).finish();
                 }
 
             }
         });
-
     }
-
-    @Override
-    public int getItemCount() {
-        if (j == 1)
-            return listCategory.size();
-        else if (j == 2)
-            return listDoubleData.size();
-        else if (j == 3)
-            return listThreeData.size();
-        else {
-            return listFourData.size();
-        }
-    }
-
-    public void setData(List<String> listValues) {
-        j = 1;
-        Collections.sort(listValues);
-        this.listCategory = listValues;
-    }
-
-    void setAllValues(List<Values> listValues) {
-        this.listValues = listValues;
-    }
-
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class ExampleViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txtCategory;
         private ImageView imgNav;
 
-        MyViewHolder(View itemView) {
+        ExampleViewHolder(View itemView) {
             super(itemView);
             txtCategory = itemView.findViewById(R.id.txtCategory);
             imgNav = itemView.findViewById(R.id.imgNav);

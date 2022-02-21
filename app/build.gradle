@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionName "1.29"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionName "1.41"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -126,7 +126,7 @@ android {
         ewct {
             dimension "version"
             applicationId "in.ewct.mobile"
-            versionCode 35
+            versionCode 45
             resValue "string", "flavored_app_name", "EWCT"
             resValue "string", "flavored_splash_icon", "@drawable/ewcy_logo"
             resValue "dimen", "flavored_layout_width", "80dp"
@@ -134,12 +134,16 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.ew-ct.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"(860) 357-6064\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.ew-ct.com/locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"8999d9e6-d11b-4a5a-a6ba-0465fa33dc48\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"b6637e17fe58486bb6875309ae0b49be\"";
+
+
         }
         
         yale {
             dimension "version"
             applicationId "in.yale.mobile"
-            versionCode 35
+            versionCode 41
             resValue "string", "flavored_app_name", "YALE"
             resValue "string", "flavored_splash_icon", "@drawable/yale_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -147,12 +151,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.yaleelectricsupply.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"(717)696-6426\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.yaleelectricsupply.com/yale-locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"f38f9fbe-bd42-4a96-a997-92479a3addeb\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"f8f0e2e5a9d04516ac959f97f8edd34d\"";
         }
 
         usesi {
             dimension "version"
             applicationId "in.usesi.mobile"
-            versionCode 36
+            versionCode 44
             resValue "string", "flavored_app_name", "USESI"
             resValue "string", "flavored_splash_icon", "@drawable/usesi_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -160,12 +166,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://store.usesi.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"844-230-9105\"";
             buildConfigField "String", "LOCATION_URL", "\"https://store.usesi.com/companies/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"e2cc1c4b-5096-4c5c-a567-43b35172063b\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"de627efccc7c4b438ccc9736dac4298d\"";
         }
 
         duplex {
             dimension "version"
             applicationId "in.duplex.mobile"
-            versionCode 39
+            versionCode 46
             resValue "string", "flavored_app_name", "DUPLEX"
             resValue "string", "flavored_splash_icon", "@drawable/duplex_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
@@ -173,12 +181,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.duplexelectric.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"516-226-7693\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.duplexelectric.com/duplex-locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"d581ff39-83d1-4692-8ac6-4bb298c286b9\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"8143a40248fb485fba1e0cc7814adcb6\"";
         }
 
         ewne {
             dimension "version"
             applicationId "in.ewne.mobile"
-            versionCode 35
+            versionCode 41
             resValue "string", "flavored_app_name", "EWNE"
             resValue "string", "flavored_splash_icon", "@drawable/ewne_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -186,12 +196,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.ew-ne.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"781-875-8134\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.ew-ne.com/locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"a2175444-e1e9-4e23-995d-f09036e1cd52\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"2c8fd3b9634d4042b096f51f4a196c86\"";
         }
  
         hz {
             dimension "version"
             applicationId "in.hz.mobile"
-            versionCode 36
+            versionCode 45
             resValue "string", "flavored_app_name", "HZ"
             resValue "string", "flavored_splash_icon", "@drawable/hz_logo"
             resValue "dimen", "flavored_layout_width", "65dp"
@@ -199,12 +211,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.hzelectric.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"413-848-6603\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.hzelectric.com/locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"6acb725e-d096-4b3b-9af0-2794f09ed53f\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"960115cbc3f74ba1815f4dfc395cab3f\"";
         }
 
         lade {
             dimension "version"
             applicationId "in.lade.mobile"
-            versionCode 36
+            versionCode 43
             resValue "string", "flavored_app_name", "LADE"
             resValue "string", "flavored_splash_icon", "@drawable/ld_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -212,12 +226,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.ladedanlar.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"770-659-7246\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.ladedanlar.com/locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"fe5c8c87-c11e-4609-8a21-546afafcb838\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"cdfc29586f324d2883d6cdd09cd0e9df\"";
         }
 
         maurice {
             dimension "version"
             applicationId "in.maurice.mobile"
-            versionCode 38
+            versionCode 44
             resValue "string", "flavored_app_name", "Maurice Electric"
             resValue "string", "flavored_splash_icon", "@drawable/maurice_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
@@ -225,12 +241,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.mauriceelectric.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"301-298-2606\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.mauriceelectric.com/locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"d5f7c6dc-2a4c-4845-a87f-78a9b5a7b26c\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"21fd2592d92e4ab8aabd4e6f52c4feed\"";
         }
 
         monarch {
             dimension "version"
             applicationId "in.monarch.mobile"
-            versionCode 37
+            versionCode 45
             resValue "string", "flavored_app_name", "MONARCH"
             resValue "string", "flavored_splash_icon", "@drawable/monarch_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -238,12 +256,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.monarchelectric.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"609-900-7679\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.monarchelectric.com/monarch-locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"36abff0c-62d7-4079-9b89-f05739c59032\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"7b1d202f33bc4a0f89851e9582e367ef\"";
         }
 
         standard {
             dimension "version"
             applicationId "in.standard.mobile"
-            versionCode 37
+            versionCode 46
             resValue "string", "flavored_app_name", "STANDARD"
             resValue "string", "flavored_splash_icon", "@drawable/standard_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -251,12 +271,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.standardelectric.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"978-883-3163\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.standardelectric.com/locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"85841c5c-88c4-46a4-a3aa-d504632c84b5\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"b00a09b188c8497492901d63bc678fec\"";
         }
 
         usrs {
             dimension "version"
             applicationId "in.usrs.mobile"
-            versionCode 36
+            versionCode 42
             resValue "string", "flavored_app_name", "USRS"
             resValue "string", "flavored_splash_icon", "@drawable/usrs_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -264,12 +286,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.usrenewablesolutions.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"866-662-3939\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.usrenewablesolutions.com/careers/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"fe115357-27a6-47cb-aa3d-9112b0841941\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"1fe274faea55413c85cf411c54ccb3b1\"";
         }
 
         walters {
             dimension "version"
             applicationId "in.walters.mobile"
-            versionCode 38
+            versionCode 44
             resValue "string", "flavored_app_name", "WALTERS"
             resValue "string", "flavored_splash_icon", "@drawable/walters_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -277,12 +301,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.walterswholesale.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"833-993-3266\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.walterswholesale.com/locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"285a47bc-2354-440e-9c94-483f91dd16b6\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"3e301414d44544618aa286616d4bbd5e\"";
         }
 
         franklingriffith {
             dimension "version"
             applicationId "in.franklingriffith.mobile"
-            versionCode 13
+            versionCode 19
             resValue "string", "flavored_app_name", "Franklin Griffith"
             resValue "string", "flavored_splash_icon", "@drawable/franklingriffith_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
@@ -290,12 +316,14 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.franklinelectric.net/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"856-246-5504\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.franklinelectric.net/franklin-locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"9f03d21c-1661-4855-8fb6-eeba3bcc8ee1\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"a9bab1e8fc794702beb83005b6cb60e2\"";
         }
 
         mainelectric {
             dimension "version"
             applicationId "in.mainelectric.mobile"
-            versionCode 13
+            versionCode 20
             resValue "string", "flavored_app_name", "Main Electric"
             resValue "string", "flavored_splash_icon", "@drawable/mainelectric_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
@@ -303,6 +331,8 @@ android {
             buildConfigField "String", "BASE_URL", "\"https://www.mainelectricsupplyco.com/\"";
             buildConfigField "String", "SERVICE_NUMBER", "\"609-900-7679\"";
             buildConfigField "String", "LOCATION_URL", "\"https://www.mainelectricsupplyco.com/mainelectric-locations/\"";
+            buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"b0583a3d-c4a4-42c3-97c0-ea759396b6fa\"";
+            buildConfigField "String", "DOTDIGITAL_SECRET", "\"62afbc69344f4ae2a6f0ac1bc6fddca8\"";
         }
     }
 
@@ -352,7 +382,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.firebase:firebase-core:16.0.1'
-    //noinspection GradleCompatible
+
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.7'
+
+    implementation 'com.google.firebase:firebase-perf:20.0.4'
+
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -371,8 +405,11 @@ dependencies {
     implementation "androidx.browser:browser:1.3.0"
     implementation 'com.comapi:foundation:1.2.0'
     implementation('io.jsonwebtoken:jjwt:0.9.1')
-    //implementation ('com.google.android.gms:play-services-base:15.0.1') {force = true}
     implementation 'androidx.multidex:multidex:2.0.1'
-}
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'org.jsoup:jsoup:1.8.3'
 
+    
+}
+apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.gms.google-services'

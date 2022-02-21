@@ -89,16 +89,16 @@
              android:title="Loading..."/>
     </group>
 
-    <group android:id="@+id/grp2" android:checkableBehavior="single" >
-        <item
-            android:id="@+id/nav_branchnumber"
-            android:icon="@drawable/ic_action_branch"
-            android:title="BRANCH NUMBER" />
+<!--    <group android:id="@+id/grp2" android:checkableBehavior="single" >-->
+<!--        <item-->
+<!--            android:id="@+id/nav_branchnumber"-->
+<!--            android:icon="@drawable/ic_action_branch"-->
+<!--            android:title="BRANCH NUMBER" />-->
 
-        <item
-            android:id="@+id/nav_contact"
-            android:title="Loading..."/>
-    </group>
+<!--        <item-->
+<!--            android:id="@+id/nav_contact"-->
+<!--            android:title="Loading..."/>-->
+<!--    </group>-->
 
         <group android:id="@+id/grp14" android:checkableBehavior="single" >
             <item

@@ -15,6 +15,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 
 import org.json.JSONObject;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -60,13 +61,20 @@ public class ActivityShopList extends AppCompatActivity {
 
         ApiTask apiTask = new ApiTask(this);
         apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
+
         apiTask.setParams(null,Constants.BASE_URL + Constants.SHOP_BY_LIST);
         apiTask.responseCallBack(new ApiTask.ResponseListener() {
             @Override
             public void jsonResponse(String result) {
-                try {
-                    JSONObject jObject = new JSONObject(result.trim());
 
+
+                try {
+                    String val = result;
+
+                    JSONObject jObject = new JSONObject(result.trim());
+                    jObject.toString();
+                   // jObject.addRequestProperty("Accept", "application/json");
+                  //  JSONObject jObject = new JSONObject( URLDecoder.decode( result.trim(), "UTF-8" ) );
                     Iterator<?> keys = jObject.keys();
 
                     while( keys.hasNext() ) {

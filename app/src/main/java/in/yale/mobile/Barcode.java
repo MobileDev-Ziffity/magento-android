@@ -60,7 +60,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
     private String phone_number;
     private String count;
-    private boolean loggedIn;
+    private boolean loggedIn,employLoggedIn,cutomersupport,showbranch;
     private TextView userName;
     private int alertCount = 0;
     private TextView scanImageAction;
@@ -299,6 +299,9 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
 
     private void callLoginWebService() {
         String getUrl = Constants.BASE_URL + "?mobileapp=1";
+
+
+    //    String getUrl = Constants.BASE_URL;
         Constants.apiCall = FALSE;
         String cookies = CookieManager.getInstance().getCookie(getUrl);
         if (Utils.checkInternet(Barcode.this)) {
@@ -314,7 +317,8 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                         JSONObject jsonObject = new JSONObject(result);
 
                         loggedIn = jsonObject.getBoolean("loggedIn");
-
+                        cutomersupport = jsonObject.getBoolean("show_customer_support");
+                        showbranch = jsonObject.getBoolean("show_branch");
                         JSONObject branch_number = jsonObject.getJSONObject("branch");
                         phone_number = branch_number.getString("phone");
 
@@ -328,9 +332,24 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                         NavigationView navigationView = findViewById(R.id.nav_view);
                         Menu menu = navigationView.getMenu();
 
-                        MenuItem nav_contact = menu.findItem(R.id.nav_contact);
-                        nav_contact.setTitle(phone_number);
-
+//                        MenuItem nav_contact = menu.findItem(R.id.nav_contact);
+//                        nav_contact.setTitle(phone_number);
+                        if(!cutomersupport) {
+                            NavigationView navigationViews = findViewById(R.id.nav_view);
+                            Menu menud = navigationViews.getMenu();
+                            MenuItem d = menud.findItem(R.id.nav_service);
+                            d.setVisible(FALSE);
+                            MenuItem dd = menud.findItem(R.id.nav_customer);
+                            dd.setVisible(FALSE);
+                        }
+                        if(!showbranch) {
+                            NavigationView navigationViews = findViewById(R.id.nav_view);
+                            Menu menud = navigationViews.getMenu();
+                            MenuItem d = menud.findItem(R.id.nav_branch);
+                            d.setVisible(FALSE);
+                            MenuItem dd = menud.findItem(R.id.nav_city);
+                            dd.setVisible(FALSE);
+                        }
                         MenuItem nav_service = menu.findItem(R.id.nav_customer);
                         nav_service.setTitle(Constants.SERVICE_NUMBER);
 
@@ -400,8 +419,8 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                     }
                 }
             });
+            //apiTask.setParams(null, Constants.BASE_URL + "customer/index/status");
             apiTask.setParams(null, Constants.BASE_URL + "customer/index/status?mobileapp=1");
-
         } else
             Toast.makeText(Barcode.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
     }
@@ -409,13 +428,14 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2) {
             if (resultCode == ActivityList.RESULT_OK) {
                 String result = data.getStringExtra("result");
                 String loadURL = Constants.BASE_URL + result.trim();
                 startActivity(new Intent(Barcode.this, MainActivity.class)
                         .putExtra("two_barcode", true)
-                        .putExtra("two_url",loadURL));
+                        .putExtra("two_url", loadURL));
             }
         } else if (requestCode == 3) {
             if (resultCode == ActivityShopList.RESULT_OK) {
@@ -477,23 +497,25 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("nav_employee_barcode", true));
 
-        } else if (id == R.id.nav_contact) {
-            mFirebaseAnalytics.logEvent("navContact", params);
-            String number = phone_number;
-            if (((TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType()
-                    != TelephonyManager.PHONE_TYPE_NONE)
-            {
-                if (checkPermission(Manifest.permission.CALL_PHONE)) {
-                    Intent intent = new Intent(Intent.ACTION_CALL);
-                    intent.setData(Uri.parse("tel:" + number));
-                    startActivity(intent);
-                } else {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
-                }
-            } else {
-                Toast.makeText(this, "Phone call not available", Toast.LENGTH_SHORT).show();
-            }
-        } else if (id == R.id.nav_customer) {
+        }
+       // else if (id == R.id.nav_contact) {
+         //   mFirebaseAnalytics.logEvent("navContact", params);
+//            String number = phone_number;
+//            if (((TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType()
+//                    != TelephonyManager.PHONE_TYPE_NONE)
+//            {
+//                if (checkPermission(Manifest.permission.CALL_PHONE)) {
+//                    Intent intent = new Intent(Intent.ACTION_CALL);
+//                    intent.setData(Uri.parse("tel:" + number));
+//                    startActivity(intent);
+//                } else {
+//                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
+//                }
+//            } else {
+//                Toast.makeText(this, "Phone call not available", Toast.LENGTH_SHORT).show();
+//            }
+      //  }
+        else if (id == R.id.nav_customer) {
             mFirebaseAnalytics.logEvent("navdrawer_CUSTOMERSERVICE", params);
             String number = Constants.SERVICE_NUMBER;
             if (((TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType()
@@ -516,7 +538,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
 
         }
 
-        if (id == R.id.nav_service || id == R.id.nav_branchnumber || id == R.id.nav_branch || id == R.id.nav_city || id == R.id.nav_contact || id == R.id.nav_customer) {
+        if (id == R.id.nav_service || id == R.id.nav_branch || id == R.id.nav_city || id == R.id.nav_customer) {
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.openDrawer(GravityCompat.START);
             return false;

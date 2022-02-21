@@ -21,12 +21,20 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.comapi.Callback;
 import com.comapi.Comapi;
 import com.comapi.ComapiClient;
@@ -38,7 +46,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
-
+import java.io.Serializable;
 import androidx.browser.customtabs.CustomTabColorSchemeParams;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ActivityCompat;
@@ -93,11 +101,13 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -114,7 +124,7 @@ public class MainActivity extends AppCompatActivity
 
     private WebView webLoad;
     private String search_Text = "";
-    private boolean loggedIn,employLoggedIn;
+    private boolean loggedIn,employLoggedIn,cutomersupport,showbranch;
     private TextView userName;
     private String count;
     private ProgressDialog progressDialog;
@@ -122,6 +132,7 @@ public class MainActivity extends AppCompatActivity
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
     private String phone_number;
     private String currentVersionCode;
+    private String searchURL;
     private String latestVersion;
     private String mandatoryUpdate;
     private SwipeRefreshLayout swipe;
@@ -141,12 +152,18 @@ public class MainActivity extends AppCompatActivity
     private String messageForEmployee = "";
     private String sPackageNameToUse;
     private String packageName = null;
+    private String customerEmail = "";
+    CookieManager cookieManager;
+    public ArrayList<ActivityList.mainaray> menulist;
+    public ArrayList<ActivityList.mainaray> menulist1;
+    public ArrayList<ActivityList.mainaray> menulist2;
 
-
+    public RequestQueue req;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled", "MissingPermission"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -154,22 +171,6 @@ public class MainActivity extends AppCompatActivity
         }
         setContentView(R.layout.activity_main);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        // dotdigital
-        FirebaseApp.initializeApp(this);
-        ComapiConfig config = new ComapiConfig() .apiSpaceId("ea59654c-3999-4311-b84f-b7d5792f68d9") .authenticator(new ChallengeHandler());
-        Comapi.initialiseShared(getApplication(), config, new Callback<ComapiClient>() {
-            @Override
-            public void success(ComapiClient client) {
-                //Use ComapiClient object to communicate with services
-                compapiCommunicate(client);
-            }
-
-            @Override
-            public void error(Throwable t) {
-                //Toast.makeText(MainActivity.this, t.getMessage() + " :Fail initializeComapi", Toast.LENGTH_LONG).show();
-            }
-        });
-        // end dotdigital
         params = new Bundle();
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -194,7 +195,7 @@ public class MainActivity extends AppCompatActivity
         progressView.setMax(100);
         //progressView.setProgressTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryDark)));
         getVersionInfo();
-        CookieManager.getInstance().setCookie(Constants.BASE_URL + "?mobileapp=1", "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
+        CookieManager.getInstance().setCookie(Constants.BASE_URL, "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
         webLoad = findViewById(R.id.webLoad);
         webLoad.setWebContentsDebuggingEnabled(true);
         swipe = findViewById(R.id.swipe);
@@ -202,7 +203,8 @@ public class MainActivity extends AppCompatActivity
         popfeedBool =  getIntent().getBooleanExtra("action_feedback_barcode", false);
         poplocBool = getIntent().getBooleanExtra("action_location_barcode", false);
 
-        //update
+
+        webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
         appUpdateManager = AppUpdateManagerFactory.create(this);
         appUpdateManager.registerListener(listener);
 
@@ -225,7 +227,12 @@ public class MainActivity extends AppCompatActivity
         //end update
 
 
-        CookieManager.getInstance().setAcceptThirdPartyCookies(webLoad, true);
+        cookieManager = CookieManager.getInstance();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.setAcceptThirdPartyCookies(webLoad, true);
+        }
+
         final WebSettings webSettings = webLoad.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
@@ -236,8 +243,13 @@ public class MainActivity extends AppCompatActivity
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
+        webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
 
-        webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+
+
         webLoad.addJavascriptInterface(new WebAppInterface(), "StatusHandler");
         webLoad.addJavascriptInterface(new WebAppClickInterface(), "ClickHandler");
         webLoad.setDownloadListener(new DownloadListener() {
@@ -302,10 +314,10 @@ public class MainActivity extends AppCompatActivity
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 if (Progress == 100) {
                     progressView.setVisibility(View.GONE);
-                   // drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                    // drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 } else
                     progressView.setVisibility(View.VISIBLE);
-                   // drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                // drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 super.onProgressChanged(view, Progress);
             }
 
@@ -330,7 +342,11 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
         });
-
+        req = Volley.newRequestQueue(this);
+        menulist = new ArrayList<>();
+        menulist1 = new ArrayList<>();
+        menulist2 = new ArrayList<>();
+        callshopbycategory();
         webLoad.setWebViewClient(new WebViewClient() {
 
             @Override
@@ -386,8 +402,8 @@ public class MainActivity extends AppCompatActivity
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
-                if(!(!url.contains("cart") && url.contains("checkout")) && !url.contains("?mobileapp=1") && url.contains(Constants.BASE_URL)){
-                    url = url + "?mobileapp=1";
+                if(!(!url.contains("cart") && url.contains("checkout")) && url.contains(Constants.BASE_URL)){
+                  //  url = url + "?mobileapp=1";
                 }
 
                 if (url.endsWith(".pdf")) {
@@ -455,7 +471,7 @@ public class MainActivity extends AppCompatActivity
 
         //callLoginWebService();
         if (Utils.checkInternet(MainActivity.this)) {
-            webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL);
         } else {
             Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
             String myvar = "<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\" />   <title>No connection to the internet</title>   <style>       html,body { margin:0; padding:0; }       html {         background: #FFFFFF -webkit-linear-gradient(top, #FFF 0%, #FFFFFF 100%) no-repeat;         background: #FFFFFF linear-gradient(to bottom, #FFF 0%, #FFFFFF 100%) no-repeat;       }       body {         font-family: sans-serif;         color: #000;         text-align: center;         font-size: 150%;       }       h1, h2 { font-weight: normal; }       h1 { margin: 0 auto; padding: 0.15em; font-size: 10em; text-shadow: 0 2px 2px #000; }       h2 { margin-bottom: 2em; }  .btn {   box-sizing: border-box;   appearance: none;   background-color: transparent;   border: 2px solid #000000;   border-radius: 0.6em;   color: #000000;   cursor: pointer;   align-self: center;   font-size: 1rem;   font-weight: 400;   line-height: 1;   margin: 20px;   padding: 1.2em 2.8em;   text-decoration: none;   text-align: center;   text-transform: uppercase;   font-weight: 700; } a {   text-decoration: none;   color: inherit; }  .btn:hover, .btn:focus {   color: #fff;   outline: 0; }  .first {   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out; }  .first:hover {   box-shadow: 0 0 40px 40px #000000 inset; }     </style> </head> <body> <h1>⚠</h1> <h2>No connection to the internet</h2> <button class=\"btn first\"><a href=\""+Constants.BASE_URL+"\">Retry</a></button> </body> </html>";
@@ -472,7 +488,7 @@ public class MainActivity extends AppCompatActivity
                 String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
                 params.putString("date",dateStr);
                 mFirebaseAnalytics.logEvent("navbar_Logo", params);
-                webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL);
 
             }
         });
@@ -490,7 +506,7 @@ public class MainActivity extends AppCompatActivity
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL);
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
             }
@@ -499,25 +515,45 @@ public class MainActivity extends AppCompatActivity
 
         View login = headerview.findViewById(R.id.textView);
 
-            login.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!employLoggedIn) {
-                        //Bundle params = new Bundle();
-                        String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
-                        params.putString("date", dateStr);
-                        mFirebaseAnalytics.logEvent("navdrawer_LOGINREGISTER", params);
-                        webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
-                        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                        drawer.closeDrawer(GravityCompat.START);
-                    }
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!employLoggedIn) {
+                    //Bundle params = new Bundle();
+                    String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                    params.putString("date", dateStr);
+                    mFirebaseAnalytics.logEvent("navdrawer_LOGINREGISTER", params);
+                    webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
+                    DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
                 }
-            });
+            }
+        });
 
 
         navigationView.setNavigationItemSelectedListener(this);
         barcodeIntentListener(webLoad);
         packageName = getPackageNameToUse();
+    }
+
+    private void Dotdigital(String email) {
+        FirebaseApp.initializeApp(this);
+        ChallengeHandler challengeHandler = new ChallengeHandler();
+        challengeHandler.emailAddress=email;
+        customerEmail=email;
+        ComapiConfig config = new ComapiConfig() .apiSpaceId(Constants.DOTDIGITAL_APISPACEID) .authenticator(challengeHandler);
+        Comapi.initialiseShared(getApplication(), config, new Callback<ComapiClient>() {
+            @Override
+            public void success(ComapiClient client) {
+                //Use ComapiClient object to communicate with services
+                compapiCommunicate(client);
+            }
+
+            @Override
+            public void error(Throwable t) {
+                //Toast.makeText(MainActivity.this, t.getMessage() + " :Fail initializeComapi", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private String getPackageNameToUse() {
@@ -591,7 +627,7 @@ public class MainActivity extends AppCompatActivity
                     //Toast.makeText(MainActivity.this, result+ " :Success AccountCreation", Toast.LENGTH_LONG).show();
                     Map<String, Object> additionalMap = new HashMap<>();
                     //Add the user's email address to the profile
-                    additionalMap.put("email", "rajkumar.t+200701@ziffity.com");
+                    additionalMap.put("email", customerEmail);
                     client.service().profile().patchMyProfile(additionalMap, result.getETag(), new Callback<ComapiResult<Map<String, Object>>>() {
                         @Override
                         public void success(ComapiResult<Map<String, Object>> result) {
@@ -634,22 +670,22 @@ public class MainActivity extends AppCompatActivity
 
         }else if (getIntent().getBooleanExtra("menuItem_barcode", false)) {
 
-            webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/");
 
         } else if (getIntent().getBooleanExtra("alertDialog_barcode", false)) {
 
             String result = getIntent().getStringExtra("search_Text");
             String loadURL;
             try {
-                loadURL = Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + URLEncoder.encode(result, "UTF-8") + "&search=1/?mobileapp=1";
+                loadURL = Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + URLEncoder.encode(result, "UTF-8") + "&search=1/";
             } catch (Exception e) {
-                loadURL = Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + result + "&search=1/?mobileapp=1";
+                loadURL = Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + result + "&search=1/";
             }
             webLoad.loadUrl(loadURL);
 
         } else if (getIntent().getBooleanExtra("action_login_barcode", false)) {
 
-            webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
 
         } else if (getIntent().getBooleanExtra("nav_locations_barcode", false)) {
 
@@ -658,36 +694,36 @@ public class MainActivity extends AppCompatActivity
         } else if (getIntent().getBooleanExtra("login_barcode", false)) {
 
             if (loggedIn)
-                webLoad.loadUrl(Constants.BASE_URL + "shoppinglist?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "shoppinglist?");
             else
-                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
 
         } else if (getIntent().getBooleanExtra("nav_catalog_barcode", false)) {
 
             if (loggedIn)
-                webLoad.loadUrl(Constants.BASE_URL + "yourcatalog?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "yourcatalog?");
             else
-                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
 
         } else if (getIntent().getBooleanExtra("nav_help_barcode", false)) {
 
-            webLoad.loadUrl(Constants.BASE_URL + "help-center?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "help-center?");
 
         } else if (getIntent().getBooleanExtra("nav_employee_barcode", false)) {
 
-            webLoad.loadUrl(Constants.BASE_URL + "employee/login?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "employee/login?");
 
         } else if (getIntent().getBooleanExtra("nav_login_barcode", false)) {
 
             if (loggedIn) {
-                webLoad.loadUrl(Constants.BASE_URL + "customer/account/logout?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/logout/");
             } else {
-                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
             }
 
         } else if (getIntent().getBooleanExtra("logoView_barcode", false)) {
 
-            webLoad.loadUrl(Constants.BASE_URL + "?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL);
 
         } else if (getIntent().getBooleanExtra("two_barcode", false)) {
 
@@ -800,104 +836,131 @@ public class MainActivity extends AppCompatActivity
 
         //Constants.apiCall = FALSE;
         //if (Utils.checkInternet(MainActivity.this)) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(data);
+        try {
+            JSONObject jsonObject = new JSONObject(data);
 
-                        loggedIn = jsonObject.getBoolean("loggedIn");
-
-                        JSONObject branch_number = jsonObject.getJSONObject("branch");
-                        phone_number = branch_number.getString("phone");
-
-                        JSONObject address = jsonObject.getJSONObject("branch");
-                        String addressLine1 = address.getString("addressLine1");
-
-                        String city_name = address.getString("city");
-
-                        String state_name = address.getString("state");
-
-                        NavigationView navigationView = findViewById(R.id.nav_view);
-                        Menu menu = navigationView.getMenu();
-
-                        MenuItem nav_contact = menu.findItem(R.id.nav_contact);
-                        nav_contact.setTitle(phone_number);
-
-                        MenuItem nav_service = menu.findItem(R.id.nav_customer);
-                        nav_service.setTitle(Constants.SERVICE_NUMBER);
-
-                        MenuItem nav_branch = menu.findItem(R.id.nav_branch);
-                        nav_branch.setTitle("BRANCH :" + addressLine1);
-
-                        MenuItem nav_city = menu.findItem(R.id.nav_city);
-                        nav_city.setTitle(city_name + ", " + state_name);
-                        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                        nav_city.getActionView().findViewById(R.id.changeBranch).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                //Bundle params = new Bundle();
-                                String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
-                                params.putString("date",dateStr);
-                                mFirebaseAnalytics.logEvent("navdrawer_BranchChange", params);
-                                strLocationClicked = "clicked";
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                                    webLoad.evaluateJavascript("(function() { if(jQuery('.pickup-modal').css('display') != 'none'){  jQuery('.hidden-xs').trigger('click'); } jQuery(window.branchChangeModalContainer).modal('toggleModal');  jQuery('#branchchanger-button').trigger('click'); })();", null);
-                                }
-                                drawer.closeDrawer(GravityCompat.START);
-                            }
-                        });
-                        Toolbar toolbar = findViewById(R.id.toolbar);
-                        Menu menuBar = toolbar.getMenu();
-
-                        MenuItem nav_cart = menuBar.findItem(R.id.action_cart);
-                        View actionView = MenuItemCompat.getActionView(nav_cart);
-                        TextView extCartItemCount = actionView.findViewById(R.id.cart_badge);
-
-                        MenuItem nav_account = menuBar.findItem(R.id.action_login);
+            loggedIn = jsonObject.getBoolean("loggedIn");
+            cutomersupport = jsonObject.getBoolean("show_customer_support");
+            showbranch = jsonObject.getBoolean("show_branch");
 
 
-                        if (jsonObject.has("cart")) {
-                            JSONObject cart = jsonObject.getJSONObject("cart");
-                            count = cart.getString("count");
-                            int value = Integer.parseInt(count);
-                            if (!(value >= 1)) {
-                                extCartItemCount.setVisibility(View.GONE);
-                                extCartItemCount.setText(count);
-                            } else {
-                                extCartItemCount.setVisibility(View.VISIBLE);
-                                extCartItemCount.setText(count);
-                            }
-                        } else {
-                            extCartItemCount.setVisibility(View.GONE);
-                        }
+            if(jsonObject.has("email")){
+                Dotdigital(jsonObject.getString("email"));
+            }
+            JSONObject searchURLJsonObject = jsonObject.getJSONObject("searchUrl");
+            String beforeDecode = searchURLJsonObject.getString("android");
 
-                        if (loggedIn) {
-                            String profileName = jsonObject.getString("name");
-                            View header = navigationView.getHeaderView(0);
-                            userName = header.findViewById(R.id.textView);
-                            userName.setText(profileName.toUpperCase());
-                            MenuItem nav_login = menu.findItem(R.id.nav_login);
-                            nav_login.setVisible(true);
-                            nav_login.setTitle(logOut);
-                            nav_account.setTitle("My Account");
-                        } else {
-                            View header = navigationView.getHeaderView(0);
-                            userName = header.findViewById(R.id.textView);
-                            MenuItem nav_employee = menu.findItem(R.id.nav_employee);
-                            if (employLoggedIn) {
-                                userName.setText(jsonObject.getString("name"));
-                                nav_employee.setVisible(false);
-                            } else {
-                                userName.setText("LOGIN / REGISTER");
-                                nav_employee.setVisible(true);
-                            }
-                            nav_account.setTitle("Login");
-                            MenuItem nav_login = menu.findItem(R.id.nav_login);
-                            nav_login.setVisible(false);
-                        }
+            searchURL = URLDecoder.decode(beforeDecode, "UTF-8");
 
+            JSONObject branch_number = jsonObject.getJSONObject("branch");
+            phone_number = branch_number.getString("phone");
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
+            JSONObject address = jsonObject.getJSONObject("branch");
+            String addressLine1 = address.getString("addressLine1");
+
+            String city_name = address.getString("city");
+
+            String state_name = address.getString("state");
+
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            Menu menu = navigationView.getMenu();
+
+//            MenuItem nav_contact = menu.findItem(R.id.nav_contact);
+//            nav_contact.setTitle(phone_number);
+            if(!cutomersupport) {
+                NavigationView navigationViews = findViewById(R.id.nav_view);
+                Menu menud = navigationViews.getMenu();
+                MenuItem d = menud.findItem(R.id.nav_service);
+                d.setVisible(FALSE);
+                MenuItem dd = menud.findItem(R.id.nav_customer);
+                dd.setVisible(FALSE);
+            }
+            if(!showbranch) {
+                NavigationView navigationViews = findViewById(R.id.nav_view);
+                Menu menud = navigationViews.getMenu();
+                MenuItem d = menud.findItem(R.id.nav_branch);
+                d.setVisible(FALSE);
+                MenuItem dd = menud.findItem(R.id.nav_city);
+                dd.setVisible(FALSE);
+            }
+
+            MenuItem nav_service = menu.findItem(R.id.nav_customer);
+            nav_service.setTitle(Constants.SERVICE_NUMBER);
+
+            MenuItem nav_branch = menu.findItem(R.id.nav_branch);
+            nav_branch.setTitle("BRANCH :" + addressLine1);
+
+            MenuItem nav_city = menu.findItem(R.id.nav_city);
+            nav_city.setTitle(city_name + ", " + state_name);
+            final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            nav_city.getActionView().findViewById(R.id.changeBranch).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Bundle params = new Bundle();
+                    String dateStr = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date());
+                    params.putString("date",dateStr);
+                    mFirebaseAnalytics.logEvent("navdrawer_BranchChange", params);
+                    strLocationClicked = "clicked";
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        webLoad.evaluateJavascript("(function() { if(jQuery('.pickup-modal').css('display') != 'none'){  jQuery('.hidden-xs').trigger('click'); } jQuery(window.branchChangeModalContainer).modal('toggleModal');  jQuery('#branchchanger-button').trigger('click'); })();", null);
                     }
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+            });
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            Menu menuBar = toolbar.getMenu();
+
+            MenuItem nav_cart = menuBar.findItem(R.id.action_cart);
+            View actionView = MenuItemCompat.getActionView(nav_cart);
+            TextView extCartItemCount = actionView.findViewById(R.id.cart_badge);
+
+            MenuItem nav_account = menuBar.findItem(R.id.action_login);
+
+
+            if (jsonObject.has("cart")) {
+                JSONObject cart = jsonObject.getJSONObject("cart");
+                count = cart.getString("count");
+                int value = Integer.parseInt(count);
+                if (!(value >= 1)) {
+                    extCartItemCount.setVisibility(View.GONE);
+                    extCartItemCount.setText(count);
+                } else {
+                    extCartItemCount.setVisibility(View.VISIBLE);
+                    extCartItemCount.setText(count);
+                }
+            } else {
+                extCartItemCount.setVisibility(View.GONE);
+            }
+
+            if (loggedIn) {
+                String profileName = jsonObject.getString("name");
+                View header = navigationView.getHeaderView(0);
+                userName = header.findViewById(R.id.textView);
+                userName.setText(profileName.toUpperCase());
+                MenuItem nav_login = menu.findItem(R.id.nav_login);
+                nav_login.setVisible(true);
+                nav_login.setTitle(logOut);
+                nav_account.setTitle("My Account");
+            } else {
+                View header = navigationView.getHeaderView(0);
+                userName = header.findViewById(R.id.textView);
+                MenuItem nav_employee = menu.findItem(R.id.nav_employee);
+                if (employLoggedIn) {
+                    userName.setText(jsonObject.getString("name"));
+                    nav_employee.setVisible(false);
+                } else {
+                    userName.setText("LOGIN / REGISTER");
+                    nav_employee.setVisible(true);
+                }
+                nav_account.setTitle("Login");
+                MenuItem nav_login = menu.findItem(R.id.nav_login);
+                nav_login.setVisible(false);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -912,18 +975,25 @@ public class MainActivity extends AppCompatActivity
                 }
             } else {
                 String result = data.getStringExtra("result");
-                webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + result + "&search=1/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + result + "&search=1/");
             }
         } else if (requestCode == 2) {
-            if (resultCode == ActivityList.RESULT_OK) {
-                String result = data.getStringExtra("result");
-                String loadURL = Constants.BASE_URL + result.trim();
-                webLoad.loadUrl(loadURL + "/?mobileapp=1");
-            }
+//            if (resultCode == ActivityList.RESULT_OK) {
+//                String result = data.getStringExtra("result");
+//                String loadURL = Constants.BASE_URL + result.trim();
+//                webLoad.loadUrl(loadURL + "/?mobileapp=1");
+//            }
+                if (resultCode == ActivityList.RESULT_OK) {
+                    String result = data.getStringExtra("result");
+                    //  String loadURL = Constants.BASE_URL + result.trim();
+                    webLoad.loadUrl(result.trim());
+                }
+
+
         } else if (requestCode == 3) {
             if (resultCode == ActivityShopList.RESULT_OK) {
                 String result = data.getStringExtra("result");
-                String loadURL = result.trim() + "/?mobileapp=1";
+                String loadURL = result.trim();
                 webLoad.loadUrl(loadURL);
             }
         } else if (requestCode == FILECHOOSER_RESULTCODE) {
@@ -999,7 +1069,7 @@ public class MainActivity extends AppCompatActivity
         MenuItemCompat.getActionView(cartView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/");
             }
         });
         return true;
@@ -1035,9 +1105,10 @@ public class MainActivity extends AppCompatActivity
                                 alertCount = 0;
                                 String loadURLEncode;
                                 try {
-                                    loadURLEncode = Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + URLEncoder.encode(search_Text, "UTF-8") + "&search=1/?mobileapp=1";
+//                                    loadURLEncode = Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + URLEncoder.encode(search_Text, "UTF-8") + "&search=1/?mobileapp=1";
+                                    loadURLEncode = String.format(searchURL,search_Text);
                                 } catch (Exception e) {
-                                    loadURLEncode = Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + search_Text + "&search=1/?mobileapp=1";
+                                    loadURLEncode = Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + search_Text + "&search=1/";
                                 }
                                 webLoad.loadUrl(loadURLEncode);
                                 mFirebaseAnalytics.logEvent("alert_Ok", params);
@@ -1073,14 +1144,14 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.action_cart) {
             mFirebaseAnalytics.logEvent("navbar_Cart", params);
-            webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/");
         } else if (id == R.id.action_location) {
             mFirebaseAnalytics.logEvent("navbar_Branch", params);
             strLocationClicked = "clicked";
             webLoad.evaluateJavascript("(function() { if(jQuery('.pickup-modal').css('display') != 'none'){  jQuery('.hidden-xs').trigger('click'); } jQuery(window.branchChangeModalContainer).modal('toggleModal');  jQuery('#branchchanger-button').trigger('click'); })();", null);
         } else if (id == R.id.action_login) {
             mFirebaseAnalytics.logEvent("navbar_Login", params);
-            webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
         } else if (id == R.id.action_feedback) {
             mFirebaseAnalytics.logEvent("navbar_Feedback", params);
             webLoad.evaluateJavascript("jQuery(document).ready(function(){jQuery('#report-bug-link').click();})", null);
@@ -1103,26 +1174,30 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_category) {
             mFirebaseAnalytics.logEvent("navdrawer_SHOPBYCATEGORY", params);
             Intent i = new Intent(this, ActivityList.class);
+            i.putExtra("mylist",menulist);
+            i.putExtra("mylist1",menulist1);
+            i.putExtra("mylist2",menulist2);
             startActivityForResult(i, 2);
+
         } else if (id == R.id.nav_shopbylist) {
             mFirebaseAnalytics.logEvent("navdrawer_SHOPBYLIST", params);
             Intent i = new Intent(this, ActivityShopList.class);
             startActivityForResult(i, 3);
         } else if (id == R.id.nav_locations) {
             mFirebaseAnalytics.logEvent("navdrawer_OURLOCATIONS", params);
-            webLoad.loadUrl(Constants.LOCATION_URL + "?mobileapp=1");
+            webLoad.loadUrl(Constants.LOCATION_URL);
         } else if (id == R.id.nav_list) {
             mFirebaseAnalytics.logEvent("navdrawer_YOURLIST", params);
             if (employLoggedIn || loggedIn)
-                webLoad.loadUrl(Constants.BASE_URL + "wishlists?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "wishlists");
             else
-                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
         } else if (id == R.id.nav_catalog) {
             mFirebaseAnalytics.logEvent("navdrawer_YOURCATALOG", params);
             if (employLoggedIn || loggedIn)
-                webLoad.loadUrl(Constants.BASE_URL + "yourcatalog?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "yourcatalog");
             else
-                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
         } else if (id == R.id.nav_barcode) {
             mFirebaseAnalytics.logEvent("navdrawer_SCANBARCODE", params);
             Intent i = new Intent(this, Barcode.class);
@@ -1132,27 +1207,29 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, SubmitPhoto.class));
         } else if (id == R.id.nav_help) {
             mFirebaseAnalytics.logEvent("navdrawer_HELPCENTER", params);
-            webLoad.loadUrl(Constants.BASE_URL + "help-center?mobileapp=1");
+            webLoad.loadUrl(Constants.BASE_URL + "help-center?");
         } else if (id == R.id.nav_employee) {
             mFirebaseAnalytics.logEvent("navdrawer_EMPLOYEELOGIN", params);
-            webLoad.loadUrl(Constants.BASE_URL + "employee/login?mobileapp=1");
-        } else if (id == R.id.nav_contact) {
-            mFirebaseAnalytics.logEvent("navdrawer_BRANCHNUMBER", params);
-            String number = phone_number;
-            if (((TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType()
-                    != TelephonyManager.PHONE_TYPE_NONE)
-            {
-                if (checkPermission(Manifest.permission.CALL_PHONE)) {
-                    Intent intent = new Intent(Intent.ACTION_CALL);
-                    intent.setData(Uri.parse("tel:" + number));
-                    startActivity(intent);
-                } else {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
-                }
-            } else {
-                Toast.makeText(this, "Phone call not available", Toast.LENGTH_SHORT).show();
-            }
-        } else if (id == R.id.nav_customer) {
+            webLoad.loadUrl(Constants.BASE_URL + "employee/login?");
+        }
+        //else if (id == R.id.nav_contact) {
+//            mFirebaseAnalytics.logEvent("navdrawer_BRANCHNUMBER", params);
+//            String number = phone_number;
+//            if (((TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType()
+//                    != TelephonyManager.PHONE_TYPE_NONE)
+//            {
+//                if (checkPermission(Manifest.permission.CALL_PHONE)) {
+//                    Intent intent = new Intent(Intent.ACTION_CALL);
+//                    intent.setData(Uri.parse("tel:" + number));
+//                    startActivity(intent);
+//                } else {
+//                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, MAKE_CALL_PERMISSION_REQUEST_CODE);
+//                }
+//            } else {
+//                Toast.makeText(this, "Phone call not available", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+        else if (id == R.id.nav_customer) {
             mFirebaseAnalytics.logEvent("navdrawer_CUSTOMERSERVICE", params);
             String number = Constants.SERVICE_NUMBER;
             if (((TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE)).getPhoneType()
@@ -1171,13 +1248,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_login) {
             mFirebaseAnalytics.logEvent("navdrawer_LOGOUT", params);
             if (loggedIn) {
-                webLoad.loadUrl(Constants.BASE_URL + "customer/account/logout/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/logout/");
             } else {
-                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/?mobileapp=1");
+                webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
             }
         }
 
-        if (id == R.id.nav_service || id == R.id.nav_branchnumber || id == R.id.nav_branch || id == R.id.nav_city || id == R.id.nav_contact || id == R.id.nav_customer) {
+        if (id == R.id.nav_service || id == R.id.nav_branch || id == R.id.nav_city || id == R.id.nav_customer) {
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.openDrawer(GravityCompat.START);
             return false;
@@ -1220,7 +1297,7 @@ public class MainActivity extends AppCompatActivity
             swipe.setEnabled(false);
             swipe.setRefreshing(false);
 
-        } else if (webLoad.getUrl().equals(Constants.BASE_URL + "checkout/")) {
+        } else if (webLoad.getUrl().equals(Constants.BASE_URL + "checkout/cart/")) {
             swipe.setEnabled(false);
             swipe.setRefreshing(false);
 
@@ -1264,6 +1341,10 @@ public class MainActivity extends AppCompatActivity
                     try {
                         if ("ShopByCategory".equals(object.getString("Event"))){
                             Intent i = new Intent(MainActivity.this, ActivityList.class);
+                            i.putExtra("mylist",menulist);
+                            i.putExtra("mylist1",menulist1);
+                            i.putExtra("mylist2",menulist2);
+
                             startActivityForResult(i, 2);
                         }else if ("ShopByList".equals(object.getString("Event")))
                         {
@@ -1294,5 +1375,121 @@ public class MainActivity extends AppCompatActivity
             MainActivity.this.postClickMessage(message);
         }
     }
+    public void  callshopbycategory() {
+        menulist.clear();
+        menulist1.clear();
+        menulist2.clear();
+        String OB_Urla = Constants.BASE_URL + Constants.CATEGORY_URL;
+        //  Log.d("OB_Urla",OB_Urla );
+
+        final JsonArrayRequest requetqi = new JsonArrayRequest(Request.Method.GET,OB_Urla, null,
+                new Response.Listener<JSONArray>() {
+
+                    @Override
+                    public void onResponse(JSONArray responses) {
+                        try {
+
+                            for(int i = 0; i < responses.length(); i++) {
+
+                                JSONObject jresponse = responses.getJSONObject(i);
+                                //  String ll = jresponse.optString("parent_id");
+                                String l1 = jresponse.getString("label");
+                                String v1 = jresponse.getString("value");
+                                //   String p1 = jresponse.getString("parent_id");
+                                String id1 = jresponse.getString("id");
+
+
+                                String chy = "";
+                                JSONArray lev1 = new JSONArray();
+                                String idd1 = jresponse.optString("child");
+                                if(idd1 != ""){
+                                    chy = "true";
+                                    lev1 = jresponse.getJSONArray("child");
+                                }else{
+                                    chy = "false";
+                                }
+                                menulist.add(new ActivityList.mainaray(l1, v1, "p1", id1, chy));
+                              //  menulist.add(new ActivityList.mainaray(l1, v1, "p1", id1, chy));
+
+                                for(int ii = 0; ii < lev1.length(); ii++) {
+                                    JSONObject le2 = lev1.getJSONObject(ii);
+                                    String l2 = le2.getString("label");
+                                    String v2 = le2.getString("value");
+                                    String p2 = le2.getString("parent_id");
+                                    String id2 = le2.getString("id");
+                                    String chy1 = "";
+                                    JSONArray lev2 = new JSONArray();
+                                    String iddd1 = le2.optString("child");
+                                    if(iddd1 != ""){
+                                        chy1 = "true";
+                                        lev2 = le2.getJSONArray("child");
+                                    }else{
+                                        chy1 = "false";
+                                    }
+                                    menulist1.add(new ActivityList.mainaray(l2, v2, p2, id2, chy1));
+
+
+                                    for(int iii = 0; iii < lev2.length(); iii++) {
+                                        JSONObject le3 = lev2.getJSONObject(iii);
+                                        String l3 = le3.getString("label");
+                                        String v3 = le3.getString("value");
+                                        String p3 = le3.getString("parent_id");
+                                        String id3 = le3.getString("id");
+                                        String chy2 = "";
+                                        // JSONArray lev2 = new JSONArray();
+                                        String idddd1 = le3.optString("child");
+                                        if(idddd1 != ""){
+                                            chy2 = "true";
+                                            // lev2 = le3.getJSONArray("child");
+                                        }else{
+                                            chy2 = "false";
+                                        }
+                                        menulist2.add(new ActivityList.mainaray(l3, v3, p3, id3, chy2));
+                                    }
+
+                                }
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        //readdata();
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+
+        });
+
+        requetqi.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 30000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 30000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+
+        req.add(requetqi);
+
+    }
+
+
 
 }
+
+

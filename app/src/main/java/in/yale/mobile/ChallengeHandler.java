@@ -16,7 +16,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class ChallengeHandler extends ComapiAuthenticator {
 
-
+    String emailAddress = "";
     @Override
     public void onAuthenticationChallenge(AuthClient authClient, ChallengeOptions challengeOptions) {
 
@@ -24,7 +24,7 @@ public class ChallengeHandler extends ComapiAuthenticator {
 
             byte[] data;
             //<Shared secret> string must be the same as the value of the 'Shared secret' field in your push notification profile in Engagement Cloud.
-            data = "cf4b3d374146483a876c1b22e4397767".getBytes("UTF-8");
+            data = Constants.DOTDIGITAL_SECRET.getBytes("UTF-8");
 
             String base64Secret = Base64.encodeToString(data, Base64.DEFAULT);
 
@@ -34,7 +34,7 @@ public class ChallengeHandler extends ComapiAuthenticator {
             Map<String, Object> claims = new HashMap<>();
             claims.put("nonce", challengeOptions.getNonce());
             //<ID claim> string must be the same as the value of the 'ID claim' field in your push notification profile in Engagement Cloud.
-            claims.put("sub", "sub");
+            claims.put("sub", emailAddress);
             //<Audience> string must be the same as the value of the 'Audience' field in your push notification profile in Engagement Cloud.
             claims.put("aud", "https://api.comapi.com");
             //<Issuer> string must be the same as the value of the 'Issuer' field in your push notification profile in Engagement Cloud.

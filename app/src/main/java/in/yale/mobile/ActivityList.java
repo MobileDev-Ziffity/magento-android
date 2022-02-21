@@ -1,20 +1,35 @@
 package in.yale.mobile;
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,19 +38,24 @@ import java.util.regex.Pattern;
 
 public class ActivityList extends AppCompatActivity {
 
-    private AdapterCategory adapterCategory;
-
+    public AdapterCategory adapterCategory;
+    public ArrayList<mainaray> menulist;
+    public ArrayList<mainaray> menulist1;
+    public ArrayList<mainaray> menulist2;
     private List<Values> listValues;
 
     private List<String> listSingleData;
 
-    private TextView txtTitle;
+    public TextView txtTitle;
 
     private List<String> listSlashData;
 
     private List<String> listSlash,result;
 
     private ShimmerFrameLayout shimmerFrameLayout;
+    private RecyclerView recyclerView;
+
+    public RequestQueue req;
 
 
     @Override
@@ -51,27 +71,34 @@ public class ActivityList extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
+        req = Volley.newRequestQueue(this);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // onBackPressed();
+                onBackPressed();
             }
         });
+        menulist = new ArrayList<>();
+        menulist1 = new ArrayList<>();
+        menulist2 = new ArrayList<>();
+
+        menulist = (ArrayList<mainaray>) getIntent().getSerializableExtra("mylist");
+        menulist1 = (ArrayList<mainaray>) getIntent().getSerializableExtra("mylist1");
+        menulist2 = (ArrayList<mainaray>) getIntent().getSerializableExtra("mylist2");
 
         shimmerFrameLayout = findViewById(R.id.shimmer);
-        final RecyclerView recyclerView = findViewById(R.id.listView);
+        recyclerView = findViewById(R.id.listView);
         txtTitle = findViewById(R.id.txtTitle);
         txtTitle.setText("Shop By Category");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapterCategory = new AdapterCategory(this);
-        adapterCategory.setListener(new AdapterCategory.OnTitleSelected() {
-            @Override
-            public void showTitle(String title,int j) {
-                txtTitle.setText(title);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            }
-        });
+        adapterCategory = new AdapterCategory(ActivityList.this, menulist,menulist1,menulist2);
+//new
+        shimmerFrameLayout.stopShimmerAnimation();
+        shimmerFrameLayout.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+        recyclerView.setAdapter(adapterCategory);
+        adapterCategory.notifyDataSetChanged();
+
 
         findViewById(R.id.btnClose).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,59 +106,136 @@ public class ActivityList extends AppCompatActivity {
                 finish();
             }
         });
+        if (menulist != null && !menulist.isEmpty()) {
+        //if(menulist.isEmpty()){
 
-        ApiTask apiTask = new ApiTask(this);
-        apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
-        apiTask.setParams(null,Constants.CATEGORY_URL);
-        apiTask.responseCallBack(new ApiTask.ResponseListener() {
-            @Override
-            public void jsonResponse(String result) {
-                try{
-                    Gson gson = new GsonBuilder().create();
-                    ResponseCategory responseCategory =  gson.fromJson(result,ResponseCategory.class);
-                    listValues = new ArrayList<>();
-                    listSingleData =new ArrayList<>();
-                    listSlashData = new ArrayList<>();
-                    listSlash = new ArrayList<>();
-                    listValues.addAll(responseCategory.getValues());
+        }else{
+            shimmerFrameLayout.startShimmerAnimation();
+            shimmerFrameLayout.setVisibility(View.VISIBLE);
+            callshopbycategory();
+        }
 
-                    for (int i=0;i<listValues.size();i++){
-                        String path = listValues.get(i).getPath();
-                        listSlashData.add(listValues.get(i).getPath().trim());
-                        if (!path.contains("/"))
-                        listSingleData.add(path);
-                        else {
-                            List<String> separatorData = Arrays.asList(path.split("/"));
-                        }
-                    }
-                    for (int q=0;q<listSingleData.size();q++) {
-                        String singlePath = listSingleData.get(q).concat("/");
-                        boolean bool = false;
-                        for(int p=0;p<listSlashData.size();p++){
-                            Matcher match = Pattern.compile(singlePath).matcher(listSlashData.get(p));
-                            if(match.find()){
-                                bool = true;
+    }
+    public void  callshopbycategory() {
+        menulist.clear();
+        menulist1.clear();
+        menulist2.clear();
+        String OB_Urla = Constants.BASE_URL + Constants.CATEGORY_URL;
+        //  Log.d("OB_Urla",OB_Urla );
+
+        final JsonArrayRequest requetqi = new JsonArrayRequest(Request.Method.GET,OB_Urla, null,
+                new Response.Listener<JSONArray>() {
+
+                    @Override
+                    public void onResponse(JSONArray responses) {
+                        try {
+
+                            for(int i = 0; i < responses.length(); i++) {
+
+                                JSONObject jresponse = responses.getJSONObject(i);
+                              //  String ll = jresponse.optString("parent_id");
+                                String l1 = jresponse.getString("label");
+                                String v1 = jresponse.getString("value");
+                             //   String p1 = jresponse.getString("parent_id");
+                                String id1 = jresponse.getString("id");
+
+
+                                String chy = "";
+                                JSONArray lev1 = new JSONArray();
+                                String idd1 = jresponse.optString("child");
+                                if(idd1 != ""){
+                                    chy = "true";
+                                     lev1 = jresponse.getJSONArray("child");
+                                }else{
+                                    chy = "false";
+                                }
+                                menulist.add(new mainaray(l1, v1, "p1", id1, chy));
+
+
+                               for(int ii = 0; ii < lev1.length(); ii++) {
+                                   JSONObject le2 = lev1.getJSONObject(ii);
+                                    String l2 = le2.getString("label");
+                                   String v2 = le2.getString("value");
+                                   String p2 = le2.getString("parent_id");
+                                   String id2 = le2.getString("id");
+                                   String chy1 = "";
+                                   JSONArray lev2 = new JSONArray();
+                                   String iddd1 = le2.optString("child");
+                                   if(iddd1 != ""){
+                                       chy1 = "true";
+                                       lev2 = le2.getJSONArray("child");
+                                   }else{
+                                       chy1 = "false";
+                                   }
+                                   menulist1.add(new mainaray(l2, v2, p2, id2, chy1));
+
+
+                                    for(int iii = 0; iii < lev2.length(); iii++) {
+                                        JSONObject le3 = lev2.getJSONObject(iii);
+                                        String l3 = le3.getString("label");
+                                        String v3 = le3.getString("value");
+                                        String p3 = le3.getString("parent_id");
+                                        String id3 = le3.getString("id");
+                                        String chy2 = "";
+                                       // JSONArray lev2 = new JSONArray();
+                                        String idddd1 = le3.optString("child");
+                                        if(idddd1 != ""){
+                                            chy2 = "true";
+                                           // lev2 = le3.getJSONArray("child");
+                                        }else{
+                                            chy2 = "false";
+                                        }
+                                        menulist2.add(new mainaray(l3, v3, p3, id3, chy2));
+                                    }
+
+                                }
                             }
-                        }
-                        if(!bool){
-                            listSingleData.remove(q);
-                        }
-                    }
-                    adapterCategory.setData(listSingleData);
-                    adapterCategory.setAllValues(listValues);
-                    shimmerFrameLayout.stopShimmerAnimation();
+//                            adapterCategory.setData(listSingleData);
+//                    admenulist1apterCategory.setAllValues(listValues);
+                            adapterCategory = new AdapterCategory(ActivityList.this, menulist,menulist1,menulist2);
+
+                            shimmerFrameLayout.stopShimmerAnimation();
                     shimmerFrameLayout.setVisibility(View.GONE);
-                    recyclerView.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(adapterCategory);
                     adapterCategory.notifyDataSetChanged();
-                }catch(Exception unused){
-                    Toast.makeText(ActivityList.this, "Error Occurred! ReOpen this menu", Toast.LENGTH_SHORT).show();
-                    //Log.e("List Err", "ERROR getting list");
-                }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        //readdata();
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+
+        });
+
+        requetqi.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 40000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 40000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
             }
         });
-    }
 
+        req.add(requetqi);
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -148,9 +252,45 @@ public class ActivityList extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        if(adapterCategory != null) {
             adapterCategory.setListTitle();
 
+        }else{
+            finish();
+        }
+
+
+    }
+
+   // public static class mainaray extends AppCompatActivity {
+    public static class mainaray extends AppCompatActivity  implements Serializable {
+        private String label;
+        private String value;
+        private String parentid;
+        private String ids;
+        private String child;
+        public mainaray(String lab, String val, String pid, String id, String chy) {
+            label = lab;
+            value = val;
+            parentid = pid;
+            ids = id;
+            child = chy;
+        }
+        public String getlab () {
+            return label;
+        }
+        public String getvalue () {
+            return value;
+        }
+        public String getparentid () {
+            return parentid;
+        }
+        public String getid () {
+            return ids;
+        }
+        public String getchild () {
+            return child;
+        }
     }
 
 }
