@@ -39,9 +39,9 @@ import java.util.regex.Pattern;
 public class ActivityList extends AppCompatActivity {
 
     public AdapterCategory adapterCategory;
-    public ArrayList<mainaray> menulist;
-    public ArrayList<mainaray> menulist1;
-    public ArrayList<mainaray> menulist2;
+    public ArrayList<mainaray> menulist  = new ArrayList<>();
+    public ArrayList<mainaray> menulist1 = new ArrayList<>();
+    public ArrayList<mainaray> menulist2 = new ArrayList<>();
     private List<Values> listValues;
 
     private List<String> listSingleData;
@@ -78,9 +78,9 @@ public class ActivityList extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        menulist = new ArrayList<>();
-        menulist1 = new ArrayList<>();
-        menulist2 = new ArrayList<>();
+//        menulist = new ArrayList<>();
+//        menulist1 = new ArrayList<>();
+//        menulist2 = new ArrayList<>();
 
         menulist = (ArrayList<mainaray>) getIntent().getSerializableExtra("mylist");
         menulist1 = (ArrayList<mainaray>) getIntent().getSerializableExtra("mylist1");
@@ -117,9 +117,9 @@ public class ActivityList extends AppCompatActivity {
 
     }
     public void  callshopbycategory() {
-        menulist.clear();
-        menulist1.clear();
-        menulist2.clear();
+//        menulist.clear();
+//        menulist1.clear();
+//        menulist2.clear();
         String OB_Urla = Constants.BASE_URL + Constants.CATEGORY_URL;
         //  Log.d("OB_Urla",OB_Urla );
 
@@ -264,11 +264,11 @@ public class ActivityList extends AppCompatActivity {
 
    // public static class mainaray extends AppCompatActivity {
     public static class mainaray extends AppCompatActivity  implements Serializable {
-        private String label;
-        private String value;
-        private String parentid;
-        private String ids;
-        private String child;
+        private final String label;
+        private final String value;
+        private final String parentid;
+        private final String ids;
+        private final String child;
         public mainaray(String lab, String val, String pid, String id, String chy) {
             label = lab;
             value = val;

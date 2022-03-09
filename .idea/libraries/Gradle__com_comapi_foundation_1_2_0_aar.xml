@@ -10,9 +10,11 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00bb6129bb0b6d6ed886bbb961b40770/jetified-foundation-1.2.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00bb6129bb0b6d6ed886bbb961b40770/jetified-foundation-1.2.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5c92dedbcac9d838ff9c1d7415a27255/jetified-foundation-1.2.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6e6c5a9a9761923ee545edac2a68a780/jetified-foundation-1.2.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6e6c5a9a9761923ee545edac2a68a780/jetified-foundation-1.2.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6e6c5a9a9761923ee545edac2a68a780/jetified-foundation-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b0c31a0d75f445fc7e32e83f15ec491f/transformed/jetified-foundation-1.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/260edcc59a347ad436570a18c491031a/transformed/jetified-foundation-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/260edcc59a347ad436570a18c491031a/transformed/jetified-foundation-1.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/260edcc59a347ad436570a18c491031a/transformed/jetified-foundation-1.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.comapi/foundation/1.2.0/ac05b40f919c5c1f1b8128f5b4af996417633f86/foundation-1.2.0-javadoc.jar!/" />

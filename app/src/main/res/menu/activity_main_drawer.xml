@@ -24,36 +24,31 @@
     <group android:id="@+id/grp11" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_category"
-            android:icon="@drawable/ic_action_shop"
+            android:icon="@drawable/ic_pilers"
             android:title="SHOP BY CATEGORY" />
     </group>
 
      <group android:id="@+id/grp13" android:checkableBehavior="single">
          <item
             android:id="@+id/nav_shopbylist"
-            android:icon="@drawable/ic_action_shopping"
+            android:icon="@drawable/ic_action_shop"
             android:title="SHOP BY LIST" />
      </group>
 
-    <group android:id="@+id/grp10" android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_locations"
-            android:icon="@drawable/ic_action_locations"
-            android:title="OUR LOCATIONS" />
-    </group>
+
 
     <group android:id="@+id/grp9" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_list"
-            android:icon="@drawable/ic_action_list"
-            android:title="YOUR LIST" />
+            android:icon="@drawable/ic_action_catalog"
+            android:title="MY LIST" />
     </group>
 
     <group android:id="@+id/grp8" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_catalog"
-            android:icon="@drawable/ic_action_catalog"
-            android:title="YOUR CATALOG" />
+            android:icon="@drawable/ic_action_list"
+            android:title="MY CATALOG" />
     </group>
 
     <group android:id="@+id/grp6" android:checkableBehavior="single">
@@ -62,25 +57,31 @@
             android:icon="@drawable/ic_action_barcode"
             android:title="SCAN BARCODE" />
     </group>
-
+        <group android:id="@+id/grp4" android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_action_help"
+                android:title="HELP CENTER" />
+        </group>
     <group android:id="@+id/grp5" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_photo"
-            android:icon="@drawable/ic_action_photo"
+            android:icon="@drawable/ic_cam"
             android:title="SUBMIT A PHOTO" />
     </group>
 
-    <group android:id="@+id/grp4" android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_help"
-            android:icon="@drawable/ic_action_help"
-            android:title="HELP CENTER" />
-    </group>
+        <group android:id="@+id/grp10" android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_locations"
+                android:icon="@drawable/ic_action_location"
+                android:title="MY LOCATIONS" />
+        </group>
+
 
     <group android:id="@+id/grp3" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_service"
-            android:icon="@drawable/ic_action_customer"
+            android:icon="@drawable/ic_call"
             android:title="ONLINE CUSTOMER SUPPORT" />
 
         <item
