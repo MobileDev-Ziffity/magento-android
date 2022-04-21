@@ -25,13 +25,13 @@ import java.util.StringTokenizer;
 import androidx.recyclerview.widget.RecyclerView;
 
 class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHolder>{
-    public ArrayList<ActivityList.mainaray> menulist;
-    public ArrayList<ActivityList.mainaray> menulist1;
-    public ArrayList<ActivityList.mainaray> menulist1_sort;
-    public ArrayList<ActivityList.mainaray> menulist2;
-    public ArrayList<ActivityList.mainaray> menulist2_sort;
+    public ArrayList<ActivityList.mainaray> menulist = null;
+    public ArrayList<ActivityList.mainaray> menulist1 = new ArrayList<>();
+    public ArrayList<ActivityList.mainaray> menulist1_sort = new ArrayList<>();
+    public ArrayList<ActivityList.mainaray> menulist2 = new ArrayList<>();
+    public ArrayList<ActivityList.mainaray> menulist2_sort = new ArrayList<>();
     private Activity vcontext;
-    private Context mContext;
+    private final Context mContext;
     private int jj;
 
 //    private OnTitleSelecteds titleSelecteds;
@@ -245,8 +245,8 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
     }
     class ExampleViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView txtCategory;
-        private ImageView imgNav;
+        private final TextView txtCategory;
+        private final ImageView imgNav;
 
         ExampleViewHolder(View itemView) {
             super(itemView);

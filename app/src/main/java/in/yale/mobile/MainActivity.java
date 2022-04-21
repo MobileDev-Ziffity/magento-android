@@ -18,6 +18,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -70,6 +71,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.GeolocationPermissions;
@@ -80,6 +82,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -104,6 +107,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 import java.io.File;
 import java.net.URLEncoder;
@@ -190,40 +194,32 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
-
+        new GetVersionCode().execute();
         progressView = findViewById(R.id.progressBar);
         progressView.setMax(100);
         //progressView.setProgressTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryDark)));
         getVersionInfo();
         CookieManager.getInstance().setCookie(Constants.BASE_URL, "mobile_app_auth=4XcGAuoS3m3zVUChP59iFAs8vuOZ96B3Gxj5n3MqAMwoM3gMNHWE73gqeVP5JS1J");
         webLoad = findViewById(R.id.webLoad);
-        webLoad.setWebContentsDebuggingEnabled(true);
+        WebView.setWebContentsDebuggingEnabled(true);
         swipe = findViewById(R.id.swipe);
         swipe.setOnRefreshListener(this);
         popfeedBool =  getIntent().getBooleanExtra("action_feedback_barcode", false);
         poplocBool = getIntent().getBooleanExtra("action_location_barcode", false);
-
-
-        webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
-        appUpdateManager = AppUpdateManagerFactory.create(this);
-        appUpdateManager.registerListener(listener);
-
-        appUpdateManager.getAppUpdateInfo().addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
-            @Override
-            public void onSuccess(AppUpdateInfo appUpdateInfo) {
-                if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                        && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)){
-                    requestUpdate(appUpdateInfo);
-                    Toast.makeText(MainActivity.this, "Kindly Update the App", Toast.LENGTH_SHORT).show();
-                }
-                else if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS){
-                    notifyUser();
-                }
-                else if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED){
-                    notifyUser();
-                }
+        Button crashButton = new Button(this);
+        crashButton.setText("Test Crash");
+        crashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                throw new RuntimeException("Test Crash"); // Force a crash
             }
         });
+
+        addContentView(crashButton, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
+
         //end update
 
 
@@ -361,6 +357,16 @@ public class MainActivity extends AppCompatActivity
                         strLocationClicked = "notclicked";
                     }
                 }
+
+                if (url.contains("payment")) {
+                    webLoad.getSettings().setUserAgentString("");
+                }else if(url.contains("success")){
+                    webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
+                  //  webLoad.reload();
+
+                }else{
+                    webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
+                }
             }
 
 
@@ -377,14 +383,13 @@ public class MainActivity extends AppCompatActivity
                     poplocBool = false;
                 }
 
+                if (url.contains("payment")) {
+                    webLoad.getSettings().setUserAgentString("");
+                }
                 webLoad.evaluateJavascript("window.isEmployeeLoggedIn", new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String s) {
-                        if(s.equals("1")){
-                            employLoggedIn = true;
-                        }else{
-                            employLoggedIn = false;
-                        }
+                        employLoggedIn = s.equals("1");
                         if(!messageForEmployee.equals("")) {
                             MainActivity.this.postMessage(messageForEmployee);
                         }
@@ -742,47 +747,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void notifyUser() {
 
-        Snackbar snackbar =
-                Snackbar.make(findViewById(android.R.id.content),
-                        "An update has just been downloaded.",
-                        Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("INSTALL", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (appUpdateManager != null) {
-                    appUpdateManager.completeUpdate();
-                }
-            }
-        });
-        snackbar.setActionTextColor(
-                getResources().getColor(android.R.color.white));
-        snackbar.show();
-    }
 
-    InstallStateUpdatedListener listener = new InstallStateUpdatedListener() {
-        @Override
-        public void onStateUpdate(InstallState installState) {
-            if (installState.installStatus() == InstallStatus.DOWNLOADED){
 
-                notifyUser();
-            }
-            else if (installState.installStatus() == InstallStatus.INSTALLED){
-                if (appUpdateManager != null){
-                    appUpdateManager.unregisterListener(listener);
-                }
-            }
-        }
-    };
 
-    private void requestUpdate(AppUpdateInfo appUpdateInfo){
-        try {
-            appUpdateManager.startUpdateFlowForResult(appUpdateInfo,AppUpdateType.FLEXIBLE,MainActivity.this,MY_REQUEST_CODE);
-        } catch (IntentSender.SendIntentException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private void printAction() {
@@ -1094,7 +1062,7 @@ public class MainActivity extends AppCompatActivity
                 AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(this);
                 alertDialogBuilderUserInput.setView(mView);
 
-                final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
+                final EditText userInputDialogEditText = mView.findViewById(R.id.userInputDialog);
                 ImageView userInputDialogImageView = mView.findViewById(R.id.barcode_imageView);
                 alertDialogBuilderUserInput
                         .setCancelable(false)
@@ -1488,7 +1456,72 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private class GetVersionCode extends AsyncTask<Void, String, String> {
+        @Override
+        protected String doInBackground(Void... voids) {
 
+            String newVersion = null;
+            try {
+                newVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + MainActivity.this.getPackageName() + "&hl=it")
+                        .timeout(30000)
+                        .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+                        .referrer("http://www.google.com")
+                        .get()
+                        .select(".hAyfc .htlgb")
+                        .get(7)
+                        .ownText();
+                return newVersion;
+            } catch (Exception e) {
+                return newVersion;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String onlineVersion) {
+            super.onPostExecute(onlineVersion);
+            String currentVersion;
+            try {
+                currentVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+
+                // Log.d("update", "Current version " + currentVersion + "playstore version " + onlineVersion);
+                if (onlineVersion != null && !onlineVersion.isEmpty()) {
+                    if (Float.valueOf(currentVersion) < Float.valueOf(onlineVersion)) {
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                                        try {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                                        } catch (android.content.ActivityNotFoundException anfe) {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                                        }
+                                        break;
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        break;
+                                }
+                            }
+                        };
+                       // String versionName = getApplicationContext().nonLocalizedLabel.toString();
+                        final String appPackageNameq = getString(R.string.flavored_app_name);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setTitle("Update " + appPackageNameq + "?").setMessage(appPackageNameq + " recommends that you update to the latest version.").setPositiveButton("UPDATE", dialogClickListener)
+                                .setNegativeButton("LATER", dialogClickListener);
+                        AlertDialog alert11 = builder.create();
+                        alert11.show();
+
+                        Button buttonbackground = alert11.getButton(DialogInterface.BUTTON_NEGATIVE);
+                        buttonbackground.setTextColor(Color.BLACK);
+                        Button buttonbackground1 = alert11.getButton(DialogInterface.BUTTON_POSITIVE);
+                        buttonbackground1.setTextColor(Color.BLACK);
+                    }
+                }
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }
 

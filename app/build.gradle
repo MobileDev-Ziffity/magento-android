@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionName "1.42"
+        versionName "1.44"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -126,7 +126,7 @@ android {
         ewct {
             dimension "version"
             applicationId "in.ewct.mobile"
-            versionCode 46
+            versionCode 49
             resValue "string", "flavored_app_name", "EWCT"
             resValue "string", "flavored_splash_icon", "@drawable/ewcy_logo"
             resValue "dimen", "flavored_layout_width", "80dp"
@@ -143,7 +143,7 @@ android {
         yale {
             dimension "version"
             applicationId "in.yale.mobile"
-            versionCode 42
+            versionCode 44
             resValue "string", "flavored_app_name", "YALE"
             resValue "string", "flavored_splash_icon", "@drawable/yale_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -158,7 +158,7 @@ android {
         usesi {
             dimension "version"
             applicationId "in.usesi.mobile"
-            versionCode 45
+            versionCode 47
             resValue "string", "flavored_app_name", "USESI"
             resValue "string", "flavored_splash_icon", "@drawable/usesi_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -173,7 +173,7 @@ android {
         duplex {
             dimension "version"
             applicationId "in.duplex.mobile"
-            versionCode 47
+            versionCode 49
             resValue "string", "flavored_app_name", "DUPLEX"
             resValue "string", "flavored_splash_icon", "@drawable/duplex_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
@@ -188,7 +188,7 @@ android {
         ewne {
             dimension "version"
             applicationId "in.ewne.mobile"
-            versionCode 42
+            versionCode 44
             resValue "string", "flavored_app_name", "EWNE"
             resValue "string", "flavored_splash_icon", "@drawable/ewne_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -203,7 +203,7 @@ android {
         hz {
             dimension "version"
             applicationId "in.hz.mobile"
-            versionCode 46
+            versionCode 48
             resValue "string", "flavored_app_name", "HZ"
             resValue "string", "flavored_splash_icon", "@drawable/hz_logo"
             resValue "dimen", "flavored_layout_width", "65dp"
@@ -218,7 +218,7 @@ android {
         lade {
             dimension "version"
             applicationId "in.lade.mobile"
-            versionCode 45
+            versionCode 47
             resValue "string", "flavored_app_name", "LADE"
             resValue "string", "flavored_splash_icon", "@drawable/ld_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -233,12 +233,12 @@ android {
         maurice {
             dimension "version"
             applicationId "in.maurice.mobile"
-            versionCode 45
+            versionCode 47
             resValue "string", "flavored_app_name", "Maurice Electric"
             resValue "string", "flavored_splash_icon", "@drawable/maurice_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
             resValue "dimen", "flavored_layout_height", "40dp"
-            buildConfigField "String", "BASE_URL", "\"https://www.mauriceelectric.com/\""
+            buildConfigField "String", "BASE_URL", "\"http://rc-22.qa.mauriceelectric.com/\""
             buildConfigField "String", "SERVICE_NUMBER", "\"301-298-2606\""
             buildConfigField "String", "LOCATION_URL", "\"https://www.mauriceelectric.com/locations/\""
             buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"d5f7c6dc-2a4c-4845-a87f-78a9b5a7b26c\""
@@ -248,7 +248,7 @@ android {
         monarch {
             dimension "version"
             applicationId "in.monarch.mobile"
-            versionCode 46
+            versionCode 48
             resValue "string", "flavored_app_name", "MONARCH"
             resValue "string", "flavored_splash_icon", "@drawable/monarch_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -263,7 +263,7 @@ android {
         standard {
             dimension "version"
             applicationId "in.standard.mobile"
-            versionCode 47
+            versionCode 49
             resValue "string", "flavored_app_name", "STANDARD"
             resValue "string", "flavored_splash_icon", "@drawable/standard_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -278,7 +278,7 @@ android {
         usrs {
             dimension "version"
             applicationId "in.usrs.mobile"
-            versionCode 43
+            versionCode 45
             resValue "string", "flavored_app_name", "USRS"
             resValue "string", "flavored_splash_icon", "@drawable/usrs_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -293,7 +293,7 @@ android {
         walters {
             dimension "version"
             applicationId "in.walters.mobile"
-            versionCode 45
+            versionCode 47
             resValue "string", "flavored_app_name", "WALTERS"
             resValue "string", "flavored_splash_icon", "@drawable/walters_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -308,7 +308,7 @@ android {
         franklingriffith {
             dimension "version"
             applicationId "in.franklingriffith.mobile"
-            versionCode 20
+            versionCode 22
             resValue "string", "flavored_app_name", "Franklin Griffith"
             resValue "string", "flavored_splash_icon", "@drawable/franklingriffith_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
@@ -323,7 +323,7 @@ android {
         mainelectric {
             dimension "version"
             applicationId "in.mainelectric.mobile"
-            versionCode 21
+            versionCode 23
             resValue "string", "flavored_app_name", "Main Electric"
             resValue "string", "flavored_splash_icon", "@drawable/mainelectric_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
@@ -387,7 +387,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-perf:20.0.4'
 
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.loopj.android:android-async-http:1.4.9'
@@ -400,7 +400,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
-    implementation 'com.google.android.play:core:1.6.4'
+    implementation 'com.google.android.play:core:1.10.3'
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
     implementation "androidx.browser:browser:1.3.0"
     implementation 'com.comapi:foundation:1.2.0'
