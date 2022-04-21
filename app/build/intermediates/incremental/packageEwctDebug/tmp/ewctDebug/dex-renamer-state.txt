@@ -1,0 +1,13 @@
+#Thu Apr 21 13:31:22 IST 2022
+path.3=classes2.dex
+path.2=13/classes.dex
+path.1=0/classes.dex
+path.0=classes.dex
+base.3=/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/dex/ewctDebug/mergeExtDexEwctDebug/classes2.dex
+base.2=/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/dex/ewctDebug/mergeProjectDexEwctDebug/13/classes.dex
+base.1=/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/dex/ewctDebug/mergeProjectDexEwctDebug/0/classes.dex
+base.0=/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/dex/ewctDebug/mergeExtDexEwctDebug/classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "438093478981",
+    "project_id": "ew-ctcom-ga4",
+    "storage_bucket": "ew-ctcom-ga4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438093478981:android:acec8c5b8edb77fcf7f72c",
+        "android_client_info": {
+          "package_name": "in.ewct.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438093478981-ffhrpbglj3416ce094750cjf2035c0m0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd3OVQXg1aWsIRwv0PMZ4A252-n2hyRYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438093478981-ffhrpbglj3416ce094750cjf2035c0m0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "438093478981-6qq603ceol4aj3l45beqr78pdh4jonaj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ew.ct"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
