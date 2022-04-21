@@ -206,17 +206,6 @@ public class MainActivity extends AppCompatActivity
         swipe.setOnRefreshListener(this);
         popfeedBool =  getIntent().getBooleanExtra("action_feedback_barcode", false);
         poplocBool = getIntent().getBooleanExtra("action_location_barcode", false);
-        Button crashButton = new Button(this);
-        crashButton.setText("Test Crash");
-        crashButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                throw new RuntimeException("Test Crash"); // Force a crash
-            }
-        });
-
-        addContentView(crashButton, new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
 
         webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
 
