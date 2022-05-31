@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -71,7 +71,13 @@
             android:screenOrientation="unspecified"
             android:theme="@style/Theme.Transparent.Permission"
             tools:replace="android:screenOrientation" />
-
+        <receiver android:name=".MyNotificationPublisher"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
         <service
             android:name=".FirebaseMessageService"
             android:exported="false" >

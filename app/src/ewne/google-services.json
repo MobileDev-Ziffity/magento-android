@@ -1,39 +1,43 @@
 {
   "project_info": {
-    "project_number": "317315473859",
-    "firebase_url": "https://ew-ne-mobile.firebaseio.com",
-    "project_id": "ew-ne-mobile",
-    "storage_bucket": "ew-ne-mobile.appspot.com"
+    "project_number": "563466571153",
+    "project_id": "ew-necom-ga4",
+    "storage_bucket": "ew-necom-ga4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:317315473859:android:567c476eaff4f2d2",
+        "mobilesdk_app_id": "1:563466571153:android:3338b2cba4ac428a2ade30",
         "android_client_info": {
           "package_name": "in.ewne.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "317315473859-sdn7fqdidk8pi7g18piuub5fr3q0brel.apps.googleusercontent.com",
+          "client_id": "563466571153-t0qqtpl2s01kbh3b68r6a6pkpkg9dsd0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAmX9w4E6Ngb_4DCsRltNvIzq1FGr3Iwgw"
+          "current_key": "AIzaSyDwCpDsOxdcm5xLrDcW_LBvd2kYUTVU9CM"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563466571153-t0qqtpl2s01kbh3b68r6a6pkpkg9dsd0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "563466571153-m9g16qff0spg497mc5jrm6pscestuelg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ew.ne"
+              }
+            }
+          ]
         }
       }
     }

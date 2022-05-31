@@ -1,39 +1,43 @@
 {
   "project_info": {
-    "project_number": "855344961920",
-    "firebase_url": "https://lade-mobile.firebaseio.com",
-    "project_id": "lade-mobile",
-    "storage_bucket": "lade-mobile.appspot.com"
+    "project_number": "640699226875",
+    "project_id": "lade-electric-supply",
+    "storage_bucket": "lade-electric-supply.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:855344961920:android:aa017efa2e783a7c",
+        "mobilesdk_app_id": "1:640699226875:android:bd15555424a204f93cae5e",
         "android_client_info": {
           "package_name": "in.lade.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "855344961920-h47dop9kfj7128ei6q3p9d8h3542q6g1.apps.googleusercontent.com",
+          "client_id": "640699226875-j4ufh6clvfa1uo9k0l7qojhue598t26j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCyzck4UJo1HI0NNrcQlrDmRbRKPbuYhig"
+          "current_key": "AIzaSyCxl0J9kUTrlMpEhfd9eOaloV9KOeCzykE"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640699226875-j4ufh6clvfa1uo9k0l7qojhue598t26j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "640699226875-dbh4cnq5drkg7u1qn8thgcqngqmthohm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ladedanlar"
+              }
+            }
+          ]
         }
       }
     }

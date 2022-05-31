@@ -2,8 +2,13 @@ package in.yale.mobile;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -17,15 +22,22 @@ import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
+import android.os.SystemClock;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
@@ -51,6 +63,8 @@ import java.io.Serializable;
 import androidx.browser.customtabs.CustomTabColorSchemeParams;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
@@ -114,6 +128,7 @@ import java.net.URLEncoder;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -210,6 +225,7 @@ public class MainActivity extends AppCompatActivity
         webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
 
         //end update
+        scheduleNotification(1000,1);
 
 
         cookieManager = CookieManager.getInstance();
@@ -318,7 +334,8 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = fileChooserParams.createIntent();
 
                 try {
-                    startActivityForResult(intent, FILECHOOSER_RESULTCODE);
+                //    startActivityForResult(intent, FILECHOOSER_RESULTCODE);
+                    someActivityResultLauncher.launch(intent);
                 } catch (ActivityNotFoundException e) {
                     mUploadMessage = null;
                     return false;
@@ -346,18 +363,20 @@ public class MainActivity extends AppCompatActivity
                         strLocationClicked = "notclicked";
                     }
                 }
-
+                String ua=new WebView(MainActivity.this).getSettings().getUserAgentString();
+                String uad = ua +"/HTTP_MOBILEAPP";
+                webLoad.getSettings().setUserAgentString(uad);
                 if (url.contains("payment")) {
-                    webLoad.getSettings().setUserAgentString("");
+                  //  webLoad.getSettings().setUserAgentString("");
                 }else if(url.contains("success")){
-                    webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
+                 //   webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
                   //  webLoad.reload();
 
                 }else{
-                    webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
+                  //  webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
                 }
-            }
 
+            }
 
             @Override
             public void onPageFinished(final WebView view, String url) {
@@ -373,7 +392,9 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 if (url.contains("payment")) {
-                    webLoad.getSettings().setUserAgentString("");
+                    String ua=new WebView(MainActivity.this).getSettings().getUserAgentString();
+                    String uad = ua +"/HTTP_MOBILEAPP";
+                    webLoad.getSettings().setUserAgentString(uad);
                 }
                 webLoad.evaluateJavascript("window.isEmployeeLoggedIn", new ValueCallback<String>() {
                     @Override
@@ -529,7 +550,34 @@ public class MainActivity extends AppCompatActivity
         barcodeIntentListener(webLoad);
         packageName = getPackageNameToUse();
     }
+    private void scheduleNotification(long delay, int notificationId) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"")
 
+                .setContentTitle("textTitle")
+                .setContentText("textContent")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setSmallIcon(R.drawable.franklingriffith_logo)
+                .setDefaults(Notification.DEFAULT_LIGHTS| Notification.DEFAULT_SOUND)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setAutoCancel(true);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent activity = PendingIntent.getActivity(this, notificationId, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        builder.setContentIntent(activity);
+
+        Notification notification = builder.build();
+
+        Intent notificationIntent = new Intent(this, MyNotificationPublisher.class);
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, notificationId);
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, notificationId, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+        NotificationManagerCompat notificationManagerc = NotificationManagerCompat.from(this);
+        notificationManagerc.notify(9, builder.build());
+    }
     private void Dotdigital(String email) {
         FirebaseApp.initializeApp(this);
         ChallengeHandler challengeHandler = new ChallengeHandler();
@@ -737,11 +785,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
-
-
-
     private void printAction() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             PrintManager printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
@@ -821,6 +864,12 @@ public class MainActivity extends AppCompatActivity
 
             NavigationView navigationView = findViewById(R.id.nav_view);
             Menu menu = navigationView.getMenu();
+
+            String release = BuildConfig.VERSION_NAME;
+
+            String reldease =  "Version: " + release;
+            MenuItem nav_ver = menu.findItem(R.id.nav_ver);
+            nav_ver.setTitle(reldease);
 
 //            MenuItem nav_contact = menu.findItem(R.id.nav_contact);
 //            nav_contact.setTitle(phone_number);
@@ -1022,8 +1071,10 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem cartView = menu.findItem(R.id.action_cart);
-        MenuItemCompat.setActionView(cartView, R.layout.action_item);
-        MenuItemCompat.getActionView(cartView).setOnClickListener(new View.OnClickListener() {
+       // MenuItemCompat.setActionView(cartView, R.layout.action_item);
+        cartView.setActionView(R.layout.action_item);
+
+        cartView.getActionView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 webLoad.loadUrl(Constants.BASE_URL + "checkout/cart/");
@@ -1090,8 +1141,8 @@ public class MainActivity extends AppCompatActivity
                         alertDialogAndroid.cancel();
                         alertCount = 0;
                         Intent i = new Intent(MainActivity.this, Barcode.class);
-                        startActivityForResult(i, 1);
-
+                      //  startActivityForResult(i, 1);
+                        someActivityResultLauncher.launch(i);
                     }
                 });
                 alertDialogAndroid.show();
@@ -1116,7 +1167,33 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
 
+                    if ((result.getResultCode() == 2) || (result.getResultCode() == 3)){
+                        Intent data = result.getData();
+                        String resultd = data.getStringExtra("result");
+                        //  String loadURL = Constants.BASE_URL + result.trim();
+                        webLoad.loadUrl(resultd.trim());
+                    }
+                    else if(result.getResultCode() == 1) {
+                        Intent data = result.getData();
+                        if (data.getBooleanExtra("action_location_barcode", false)) {
+                            strLocationClicked = "clicked";
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                                webLoad.evaluateJavascript("(function() { if(jQuery('.pickup-modal').css('display') != 'none'){  jQuery('.hidden-xs').trigger('click'); } jQuery(window.branchChangeModalContainer).modal('toggleModal');  jQuery('#branchchanger-button').trigger('click'); })();", null);
+                            }
+                        } else {
+                            String resultk = data.getStringExtra("result");
+                            webLoad.loadUrl(Constants.BASE_URL + "hawksearch/keyword/index/?keyword=" + resultk + "&search=1/");
+                        }
+                    }
+
+                }
+            });
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -1134,12 +1211,14 @@ public class MainActivity extends AppCompatActivity
             i.putExtra("mylist",menulist);
             i.putExtra("mylist1",menulist1);
             i.putExtra("mylist2",menulist2);
-            startActivityForResult(i, 2);
 
+           // startActivityForResult(i, 2);
+            someActivityResultLauncher.launch(i);
         } else if (id == R.id.nav_shopbylist) {
             mFirebaseAnalytics.logEvent("navdrawer_SHOPBYLIST", params);
             Intent i = new Intent(this, ActivityShopList.class);
-            startActivityForResult(i, 3);
+         //   startActivityForResult(i, 3);
+            someActivityResultLauncher.launch(i);
         } else if (id == R.id.nav_locations) {
             mFirebaseAnalytics.logEvent("navdrawer_OURLOCATIONS", params);
             webLoad.loadUrl(Constants.LOCATION_URL);
@@ -1158,7 +1237,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_barcode) {
             mFirebaseAnalytics.logEvent("navdrawer_SCANBARCODE", params);
             Intent i = new Intent(this, Barcode.class);
-            startActivityForResult(i, 1);
+          //  startActivityForResult(i, 1);
+            someActivityResultLauncher.launch(i);
         } else if (id == R.id.nav_photo) {
             mFirebaseAnalytics.logEvent("navdrawer_SUBMITAPHOTO", params);
             startActivity(new Intent(this, SubmitPhoto.class));
@@ -1228,6 +1308,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case MAKE_CALL_PERMISSION_REQUEST_CODE:
                 if (grantResults.length <= 0 || (grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
@@ -1236,7 +1317,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 if (grantResults.length > 0 || grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (mGeoLocationCallback != null ) {
+                    if (mGeoLocationCallback != null) {
                         mGeoLocationCallback.invoke(mGeoLocationRequestOrigin, true, true);
                     }
                 } else {
@@ -1301,12 +1382,13 @@ public class MainActivity extends AppCompatActivity
                             i.putExtra("mylist",menulist);
                             i.putExtra("mylist1",menulist1);
                             i.putExtra("mylist2",menulist2);
-
-                            startActivityForResult(i, 2);
+                            someActivityResultLauncher.launch(i);
+                          //  startActivityForResult(i, 2);
                         }else if ("ShopByList".equals(object.getString("Event")))
                         {
                             Intent i = new Intent(MainActivity.this, ActivityShopList.class);
-                            startActivityForResult(i, 3);
+                            someActivityResultLauncher.launch(i);
+                          //  startActivityForResult(i, 3);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

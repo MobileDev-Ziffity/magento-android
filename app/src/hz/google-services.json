@@ -1,39 +1,43 @@
 {
   "project_info": {
-    "project_number": "604183265038",
-    "firebase_url": "https://hz-mobile-feaf0.firebaseio.com",
-    "project_id": "hz-mobile-feaf0",
-    "storage_bucket": "hz-mobile-feaf0.appspot.com"
+    "project_number": "596998882871",
+    "project_id": "hzelectriccom-ga4",
+    "storage_bucket": "hzelectriccom-ga4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:604183265038:android:0656ecc1a3866b45",
+        "mobilesdk_app_id": "1:596998882871:android:e38d5e27eca18e706de1b2",
         "android_client_info": {
           "package_name": "in.hz.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "604183265038-15mmh83emnc84msgm6at75p3mh95efpn.apps.googleusercontent.com",
+          "client_id": "596998882871-o1el42hegq8k4t31qc7r1o03ie3le8qm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAiM-yDEIVft5XOZqLNdFCjLspwS-r1MkU"
+          "current_key": "AIzaSyCViPEvOqLVfkubFs_JUWDAHDhVMgKj3G4"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596998882871-o1el42hegq8k4t31qc7r1o03ie3le8qm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "596998882871-6nh4vbkj91d82saoruodgjauhl6p3lh4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hwelectric"
+              }
+            }
+          ]
         }
       }
     }

@@ -29,6 +29,8 @@ tools:context="in.yale.mobile.MainActivity">
             android:layout_height="@dimen/flavored_layout_height"
 
             android:background="@string/flavored_splash_icon" />
+
+
     </androidx.appcompat.widget.Toolbar>
 
 </com.google.android.material.appbar.AppBarLayout>

@@ -1,6 +1,7 @@
 package in.yale.mobile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,6 +79,7 @@ public class ActivityList extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
 //        menulist = new ArrayList<>();
 //        menulist1 = new ArrayList<>();
 //        menulist2 = new ArrayList<>();
@@ -120,6 +122,9 @@ public class ActivityList extends AppCompatActivity {
 //        menulist.clear();
 //        menulist1.clear();
 //        menulist2.clear();
+        menulist  = new ArrayList<>();
+        menulist1  = new ArrayList<>();
+        menulist2  = new ArrayList<>();
         String OB_Urla = Constants.BASE_URL + Constants.CATEGORY_URL;
         //  Log.d("OB_Urla",OB_Urla );
 

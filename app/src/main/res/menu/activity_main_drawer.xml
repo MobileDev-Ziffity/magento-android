@@ -113,6 +113,10 @@
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_action_login"
             android:title="LOGIN" />
+        <item
+            android:id="@+id/nav_ver"
+
+            android:title="Version:" />
     </group>
 
     </group>

@@ -1,39 +1,43 @@
 {
   "project_info": {
-    "project_number": "176689589427",
-    "firebase_url": "https://walters-mobile.firebaseio.com",
-    "project_id": "walters-mobile",
-    "storage_bucket": "walters-mobile.appspot.com"
+    "project_number": "920405947356",
+    "project_id": "walters-wholesale",
+    "storage_bucket": "walters-wholesale.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:176689589427:android:77c2da3c953d61bb",
+        "mobilesdk_app_id": "1:920405947356:android:e53ddebc4685ac1b355519",
         "android_client_info": {
           "package_name": "in.walters.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "176689589427-jenbjvek8480vcu159c884eb5an0p5t7.apps.googleusercontent.com",
+          "client_id": "920405947356-iqi9qsvdjiu4bqu7oi4jjvbts7mhc2qc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBHdoWFV-0FWtm99PL3GpGLv29X6Gffg1U"
+          "current_key": "AIzaSyB-Hnl4xs09AMIx1czzPveaEyv2928uc4E"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920405947356-iqi9qsvdjiu4bqu7oi4jjvbts7mhc2qc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "920405947356-31vnad1svl5r49fe266bcibfffgie52k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.walterswholesale"
+              }
+            }
+          ]
         }
       }
     }

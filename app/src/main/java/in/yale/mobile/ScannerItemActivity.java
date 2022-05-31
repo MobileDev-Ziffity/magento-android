@@ -84,8 +84,8 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
         setContentView(R.layout.activity_scanner_item);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         params = new Bundle();
-        LinearLayout llr_deliveryDetails = (LinearLayout) findViewById(R.id.llr_deliveryDetails);
-        llr_shipment_deliver_details = (LinearLayout) findViewById(R.id.llr_shipment_deliver_details);
+        LinearLayout llr_deliveryDetails = findViewById(R.id.llr_deliveryDetails);
+        llr_shipment_deliver_details = findViewById(R.id.llr_shipment_deliver_details);
         req = Volley.newRequestQueue(this);
         relativeSecond = findViewById(R.id.relativeSecond);
         shimmerFrameLayout = findViewById(R.id.shimmer);
@@ -258,14 +258,41 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
                         URLcheck = cg.replace("//", "/");
                         CustomURL = URLcheck;
                     Glide.with(ScannerItemActivity.this).load(jj.getString("image")).into(imgItem);
-                        proxyCallSku(dame);
+                     //   proxyCallSku(dame);
+// new data
+                        addToCart = jj.getString("addtocart");
+                        formKey = jj.getString("formkey");
+                        String strPrice = "<!DOCTYPE html><html><head><style>.special-price .price {color: #E31B23;font-weight: 600; font-size: 22px}.price sup {font-size:70%;position:relative;line-height:0}.special-price small{color:#514D6A; font-family:sourcesanspro_regular}.text-blue {color: #0190DA;}.text-blue small {display: inline-block;line-height: 1.3;}</style></head><body style=\"font-size: 16px; font-family: sourcesanspro_bold; text-align: Right; color: #000000\">" + jj.getString("price")+ "</body></html>";
+                        Matcher match = Pattern.compile("Call for price").matcher(jj.getString("price"));
+                        if(match.find()){
+                            addtoCart.setVisibility(View.GONE);
+                        }else {
+                            addtoCart.setVisibility(View.VISIBLE);
+                        }
+                        pdata = jj.getString("magentopid");
+                        placecode = jj.getString("PickupBranch");
+                        priceText.loadDataWithBaseURL(null,strPrice,"text/html", "utf-8", null);
+                        pickupText.setText(Html.fromHtml(jj.getString("Pickup")));
+                        deliverText.setText(jj.getString("Deliver"));
+                        txtMinQuantity.setText(jj.getString("pickupBranchMinSaleQty"));
+                        qty = Integer.valueOf(jj.getString("pickupBranchMinSaleQty"));
+                        if(qty > 1) {
+                            soldText.setText("Sold in multiples of "+qty);
+                            soldText.setVisibility(View.VISIBLE);
+                        }
+                        deliverMessage.setText(jj.getString("deliverStockMsg"));
+                        stockMessage.setText(jj.getString("pickupStockMsg"));
 
+                        shimmerFrameLayout.stopShimmerAnimation();
+                        shimmerFrameLayout.setVisibility(View.GONE);
+                        relativeSecond.setVisibility(View.VISIBLE);
+                        //end data
 
                     }else {
                         if(barcodeText.length() == 12) {
-                            proxyCallSku(barcodeText.substring(0,11));
+                          //  proxyCallSku(barcodeText.substring(0,11));
                         }else if(barcodeText.length() == 14){
-                            proxyCallSku(barcodeText.substring(2,12));
+                          //  proxyCallSku(barcodeText.substring(2,12));
                         }else {
                             finish();
                             if(!TextUtils.isEmpty(txtSku.getText().toString())) {
@@ -291,56 +318,56 @@ public class ScannerItemActivity extends AppCompatActivity implements View.OnTou
 
     }
 
-    private void proxyCallSku(String sku) {
-        Constants.apiCall = Boolean.FALSE;
-        String cookies = CookieManager.getInstance().getCookie(Constants.BASE_URL);
-        ApiTask apiTask = new ApiTask(ScannerItemActivity.this);
-        apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
-        apiTask.setCookie(cookies);
-        apiTask.setParams(null, Constants.BASE_URL + "hawksearch/simpleproxy?mpp=&pg=&category=&hawkcustom=&sort=&hawkspellcheck=0&hawkoutput=json&skus=\""+ sku + "\"&skipHawkSearch=1&branch_id=");
-        apiTask.responseCallBack(new ApiTask.ResponseListener() {
-            @Override
-            public void jsonResponse(String result) {
-                try {
-                    JSONObject jsonObject = new JSONObject(result.trim());
-
-                        JSONObject obj = jsonObject.getJSONArray("Results").getJSONObject(0);
-                        addToCart = obj.getString("addtocart");
-                        formKey = jsonObject.getString("formkey");
-                        String strPrice = "<!DOCTYPE html><html><head><style>.special-price .price {color: #E31B23;font-weight: 600; font-size: 22px}.price sup {font-size:70%;position:relative;line-height:0}.special-price small{color:#514D6A; font-family:sourcesanspro_regular}.text-blue {color: #0190DA;}.text-blue small {display: inline-block;line-height: 1.3;}</style></head><body style=\"font-size: 16px; font-family: sourcesanspro_bold; text-align: Right; color: #000000\">" + obj.getString("price")+ "</body></html>";
-                        Matcher match = Pattern.compile("Call for price").matcher(obj.getString("price"));
-                        if(match.find()){
-                            addtoCart.setVisibility(View.GONE);
-                        }else {
-                            addtoCart.setVisibility(View.VISIBLE);
-                        }
-                        pdata = obj.getString("magentopid");
-                        placecode = obj.getString("PickupBranch");
-                        priceText.loadDataWithBaseURL(null,strPrice,"text/html", "utf-8", null);
-                        pickupText.setText(Html.fromHtml(obj.getString("Pickup")));
-                        deliverText.setText(obj.getString("Deliver"));
-                        txtMinQuantity.setText(obj.getString("pickupBranchMinSaleQty"));
-                        qty = Integer.valueOf(obj.getString("pickupBranchMinSaleQty"));
-                        if(qty > 1) {
-                            soldText.setText("Sold in multiples of "+qty);
-                            soldText.setVisibility(View.VISIBLE);
-                        }
-                        deliverMessage.setText(obj.getString("deliverStockMsg"));
-                        stockMessage.setText(obj.getString("pickupStockMsg"));
-
-                        shimmerFrameLayout.stopShimmerAnimation();
-                        shimmerFrameLayout.setVisibility(View.GONE);
-                        relativeSecond.setVisibility(View.VISIBLE);
-                } catch (Exception e) {
-                    e.printStackTrace();
-
-                }
-
-
-            }
-        });
-
-    }
+//    private void proxyCallSku(String sku) {
+//        Constants.apiCall = Boolean.FALSE;
+//        String cookies = CookieManager.getInstance().getCookie(Constants.BASE_URL);
+//        ApiTask apiTask = new ApiTask(ScannerItemActivity.this);
+//        apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
+//        apiTask.setCookie(cookies);
+//        apiTask.setParams(null, Constants.BASE_URL + "hawksearch/simpleproxy?mpp=&pg=&category=&hawkcustom=&sort=&hawkspellcheck=0&hawkoutput=json&skus=\""+ sku + "\"&skipHawkSearch=1&branch_id=");
+//        apiTask.responseCallBack(new ApiTask.ResponseListener() {
+//            @Override
+//            public void jsonResponse(String result) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(result.trim());
+//
+//                        JSONObject obj = jsonObject.getJSONArray("Results").getJSONObject(0);
+//                        addToCart = obj.getString("addtocart");
+//                        formKey = jsonObject.getString("formkey");
+//                        String strPrice = "<!DOCTYPE html><html><head><style>.special-price .price {color: #E31B23;font-weight: 600; font-size: 22px}.price sup {font-size:70%;position:relative;line-height:0}.special-price small{color:#514D6A; font-family:sourcesanspro_regular}.text-blue {color: #0190DA;}.text-blue small {display: inline-block;line-height: 1.3;}</style></head><body style=\"font-size: 16px; font-family: sourcesanspro_bold; text-align: Right; color: #000000\">" + obj.getString("price")+ "</body></html>";
+//                        Matcher match = Pattern.compile("Call for price").matcher(obj.getString("price"));
+//                        if(match.find()){
+//                            addtoCart.setVisibility(View.GONE);
+//                        }else {
+//                            addtoCart.setVisibility(View.VISIBLE);
+//                        }
+//                        pdata = obj.getString("magentopid");
+//                        placecode = obj.getString("PickupBranch");
+//                        priceText.loadDataWithBaseURL(null,strPrice,"text/html", "utf-8", null);
+//                        pickupText.setText(Html.fromHtml(obj.getString("Pickup")));
+//                        deliverText.setText(obj.getString("Deliver"));
+//                        txtMinQuantity.setText(obj.getString("pickupBranchMinSaleQty"));
+//                        qty = Integer.valueOf(obj.getString("pickupBranchMinSaleQty"));
+//                        if(qty > 1) {
+//                            soldText.setText("Sold in multiples of "+qty);
+//                            soldText.setVisibility(View.VISIBLE);
+//                        }
+//                        deliverMessage.setText(obj.getString("deliverStockMsg"));
+//                        stockMessage.setText(obj.getString("pickupStockMsg"));
+//
+//                        shimmerFrameLayout.stopShimmerAnimation();
+//                        shimmerFrameLayout.setVisibility(View.GONE);
+//                        relativeSecond.setVisibility(View.VISIBLE);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//
+//                }
+//
+//
+//            }
+//        });
+//
+//    }
 
     private void addedToCart() {
         Constants.apiCall = Boolean.FALSE;

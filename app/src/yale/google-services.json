@@ -1,39 +1,43 @@
 {
   "project_info": {
-    "project_number": "83998153607",
-    "firebase_url": "https://yale-mobile-12b40.firebaseio.com",
-    "project_id": "yale-mobile-12b40",
-    "storage_bucket": "yale-mobile-12b40.appspot.com"
+    "project_number": "558844229860",
+    "project_id": "yaleelectricsupplycom-ga4",
+    "storage_bucket": "yaleelectricsupplycom-ga4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:83998153607:android:1a18acd4cc1f0d32",
+        "mobilesdk_app_id": "1:558844229860:android:1eb8d925b368e5a26814f1",
         "android_client_info": {
           "package_name": "in.yale.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "83998153607-acldg76oqebicuvjvqrmeg0r2dur7768.apps.googleusercontent.com",
+          "client_id": "558844229860-p132vkd6ujnnrjkg706kjlqc2h2ck1q7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDGkkezam7afNJZozGkLX730gbeoRcdD-s"
+          "current_key": "AIzaSyDpzTfbewcUPR_PAT_MhzpDevOMsUp3Nng"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558844229860-p132vkd6ujnnrjkg706kjlqc2h2ck1q7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "558844229860-83olmvrfvp7au4sounbnp662ekj5cdta.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.yaleelectricsupply"
+              }
+            }
+          ]
         }
       }
     }

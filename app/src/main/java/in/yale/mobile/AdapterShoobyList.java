@@ -17,19 +17,19 @@ import java.util.List;
 public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.MyViewHolder> {
 
 
-    private Activity context;
+    private final Activity context;
 
     private List<ShopDetails> listCategory, listLevelOne = new ArrayList<>();
 
-    private List<ShopDetails> listOneData = new ArrayList<>();
+    private final List<ShopDetails> listOneData = new ArrayList<>();
 
-    private List<ShopDetails> listTwoData = new ArrayList<>();
+    private final List<ShopDetails> listTwoData = new ArrayList<>();
 
-    private List<ShopDetails> listThreeData = new ArrayList<>();
+    private final List<ShopDetails> listThreeData = new ArrayList<>();
 
-    private List<ShopDetails> listTwoCheck = new ArrayList<>();
+    private final List<ShopDetails> listTwoCheck = new ArrayList<>();
 
-    private List<ShopDetails> listThreeCheck = new ArrayList<>();
+    private final List<ShopDetails> listThreeCheck = new ArrayList<>();
 
     private int j;
 
@@ -108,6 +108,7 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
                     returnIntent = new Intent(context, MainActivity.class);
                     returnIntent.putExtra("result",callURL);
                     context.setResult(MainActivity.RESULT_OK,returnIntent);
+                    context.setResult(3, returnIntent);
                     context.finish();
                 }
                 else if (j == 2) {
@@ -116,6 +117,7 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
                     returnIntent = new Intent(context, MainActivity.class);
                     returnIntent.putExtra("result",callURL);
                     context.setResult(MainActivity.RESULT_OK,returnIntent);
+                    context.setResult(3, returnIntent);
                     context.finish();
                 }
                 else if (j == 3) {
@@ -124,6 +126,7 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
                     returnIntent = new Intent(context, MainActivity.class);
                     returnIntent.putExtra("result",callURL);
                     context.setResult(MainActivity.RESULT_OK,returnIntent);
+                    context.setResult(3, returnIntent);
                     context.finish();
                 }
             }
@@ -193,8 +196,8 @@ public class AdapterShoobyList extends RecyclerView.Adapter<AdapterShoobyList.My
 
     class MyViewHolder  extends RecyclerView.ViewHolder{
 
-        private TextView txtCategory;
-        private ImageView imgNav;
+        private final TextView txtCategory;
+        private final ImageView imgNav;
 
         public MyViewHolder(View itemView) {
             super(itemView);

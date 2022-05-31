@@ -64,17 +64,20 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
     @Override
     public int getItemCount() {
 
-        if (jj == 0)
-            return menulist.size();
-        else if (jj == 1)
-            return menulist1_sort.size();
-
-        else {
-            return menulist2_sort.size();
+        if (jj == 0) {
+            return menulist == null ? 0 : menulist.size();
+           // return menulist.size();
+        } else if (jj == 1) {
+           // return menulist1_sort.size();
+            return menulist1_sort == null ? 0 : menulist1_sort.size();
+        }else {
+            return menulist2_sort == null ? 0 : menulist2_sort.size();
+          /// return menulist2_sort.size();
         }
     }
     public AdapterCategory(Context context, ArrayList<ActivityList.mainaray> exampleList,ArrayList<ActivityList.mainaray> exampleList1,ArrayList<ActivityList.mainaray> exampleList2) {
         this.mContext = context;
+        this.menulist = null;
         menulist = exampleList;
         menulist1 = exampleList1;
         menulist2 = exampleList2;
@@ -218,6 +221,7 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
                     returnIntent = new Intent(mContext, MainActivity.class);
                     returnIntent.putExtra("result",val);
                     ((ActivityList)mContext).setResult(MainActivity.RESULT_OK,returnIntent);
+                    ((ActivityList)mContext).setResult(2, returnIntent);
                     ((ActivityList)mContext).finish();
 
                 }else  if(jj == 1){
@@ -228,6 +232,7 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
                     returnIntent = new Intent(mContext, MainActivity.class);
                     returnIntent.putExtra("result",val);
                     ((ActivityList)mContext).setResult(MainActivity.RESULT_OK,returnIntent);
+                    ((ActivityList)mContext).setResult(2, returnIntent);
                     ((ActivityList)mContext).finish();
                 }else  if(jj == 2){
                     ActivityList.mainaray ss = menulist2_sort.get(position);
@@ -237,6 +242,7 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
                     returnIntent = new Intent(mContext, MainActivity.class);
                     returnIntent.putExtra("result",val);
                     ((ActivityList)mContext).setResult(MainActivity.RESULT_OK,returnIntent);
+                    ((ActivityList)mContext).setResult(2, returnIntent);
                     ((ActivityList)mContext).finish();
                 }
 

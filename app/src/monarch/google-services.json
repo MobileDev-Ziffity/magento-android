@@ -1,39 +1,43 @@
 {
   "project_info": {
-    "project_number": "279899908364",
-    "firebase_url": "https://monarch-mobile.firebaseio.com",
-    "project_id": "monarch-mobile",
-    "storage_bucket": "monarch-mobile.appspot.com"
+    "project_number": "984814744403",
+    "project_id": "monarchelectriccom-ga4",
+    "storage_bucket": "monarchelectriccom-ga4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:279899908364:android:66e4ee4a55a4ad97",
+        "mobilesdk_app_id": "1:984814744403:android:e41e0c204b4ef71696a7a6",
         "android_client_info": {
           "package_name": "in.monarch.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "279899908364-s0e7dt7245rk6us6l924g9bmn2l2k53v.apps.googleusercontent.com",
+          "client_id": "984814744403-1dtpaid3t9dmcbipj5bq3rg5sqdcfgr4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBYUTUfrzqbHWWdgtEi9xRh2_Kp_ng3AJU"
+          "current_key": "AIzaSyDBXusmm_4b-OLyMWB4Je8nBzqRGLox8Ig"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984814744403-1dtpaid3t9dmcbipj5bq3rg5sqdcfgr4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "984814744403-e3qfa8409iv8btshmolen1sle55ehmcs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.monarchelectric"
+              }
+            }
+          ]
         }
       }
     }

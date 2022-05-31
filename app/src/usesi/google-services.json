@@ -1,39 +1,43 @@
 {
   "project_info": {
-    "project_number": "190139210448",
-    "firebase_url": "https://usesi-mobile.firebaseio.com",
-    "project_id": "usesi-mobile",
-    "storage_bucket": "usesi-mobile.appspot.com"
+    "project_number": "772617612285",
+    "project_id": "storeusesicom-ga4-fd67e",
+    "storage_bucket": "storeusesicom-ga4-fd67e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:190139210448:android:a53f88efd8b76f28",
+        "mobilesdk_app_id": "1:772617612285:android:573d978151ad9403e90794",
         "android_client_info": {
           "package_name": "in.usesi.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "190139210448-oir4fd01binhnuq8l3gjc6j59urjdfam.apps.googleusercontent.com",
+          "client_id": "772617612285-p6671dbmb7am4d6o5qdtema5sh3r2rc6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDLOiaGX71-bKEJtVZeK_s5v_vetbiqIcU"
+          "current_key": "AIzaSyBd0glPjk2VAw9ORWuZr8DMjfxNhbkFYXY"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772617612285-p6671dbmb7am4d6o5qdtema5sh3r2rc6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "772617612285-m9lhir7tokc4opo3gcuagh4v9v6r7d8q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.usesi.ios"
+              }
+            }
+          ]
         }
       }
     }

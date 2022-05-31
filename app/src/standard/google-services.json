@@ -1,39 +1,43 @@
 {
   "project_info": {
-    "project_number": "909881112243",
-    "firebase_url": "https://standard-mobile-299db.firebaseio.com",
-    "project_id": "standard-mobile-299db",
-    "storage_bucket": "standard-mobile-299db.appspot.com"
+    "project_number": "617353256303",
+    "project_id": "standard-electric",
+    "storage_bucket": "standard-electric.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:909881112243:android:3b22ba76ca910fed",
+        "mobilesdk_app_id": "1:617353256303:android:2f71d0b3e3ddb64002dc9a",
         "android_client_info": {
           "package_name": "in.standard.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "909881112243-g27k6bmfa7v2nq8up2svu5k52ov47f01.apps.googleusercontent.com",
+          "client_id": "617353256303-hh3nia8f1aps5f4b4a4jmvf85tkk10r1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAdA611jIsMqnwla0rOdhzb7qLaLAYLSyE"
+          "current_key": "AIzaSyCHmQbtuyjmFlgr6oOvGtlK5x4YRVUKHQg"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617353256303-hh3nia8f1aps5f4b4a4jmvf85tkk10r1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "617353256303-s6uv5nhccjjocs3q7ndb2h8iph67elro.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.standardelectric"
+              }
+            }
+          ]
         }
       }
     }

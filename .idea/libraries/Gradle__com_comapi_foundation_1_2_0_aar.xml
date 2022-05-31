@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.comapi:foundation:1.2.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/260edcc59a347ad436570a18c491031a/transformed/jetified-foundation-1.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/260edcc59a347ad436570a18c491031a/transformed/jetified-foundation-1.2.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/260edcc59a347ad436570a18c491031a/transformed/jetified-foundation-1.2.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d17c2aba2748d9318b69584d21658cf8/transformed/jetified-foundation-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d17c2aba2748d9318b69584d21658cf8/transformed/jetified-foundation-1.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d17c2aba2748d9318b69584d21658cf8/transformed/jetified-foundation-1.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.comapi/foundation/1.2.0/ac05b40f919c5c1f1b8128f5b4af996417633f86/foundation-1.2.0-javadoc.jar!/" />

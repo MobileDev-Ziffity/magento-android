@@ -1,38 +1,37 @@
 {
   "project_info": {
-    "project_number": "928025736015",
-    "firebase_url": "https://maurice-b2c2a.firebaseio.com",
-    "project_id": "maurice-b2c2a",
-    "storage_bucket": "maurice-b2c2a.appspot.com"
+    "project_number": "392625485668",
+    "project_id": "maurice-electrical-supply",
+    "storage_bucket": "maurice-electrical-supply.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:928025736015:android:4b99356915237892",
+        "mobilesdk_app_id": "1:392625485668:android:a7993c3c44859dc1a12c71",
         "android_client_info": {
           "package_name": "in.maurice.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "928025736015-3vinkd4v167425f0rv0eba64vmier877.apps.googleusercontent.com",
+          "client_id": "392625485668-64funvr460qhib7va97043l1t4snp6dn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBqngPgHcAYQtgYqOknhgzX0tsE4V7LsSc"
+          "current_key": "AIzaSyB6O2VSXVb6bO252XIYNGQdg2Y2ukqMcvM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "928025736015-3vinkd4v167425f0rv0eba64vmier877.apps.googleusercontent.com",
+              "client_id": "392625485668-64funvr460qhib7va97043l1t4snp6dn.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "928025736015-3adqsc9u06utn5drqiu6o63r5jruivo9.apps.googleusercontent.com",
+              "client_id": "392625485668-cdt6b2p22nm1ior62qfuq0bil4re3jd8.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.mauriceelectric"
