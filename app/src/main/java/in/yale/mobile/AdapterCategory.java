@@ -30,6 +30,8 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
     public ArrayList<ActivityList.mainaray> menulist1_sort = new ArrayList<>();
     public ArrayList<ActivityList.mainaray> menulist2 = new ArrayList<>();
     public ArrayList<ActivityList.mainaray> menulist2_sort = new ArrayList<>();
+    public ArrayList<ActivityList.mainaray> menulist3 = new ArrayList<>();
+    public ArrayList<ActivityList.mainaray> menulist3_sort = new ArrayList<>();
     private Activity vcontext;
     private final Context mContext;
     private int jj;
@@ -55,7 +57,7 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
 
     void setListTitle() {
         jj--;
-        if (jj == 0 || jj == 1 || jj == 2 ) {
+        if (jj == 0 || jj == 1 || jj == 2 || jj == 3 ) {
             notifyDataSetChanged();
         }
         else
@@ -70,17 +72,21 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
         } else if (jj == 1) {
            // return menulist1_sort.size();
             return menulist1_sort == null ? 0 : menulist1_sort.size();
-        }else {
+        }else if (jj == 2) {
             return menulist2_sort == null ? 0 : menulist2_sort.size();
-          /// return menulist2_sort.size();
+
+        }else {
+            return menulist3_sort == null ? 0 : menulist3_sort.size();
+
         }
     }
-    public AdapterCategory(Context context, ArrayList<ActivityList.mainaray> exampleList,ArrayList<ActivityList.mainaray> exampleList1,ArrayList<ActivityList.mainaray> exampleList2) {
+    public AdapterCategory(Context context, ArrayList<ActivityList.mainaray> exampleList,ArrayList<ActivityList.mainaray> exampleList1,ArrayList<ActivityList.mainaray> exampleList2, ArrayList<ActivityList.mainaray> exampleList3) {
         this.mContext = context;
         this.menulist = null;
         menulist = exampleList;
         menulist1 = exampleList1;
         menulist2 = exampleList2;
+        menulist3 = exampleList3;
 
         // Log.d("tag","these are the value in example list"+exampleList.toString());
     }
@@ -145,6 +151,23 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
 //            if (titleSelecteds != null)
 //                titleSelecteds.showTitle(thirdTitle);
             ((ActivityList)mContext).txtTitle.setText(thirdTitle);
+        }else if (jj == 3) {
+
+            // ActivityList.mainaray currentItem = menulist1_sort.get(position);
+            ActivityList.mainaray po = menulist3_sort.get(position);
+            String labelname = po.getlab();
+            holder.txtCategory.setText(labelname);
+            String chi = po.getchild();
+            if (chi.equals("true")) {
+                holder.imgNav.setVisibility(View.VISIBLE);
+            } else {
+                holder.imgNav.setVisibility(View.GONE);
+            }
+            SharedPreferences sp = mContext.getSharedPreferences("MyPreferences", Activity.MODE_PRIVATE);
+            String fourTitle = sp.getString("FourTitle", "Default");
+//            if (titleSelecteds != null)
+//                titleSelecteds.showTitle(thirdTitle);
+            ((ActivityList)mContext).txtTitle.setText(fourTitle);
         }
         holder.imgNav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,10 +201,9 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
                     editor.commit();
 
                     notifyDataSetChanged();
-                }else if (jj == 2) {
+                }
+                else if (jj == 2) {
                     String path = holder.txtCategory.getText().toString().trim();
-//                    if (titleSelecteds != null)
-//                        titleSelecteds.showTitle(path);
                     ((ActivityList)mContext).txtTitle.setText(path);
                     ActivityList.mainaray po = menulist1_sort.get(position);
                     String id = po.getid();
@@ -202,11 +224,30 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("ThreeTitle", path);
                     editor.commit();
-
                     notifyDataSetChanged();
+                }else if (jj == 3) {
+                    String path = holder.txtCategory.getText().toString().trim();
+                    ((ActivityList)mContext).txtTitle.setText(path);
+                    ActivityList.mainaray po = menulist2_sort.get(position);
+                    String id = po.getid();
+                    for(int i = 0; i < menulist3.size(); i++){
+                        ActivityList.mainaray i1 = menulist3.get(i);
+                        String pid = i1.getparentid();
 
-
-
+                        if(id.equals(pid) ) {
+                            String lab = i1.getlab();
+                            String va = i1.getvalue();
+                            String pva = i1.getparentid();
+                            String gid = i1.getid();
+                            String ch = i1.getchild();
+                            menulist3_sort.add(new ActivityList.mainaray(lab, va, pva, gid, ch));
+                        }
+                    }
+                    SharedPreferences preferences = mContext.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("FourTitle", path);
+                    editor.commit();
+                    notifyDataSetChanged();
                 }
             }
         });
@@ -237,7 +278,15 @@ class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.ExampleViewHo
                 }else  if(jj == 2){
                     ActivityList.mainaray ss = menulist2_sort.get(position);
                     String val = ss.getvalue();
-
+                    Intent returnIntent;
+                    returnIntent = new Intent(mContext, MainActivity.class);
+                    returnIntent.putExtra("result",val);
+                    ((ActivityList)mContext).setResult(MainActivity.RESULT_OK,returnIntent);
+                    ((ActivityList)mContext).setResult(2, returnIntent);
+                    ((ActivityList)mContext).finish();
+                }else  if(jj == 3){
+                    ActivityList.mainaray ss = menulist3_sort.get(position);
+                    String val = ss.getvalue();
                     Intent returnIntent;
                     returnIntent = new Intent(mContext, MainActivity.class);
                     returnIntent.putExtra("result",val);

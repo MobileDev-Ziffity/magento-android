@@ -18,6 +18,8 @@ import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 public class FirebaseMessageService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String s) {
@@ -29,6 +31,8 @@ public class FirebaseMessageService extends FirebaseMessagingService {
     }
 
     private void sendRegistrationToServer(String token) {
+
+        Log.d(TAG, token);
         // TODO: Implement this method to send token to your app server.
     }
 

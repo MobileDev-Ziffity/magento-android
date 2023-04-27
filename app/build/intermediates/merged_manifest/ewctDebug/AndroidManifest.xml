@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.ewct.mobile"
-    android:versionCode="49"
-    android:versionName="1.44" >
+    android:versionCode="54"
+    android:versionName="1.50" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -17,14 +17,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
 
     <!-- TESTS -->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- SDK will receive a notification when phone finish booting. This is to restore the services and keep SDK responsive -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- Permission will be merged into the manifest of the hosting app. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- Permission will be merged into the manifest of the hosting app. -->
     <!-- Is required to launch foreground extraction service for targetSdkVersion 28+. -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -32,6 +32,7 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
+        android:name="in.yale.mobile.MyApplication"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
@@ -45,6 +46,9 @@
         <meta-data
             android:name="firebase_analytics_collection_enabled"
             android:value="@bool/FIREBASE_ANALYTICS_ENABLED" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="latest_product" />
 
         <activity
             android:name="in.yale.mobile.MainActivity"
@@ -53,6 +57,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="in.yale.mobile.ActivityList"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name="in.yale.mobile.ActivityShopBrand"
             android:configChanges="orientation|screenSize" />
         <activity
             android:name="in.yale.mobile.Barcode"
@@ -87,6 +94,11 @@
             android:screenOrientation="unspecified"
             android:theme="@style/Theme.Transparent.Permission" />
 
+        <service
+            android:name="in.yale.mobile.MyNotificationPublisher"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
         <service
             android:name="in.yale.mobile.FirebaseMessageService"
             android:exported="false" >

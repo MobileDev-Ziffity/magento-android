@@ -57,6 +57,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import static in.yale.mobile.ApiTask.HTTP_TYPE.GET;
 import static in.yale.mobile.R.string.logOut;
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 
 public class Barcode extends AppCompatActivity implements ZXingScannerView.ResultHandler, NavigationView.OnNavigationItemSelectedListener {
@@ -65,7 +66,7 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
     private String phone_number;
     private String count;
-    private boolean loggedIn,employLoggedIn,cutomersupport,showbranch;
+    private boolean loggedIn,employLoggedIn,cutomersupport,showbranch,show_delipickup;
     private TextView userName;
     private int alertCount = 0;
     private TextView scanImageAction;
@@ -114,6 +115,9 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                 }
             }
         });
+        NavigationView navigationViewp = findViewById(R.id.nav_view);
+       // navigationViewp.getMenu().setGroupVisible(R.id.grp11a,false);
+
         showPermissionDialog();
         callLoginWebService();
 
@@ -358,6 +362,16 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                             MenuItem dd = menud.findItem(R.id.nav_city);
                             dd.setVisible(FALSE);
                         }
+
+//                        if(show_delipickup) {
+//                            NavigationView navigationViewp = findViewById(R.id.nav_view);
+//
+//                            Menu menup = navigationViewp.getMenu();
+//                            MenuItem nav_changepickup = menup.findItem(R.id.changepickup);
+//                            nav_changepickup.setVisible(TRUE);
+//                            navigationViewp.getMenu().setGroupVisible(R.id.grp11a,true);
+//
+//                        }
                         MenuItem nav_service = menu.findItem(R.id.nav_customer);
                         nav_service.setTitle(Constants.SERVICE_NUMBER);
 
@@ -385,6 +399,23 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
                                 finish();
                             }
                         });
+
+//                        MenuItem changepickup = menu.findItem(R.id.changepickup);
+//                        final DrawerLayout drawerq = findViewById(R.id.drawer_layout);
+//                        changepickup.getActionView().findViewById(R.id.changepickupdelivery).setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                //Bundle params = new Bundle();
+//
+//                                mFirebaseAnalytics.logEvent("navdrawer_Changepickup", params);
+//
+//                                startActivity(new Intent(Barcode.this, MainActivity.class)
+//                                        .putExtra("action_changepickup", true));
+//                                drawerq.closeDrawer(GravityCompat.START);
+//                                finish();
+//                            }
+//                        });
+
                         Toolbar toolbar = findViewById(R.id.toolbar);
                         Menu menuBar = toolbar.getMenu();
 
@@ -500,7 +531,11 @@ public class Barcode extends AppCompatActivity implements ZXingScannerView.Resul
             mFirebaseAnalytics.logEvent("navdrawer_SHOPBYLIST", params);
             Intent i = new Intent(this, ActivityShopList.class);
             someActivityResultLauncher.launch(i);
-        } else if (id == R.id.nav_locations) {
+        } else if (id == R.id.nav_shopbybrand) {
+            mFirebaseAnalytics.logEvent("navdrawer_SHOPBRAND", params);
+            Intent i = new Intent(this, ActivityShopBrand.class);
+            someActivityResultLauncher.launch(i);
+        }else if (id == R.id.nav_locations) {
             mFirebaseAnalytics.logEvent("navdrawer_OURLOCATIONS", params);
             startActivity(new Intent(Barcode.this, MainActivity.class)
                     .putExtra("nav_locations_barcode", true));

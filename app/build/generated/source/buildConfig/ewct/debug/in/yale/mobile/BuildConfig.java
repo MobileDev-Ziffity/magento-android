@@ -8,8 +8,8 @@ public final class BuildConfig {
   public static final String APPLICATION_ID = "in.ewct.mobile";
   public static final String BUILD_TYPE = "debug";
   public static final String FLAVOR = "ewct";
-  public static final int VERSION_CODE = 49;
-  public static final String VERSION_NAME = "1.44";
+  public static final int VERSION_CODE = 54;
+  public static final String VERSION_NAME = "1.50";
   // Field from product flavor: ewct
   public static final String BASE_URL = "https://www.ew-ct.com/";
   // Field from product flavor: ewct

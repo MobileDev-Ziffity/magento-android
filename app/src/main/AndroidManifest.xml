@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove"/>
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -24,12 +25,15 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:name=".MyApplication"
         android:usesCleartextTraffic="true" >
 
         <meta-data
             android:name="firebase_analytics_collection_enabled"
             android:value="@bool/FIREBASE_ANALYTICS_ENABLED" />
-
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="latest_product" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
@@ -39,6 +43,10 @@
             android:name=".ActivityList"
             android:configChanges="orientation|screenSize" />
         <activity
+            android:name=".ActivityShopBrand"
+            android:configChanges="orientation|screenSize" />
+
+        <activity
             android:name=".Barcode"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -46,7 +54,8 @@
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".SubmitPhoto" />
-        <activity android:name=".SplashScreen" >
+        <activity android:name=".SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,13 +80,11 @@
             android:screenOrientation="unspecified"
             android:theme="@style/Theme.Transparent.Permission"
             tools:replace="android:screenOrientation" />
-        <receiver android:name=".MyNotificationPublisher"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
+        <service
+            android:name = ".MyNotificationPublisher"
+            android:enabled = "true"
+            android:exported = "true" >
+        </service>
         <service
             android:name=".FirebaseMessageService"
             android:exported="false" >
@@ -85,6 +92,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
     </application>
 
 </manifest>

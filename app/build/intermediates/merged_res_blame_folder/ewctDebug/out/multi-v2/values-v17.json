@@ -4,7 +4,7 @@
             "outputFile": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/incremental/mergeEwctDebugResources/merged.dir/values-v17/values-v17.xml",
             "map": [
                 {
-                    "source": "/Users/prakash/.gradle/caches/transforms-3/585b23481780ad58b72cc18a0757622f/transformed/appcompat-1.4.1/res/values-v17/values-v17.xml",
+                    "source": "/Users/prakash/.gradle/caches/transforms-3/24a68feb0b2b7da0bc076e0e58f40770/transformed/appcompat-1.4.1/res/values-v17/values-v17.xml",
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,25,29,33,37,40,43,46,50,53,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

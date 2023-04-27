@@ -4,6 +4,15 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4ce27c59ff684332ebac5df001fafbcd/transformed/jetified-firebase-measurement-connector-impl-16.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4ce27c59ff684332ebac5df001fafbcd/transformed/jetified-firebase-measurement-connector-impl-16.0.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4ce27c59ff684332ebac5df001fafbcd/transformed/jetified-firebase-measurement-connector-impl-16.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/83c5bb8f5fc81f24005fc7a76ed694dc/transformed/jetified-firebase-measurement-connector-impl-16.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/83c5bb8f5fc81f24005fc7a76ed694dc/transformed/jetified-firebase-measurement-connector-impl-16.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/83c5bb8f5fc81f24005fc7a76ed694dc/transformed/jetified-firebase-measurement-connector-impl-16.0.1/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7af33711635ace0b978ca65a4bd789a1/transformed/jetified-firebase-measurement-connector-impl-16.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7af33711635ace0b978ca65a4bd789a1/transformed/jetified-firebase-measurement-connector-impl-16.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7af33711635ace0b978ca65a4bd789a1/transformed/jetified-firebase-measurement-connector-impl-16.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ccd2b3144e8190998494f36b4697a4e5/transformed/jetified-firebase-measurement-connector-impl-16.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ccd2b3144e8190998494f36b4697a4e5/transformed/jetified-firebase-measurement-connector-impl-16.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ccd2b3144e8190998494f36b4697a4e5/transformed/jetified-firebase-measurement-connector-impl-16.0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

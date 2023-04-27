@@ -37,7 +37,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$PROJECT_DIR$/../../../icon_24.png" />
+                                                <entry key="imagePath" value="$USER_HOME$/Downloads/ic_brand.png" />
                                                 <entry key="opacityPercent" value="60" />
                                               </map>
                                             </option>
@@ -71,8 +71,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$PROJECT_DIR$/../../../icon_24.png" />
-                                      <entry key="outputName" value="ic_call" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/ic_brand.png" />
+                                      <entry key="outputName" value="ic_brand" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
                                   </option>

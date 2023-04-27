@@ -4,8 +4,8 @@ android {
     compileSdkVersion 31
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
-        versionName "1.46"
+        targetSdkVersion 31
+        versionName "1.51"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -126,7 +126,7 @@ android {
         ewct {
             dimension "version"
             applicationId "in.ewct.mobile"
-            versionCode 51
+            versionCode 55
             resValue "string", "flavored_app_name", "EWCT"
             resValue "string", "flavored_splash_icon", "@drawable/ewcy_logo"
             resValue "dimen", "flavored_layout_width", "80dp"
@@ -143,7 +143,7 @@ android {
         yale {
             dimension "version"
             applicationId "in.yale.mobile"
-            versionCode 46
+            versionCode 51
             resValue "string", "flavored_app_name", "YALE"
             resValue "string", "flavored_splash_icon", "@drawable/yale_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -158,7 +158,7 @@ android {
         usesi {
             dimension "version"
             applicationId "in.usesi.mobile"
-            versionCode 49
+            versionCode 53
             resValue "string", "flavored_app_name", "USESI"
             resValue "string", "flavored_splash_icon", "@drawable/usesi_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -173,7 +173,7 @@ android {
         duplex {
             dimension "version"
             applicationId "in.duplex.mobile"
-            versionCode 51
+            versionCode 55
             resValue "string", "flavored_app_name", "DUPLEX"
             resValue "string", "flavored_splash_icon", "@drawable/duplex_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
@@ -188,7 +188,7 @@ android {
         ewne {
             dimension "version"
             applicationId "in.ewne.mobile"
-            versionCode 46
+            versionCode 50
             resValue "string", "flavored_app_name", "EWNE"
             resValue "string", "flavored_splash_icon", "@drawable/ewne_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -203,7 +203,7 @@ android {
         hz {
             dimension "version"
             applicationId "in.hz.mobile"
-            versionCode 50
+            versionCode 54
             resValue "string", "flavored_app_name", "HZ"
             resValue "string", "flavored_splash_icon", "@drawable/hz_logo"
             resValue "dimen", "flavored_layout_width", "65dp"
@@ -218,7 +218,7 @@ android {
         lade {
             dimension "version"
             applicationId "in.lade.mobile"
-            versionCode 49
+            versionCode 53
             resValue "string", "flavored_app_name", "LADE"
             resValue "string", "flavored_splash_icon", "@drawable/ld_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -233,7 +233,7 @@ android {
         maurice {
             dimension "version"
             applicationId "in.maurice.mobile"
-            versionCode 49
+            versionCode 54
             resValue "string", "flavored_app_name", "Maurice Electric"
             resValue "string", "flavored_splash_icon", "@drawable/maurice_logo"
             resValue "dimen", "flavored_layout_width", "90dp"
@@ -248,7 +248,7 @@ android {
         monarch {
             dimension "version"
             applicationId "in.monarch.mobile"
-            versionCode 50
+            versionCode 54
             resValue "string", "flavored_app_name", "MONARCH"
             resValue "string", "flavored_splash_icon", "@drawable/monarch_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -263,7 +263,7 @@ android {
         standard {
             dimension "version"
             applicationId "in.standard.mobile"
-            versionCode 51
+            versionCode 55
             resValue "string", "flavored_app_name", "STANDARD"
             resValue "string", "flavored_splash_icon", "@drawable/standard_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -278,7 +278,7 @@ android {
         usrs {
             dimension "version"
             applicationId "in.usrs.mobile"
-            versionCode 47
+            versionCode 51
             resValue "string", "flavored_app_name", "USRS"
             resValue "string", "flavored_splash_icon", "@drawable/usrs_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -293,7 +293,7 @@ android {
         walters {
             dimension "version"
             applicationId "in.walters.mobile"
-            versionCode 49
+            versionCode 53
             resValue "string", "flavored_app_name", "WALTERS"
             resValue "string", "flavored_splash_icon", "@drawable/walters_logo"
             resValue "dimen", "flavored_layout_width", "110dp"
@@ -308,7 +308,7 @@ android {
         franklingriffith {
             dimension "version"
             applicationId "in.franklingriffith.mobile"
-            versionCode 24
+            versionCode 28
             resValue "string", "flavored_app_name", "Franklin Griffith"
             resValue "string", "flavored_splash_icon", "@drawable/franklingriffith_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
@@ -323,12 +323,12 @@ android {
         mainelectric {
             dimension "version"
             applicationId "in.mainelectric.mobile"
-            versionCode 25
+            versionCode 28
             resValue "string", "flavored_app_name", "Main Electric"
             resValue "string", "flavored_splash_icon", "@drawable/mainelectric_logo"
             resValue "dimen", "flavored_layout_width", "120dp"
             resValue "dimen", "flavored_layout_height", "30dp"
-            buildConfigField "String", "BASE_URL", "\"https://www.mainelectricsupplyco.com/\""
+            buildConfigField "String", "BASE_URL", "\"https://mainelectricsupplyco.com/\""
             buildConfigField "String", "SERVICE_NUMBER", "\"609-900-7679\""
             buildConfigField "String", "LOCATION_URL", "\"https://www.mainelectricsupplyco.com/mainelectric-locations/\""
             buildConfigField "String", "DOTDIGITAL_APISPACEID", "\"b0583a3d-c4a4-42c3-97c0-ea759396b6fa\""

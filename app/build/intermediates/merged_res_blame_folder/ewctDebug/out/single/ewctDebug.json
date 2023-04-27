@@ -1,15 +1,399 @@
 [
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-nodpi_franklingriffith_logo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/franklingriffith_logo.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_feedback.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_feedback.png"
     },
     {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_pickupbutton.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/pickupbutton.xml"
+    },
+    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_cancel.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_cancel.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-xhdpi_ic_placeholder.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/mipmap-xhdpi/ic_placeholder.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_cam.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_cam.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_photo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_photo.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_curved_progress_bar.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/curved_progress_bar.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_barcode.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_barcode.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_customer.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_customer.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_shopping.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_shopping.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_pilers.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_pilers.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-nodpi_standard_logo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/standard_logo.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_barcode.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_barcode.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_help.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_help.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v21_maurice_logo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v21/maurice_logo.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_custom_dialog.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_sourcesanspro_bold.ttf.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/sourcesanspro_bold.ttf"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_minus_item.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_minus_item.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_login.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_login.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_placeholder_layout.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/placeholder_layout.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_employee.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_employee.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_search_white.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_search_white.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_submitphoto_roundcorner.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/submitphoto_roundcorner.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_menu.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_menu.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_call.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_call.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_roboto_regular.ttf.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/roboto_regular.ttf"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_menu.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_menu.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_count_item_bg.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/count_item_bg.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_bg_actionbar.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/bg_actionbar.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/menu_activity_main_drawer.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/menu/activity_main_drawer.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_roboto_medium.ttf.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/roboto_medium.ttf"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_barcode.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_barcode.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_cancel.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_cancel.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxxhdpi_ic_brand.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxxhdpi/ic_brand.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_addtocart_btn_bg.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/addtocart_btn_bg.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_right.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_right.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_print.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_print.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_catalog.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_catalog.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_location.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_location.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_drawer_change.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/drawer_change.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_help.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_help.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_search_white.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_search_white.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/xml_file_paths.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/xml/file_paths.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_menu.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_menu.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_cart_white.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_cart_white.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_help.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_help.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_cart_white.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_cart_white.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_catalog.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_catalog.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_cam.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_cam.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_roboto_black.ttf.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/roboto_black.ttf"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_call.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_call.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_alert_roundedcorner.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/alert_roundedcorner.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_employee.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_employee.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_minus_item_bg.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/minus_item_bg.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-mdpi_ic_placeholder.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/mipmap-mdpi/ic_placeholder.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-xhdpi_icon.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/ewct/res/mipmap-xhdpi/icon.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_brand.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_brand.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_customer.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_customer.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_print.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_print.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_cancel.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_cancel.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_search_white.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_search_white.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_location.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_location.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_activity_shop_list.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/activity_shop_list.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_badge_background.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/badge_background.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_cart_white.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_cart_white.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_menu.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_menu.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_branch.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_branch.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_usesilogin.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_usesilogin.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_search_alert.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/search_alert.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_photo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_photo.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_shop.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_shop.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_barcode.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_barcode.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-xxhdpi_ic_placeholder.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/mipmap-xxhdpi/ic_placeholder.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_nav_header_main.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/nav_header_main.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_locations.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_locations.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_pilers.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_pilers.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_list.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_list.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_cam.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_cam.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_photo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_photo.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_cancel.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_cancel.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_list.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_list.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-xxhdpi_icon.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/ewct/res/mipmap-xxhdpi/icon.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxxhdpi_ic_pilers.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxxhdpi/ic_pilers.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v21_hz_logo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v21/hz_logo.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_feedback.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_feedback.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_cancel_btn_bg.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/cancel_btn_bg.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_customer.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_customer.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ewne_logo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ewne_logo.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_add_item.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_add_item.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/anim_slide_in_right.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/anim/slide_in_right.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_minus_item.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_minus_item.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/menu_main.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/menu/main.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v24_monarch_logo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v24/monarch_logo.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-nodpi_ewcy_logo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/ewcy_logo.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_activity_main.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_shop.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_shop.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_activity_scanner_item.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/activity_scanner_item.xml"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-hdpi_icon.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/ewct/res/mipmap-hdpi/icon.png"
+    },
+    {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-nodpi_franklingriffith_logo.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/franklingriffith_logo.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_help.png.flat",
@@ -18,10 +402,6 @@
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_map_text_bg.xml.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/map_text_bg.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-xhdpi_ic_placeholder.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/mipmap-xhdpi/ic_placeholder.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_photo.png.flat",
@@ -44,36 +424,12 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/rounded_corner.xml"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_cam.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_cam.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_photo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_photo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_curved_progress_bar.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/curved_progress_bar.xml"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v24_hz_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v24/hz_logo.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_usesilogin.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_usesilogin.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_barcode.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_barcode.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_customer.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_customer.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_shopping.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_shopping.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_employee.png.flat",
@@ -88,72 +444,24 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_cam.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_pilers.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_pilers.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-nodpi_standard_logo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/standard_logo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_barcode.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_barcode.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_help.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_help.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_customer.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_customer.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v21_maurice_logo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v21/maurice_logo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_custom_dialog.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/custom_dialog.xml"
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_changepickup.xml.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/changepickup.xml"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_splash_screen.xml.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/splash_screen.xml"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_sourcesanspro_bold.ttf.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/sourcesanspro_bold.ttf"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-nodpi_monarch_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/monarch_logo.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_minus_item.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_minus_item.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_login.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_login.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-nodpi_mainelectric_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/mainelectric_logo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_placeholder_layout.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/placeholder_layout.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_employee.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_employee.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_search_white.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_search_white.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_submitphoto_roundcorner.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/submitphoto_roundcorner.xml"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_submit_a_photo.xml.flat",
@@ -164,14 +472,6 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/app_bar_main.xml"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_menu.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_menu.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_call.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_call.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v24_maurice_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v24/maurice_logo.png"
     },
@@ -180,28 +480,12 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_employee.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_roboto_regular.ttf.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/roboto_regular.ttf"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_count_item_bg.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/count_item_bg.xml"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_sourcesanspro_regular.ttf.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/sourcesanspro_regular.ttf"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_menu.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_menu.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_add_item.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_add_item.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_bg_actionbar.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/bg_actionbar.xml"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_pilers.png.flat",
@@ -212,68 +496,28 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_login.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/menu_activity_main_drawer.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/menu/activity_main_drawer.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_roboto_medium.ttf.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/roboto_medium.ttf"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_barcode.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_barcode.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_cancel.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_cancel.png"
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_brand.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_brand.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_shop.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_shop.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_addtocart_btn_bg.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/addtocart_btn_bg.xml"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_branch.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_branch.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_right.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_right.png"
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_brand.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_brand.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_content_main.xml.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/content_main.xml"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_print.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_print.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_plus_item_bg.xml.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/plus_item_bg.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_catalog.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_catalog.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_location.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_location.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_drawer_change.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/drawer_change.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_help.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_help.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_search_white.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_search_white.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_call.png.flat",
@@ -300,28 +544,12 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/action_item.xml"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/xml_file_paths.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/xml/file_paths.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_menu.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_menu.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v21_monarch_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v21/monarch_logo.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_usesilogin.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_usesilogin.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_cart_white.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_cart_white.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_help.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_help.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_right.png.flat",
@@ -336,10 +564,6 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/delivery_truck_icon.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_cart_white.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_cart_white.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_catalog.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_catalog.png"
     },
@@ -350,18 +574,6 @@
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_login.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_login.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_catalog.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_catalog.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_cam.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_cam.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_roboto_black.ttf.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/roboto_black.ttf"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-mdpi_icon.png.flat",
@@ -376,24 +588,12 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_pilers.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_call.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_call.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_alert_roundedcorner.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/alert_roundedcorner.xml"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_minus_item.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_minus_item.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_cart_item_rrl_bg.xml.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/cart_item_rrl_bg.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_employee.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_employee.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_list.png.flat",
@@ -404,60 +604,16 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/pickup_truck.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_minus_item_bg.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/minus_item_bg.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-mdpi_ic_placeholder.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/mipmap-mdpi/ic_placeholder.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v21_ld_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v21/ld_logo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-xhdpi_icon.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/ewct/res/mipmap-xhdpi/icon.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_customer.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_customer.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_location.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_location.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_print.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_print.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_cancel.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_cancel.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxxhdpi_ic_call.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxxhdpi/ic_call.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_search_white.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_search_white.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_location.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_location.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_activity_shop_list.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/activity_shop_list.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_badge_background.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/badge_background.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_cart_white.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_cart_white.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_search_white.png.flat",
@@ -472,14 +628,6 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_add_item.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_menu.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_menu.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_branch.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_branch.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_right.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_right.png"
     },
@@ -488,28 +636,12 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/duplex_logo.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_usesilogin.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_usesilogin.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_shopping.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_shopping.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_search_alert.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/search_alert.xml"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_usesi_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/usesi_logo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_photo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_photo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_shop.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_shop.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_switchauto_background.xml.flat",
@@ -528,44 +660,16 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/font/roboto_bold.ttf"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_barcode.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_barcode.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxxhdpi_monarch_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxxhdpi/monarch_logo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-xxhdpi_ic_placeholder.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/mipmap-xxhdpi/ic_placeholder.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_nav_header_main.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/nav_header_main.xml"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_activity_dbhandler.xml.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/activity_dbhandler.xml"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_locations.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_locations.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_pilers.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_pilers.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_list.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_list.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/anim_slide_out_left.xml.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/anim/slide_out_left.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_cam.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_cam.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_shopping.png.flat",
@@ -580,16 +684,8 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v24/ld_logo.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_photo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_photo.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_usrs_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/usrs_logo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_cancel.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_cancel.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/font_roboto_light.ttf.flat",
@@ -600,48 +696,16 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_print.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_list.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_list.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-xxhdpi_icon.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/ewct/res/mipmap-xxhdpi/icon.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_yale_logo.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/yale_logo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxxhdpi_ic_pilers.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxxhdpi/ic_pilers.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_edit_text_bg.xml.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/edit_text_bg.xml"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v21_hz_logo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v21/hz_logo.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_feedback.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_feedback.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_cancel_btn_bg.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/cancel_btn_bg.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_customer.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_action_customer.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-xxxhdpi_ic_placeholder.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/mipmap-xxxhdpi/ic_placeholder.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ewne_logo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ewne_logo.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_action_shop.png.flat",
@@ -652,28 +716,8 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_cart_white.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_add_item.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_add_item.png"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_location.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_location.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/anim_slide_in_right.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/anim/slide_in_right.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_minus_item.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_minus_item.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/menu_main.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/menu/main.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-v24_monarch_logo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-v24/monarch_logo.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_locations.png.flat",
@@ -684,16 +728,16 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_print.png"
     },
     {
+        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_brand.png.flat",
+        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_brand.png"
+    },
+    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_call.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_call.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_feedback.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xxhdpi/ic_action_feedback.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-nodpi_ewcy_logo.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-nodpi/ewcy_logo.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xxhdpi_ic_action_catalog.png.flat",
@@ -708,32 +752,16 @@
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_login.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_activity_main.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/activity_main.xml"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-mdpi_ic_add_item.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-mdpi/ic_add_item.png"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_action_shop.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-hdpi/ic_action_shop.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-xhdpi_ic_action_branch.png.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable-xhdpi/ic_action_branch.png"
     },
     {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/layout_activity_scanner_item.xml.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/layout/activity_scanner_item.xml"
-    },
-    {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable_deliver_item_bg.xml.flat",
         "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/main/res/drawable/deliver_item_bg.xml"
-    },
-    {
-        "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/mipmap-hdpi_icon.png.flat",
-        "source": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/src/ewct/res/mipmap-hdpi/icon.png"
     },
     {
         "merged": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/merged_res/ewctDebug/drawable-hdpi_ic_minus_item.png.flat",

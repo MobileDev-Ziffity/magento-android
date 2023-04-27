@@ -16,12 +16,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -117,6 +119,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -133,8 +136,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.service.controls.ControlsProviderService.TAG;
 import static in.yale.mobile.R.string.logOut;
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class MainActivity extends AppCompatActivity
 
@@ -143,14 +149,15 @@ public class MainActivity extends AppCompatActivity
 
     private WebView webLoad;
     private String search_Text = "";
-    private boolean loggedIn,employLoggedIn,cutomersupport,showbranch;
+    private boolean loggedIn,employLoggedIn,cutomersupport,showbranch,show_notify,show_delipickup;
     private TextView userName;
-    private String count;
+    private String count,fcmtoken;
     private ProgressDialog progressDialog;
     private String strLocationClicked = "notclicked";
     private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
     private String phone_number;
     private String currentVersionCode;
+    private String tokencheck;
     private String searchURL;
     private String latestVersion;
     private String mandatoryUpdate;
@@ -176,7 +183,7 @@ public class MainActivity extends AppCompatActivity
     public ArrayList<ActivityList.mainaray> menulist;
     public ArrayList<ActivityList.mainaray> menulist1;
     public ArrayList<ActivityList.mainaray> menulist2;
-
+    public ArrayList<ActivityList.mainaray> menulist3;
     public RequestQueue req;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint({"JavascriptInterface", "ClickableViewAccessibility", "SetJavaScriptEnabled", "MissingPermission"})
@@ -196,18 +203,39 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if (!task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Check Google play services are updated", Toast.LENGTH_SHORT).show();
+                            Log.w(TAG, "getInstanceId failed", task.getException());
                             return;
                         }
 
                         // Get new Instance ID token
-                        String token = task.getResult().getToken();
+                         fcmtoken = task.getResult().getToken();
 
                         // Log and toast
-                        String msg = getString(R.string.msg_token_fmt, token);
-                        sendRegistrationToServer(msg);
+                       // String msg = getString(R.string.msg_token_fmt, token);
+
+
+                      //  Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
-                });
+                    });
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<String> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+//                            return;
+//                        }
+//
+//                        // Get new FCM registration token
+//                        String token = task.getResult();
+//
+//                        // Log and toast
+//                        String msg = getString(R.string.msg_token_fmt, token);
+//                        Log.d(TAG, msg);
+//                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+
 
         new GetVersionCode().execute();
         progressView = findViewById(R.id.progressBar);
@@ -225,7 +253,7 @@ public class MainActivity extends AppCompatActivity
         webLoad.getSettings().setUserAgentString("HTTP_MOBILEAPP");
 
         //end update
-        scheduleNotification(1000,1);
+
 
 
         cookieManager = CookieManager.getInstance();
@@ -249,7 +277,8 @@ public class MainActivity extends AppCompatActivity
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         }
 
-
+        NavigationView navigationViewp = findViewById(R.id.nav_view);
+      //  navigationViewp.getMenu().setGroupVisible(R.id.grp11a,false);
 
         webLoad.addJavascriptInterface(new WebAppInterface(), "StatusHandler");
         webLoad.addJavascriptInterface(new WebAppClickInterface(), "ClickHandler");
@@ -348,6 +377,7 @@ public class MainActivity extends AppCompatActivity
         menulist = new ArrayList<>();
         menulist1 = new ArrayList<>();
         menulist2 = new ArrayList<>();
+        menulist3 = new ArrayList<>();
         callshopbycategory();
         webLoad.setWebViewClient(new WebViewClient() {
 
@@ -458,11 +488,11 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 if (url.startsWith("share:")) {
-                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                     sharingIntent.setType("text/plain");
                     String shareBody = webLoad.getUrl();
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Product detail Page");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Product detail Page");
+                    sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                     startActivity(Intent.createChooser(sharingIntent, "Share via"));
                     return true;
                 }
@@ -493,6 +523,7 @@ public class MainActivity extends AppCompatActivity
             webLoad.loadDataWithBaseURL("", myvar, "text/html", "UTF-8", "");
         }
         callShopbyList();
+        callShopbybrand();
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         View logoView = toolbar.findViewById(R.id.logo);
@@ -549,34 +580,60 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         barcodeIntentListener(webLoad);
         packageName = getPackageNameToUse();
+
     }
-    private void scheduleNotification(long delay, int notificationId) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.activityResumed();
+    }
 
-                .setContentTitle("textTitle")
-                .setContentText("textContent")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setSmallIcon(R.drawable.franklingriffith_logo)
-                .setDefaults(Notification.DEFAULT_LIGHTS| Notification.DEFAULT_SOUND)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setAutoCancel(true);
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.activityPaused();
+        if (show_notify) {
+            if (loggedIn) {
+//                int value = Integer.parseInt(count);
+//                if (!(value >= 1)) {
+//
+//                } else {
+//                   // scheduleNotification();
+//                }
 
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent activity = PendingIntent.getActivity(this, notificationId, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        builder.setContentIntent(activity);
+            }
+        }
+    }
 
-        Notification notification = builder.build();
+    // Declare the launcher at the top of your Activity/Fragment:
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    // FCM SDK (and your app) can post notifications.
+                } else {
+                    // TODO: Inform user that that your app will not show notifications.
+                }
+            });
 
-        Intent notificationIntent = new Intent(this, MyNotificationPublisher.class);
-        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, notificationId);
-        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, notificationId, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        long futureInMillis = SystemClock.elapsedRealtime() + delay;
-        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
-        NotificationManagerCompat notificationManagerc = NotificationManagerCompat.from(this);
-        notificationManagerc.notify(9, builder.build());
+    private void scheduleNotification() {
+        Intent myIntent = new Intent(getApplicationContext() , MyNotificationPublisher.class ) ;
+        AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE ) ;
+        PendingIntent pendingIntent = PendingIntent. getService ( this, 0 , myIntent , 0 ) ;
+        Calendar calendar = Calendar.getInstance () ;
+//        calendar.set(Calendar.SECOND , 0 ) ;
+//        calendar.set(Calendar.MINUTE , 56 ) ;
+//        calendar.set(Calendar.HOUR_OF_DAY, 07 ) ;
+//        calendar.set(Calendar.AM_PM , Calendar.AM_PM ) ;
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 05);
+        calendar.set(Calendar.SECOND, 0);
+        //   calendar.add(Calendar.DAY_OF_MONTH , 1 ) ;
+        // calendar.getTimeInMillis()
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, pendingIntent);
+       // alarmManager.setRepeating(AlarmManager.RTC_WAKEUP , 1000, 1000, pendingIntent) ;
     }
     private void Dotdigital(String email) {
         FirebaseApp.initializeApp(this);
@@ -729,6 +786,12 @@ public class MainActivity extends AppCompatActivity
 
             webLoad.loadUrl(Constants.BASE_URL + "customer/account/login/");
 
+        }else if (getIntent().getBooleanExtra("action_changepickup", false)) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                webLoad.evaluateJavascript("(function() {  jQuery('.change-order-type').trigger('click'); })();", null);
+            }
+
         } else if (getIntent().getBooleanExtra("nav_locations_barcode", false)) {
 
             webLoad.loadUrl(Constants.LOCATION_URL);
@@ -817,7 +880,29 @@ public class MainActivity extends AppCompatActivity
 
         }
     }
+    private void callShopbybrand() {
+        Constants.apiCall = Boolean.TRUE;
+        if (Utils.checkInternet(MainActivity.this)) {
+            ApiTask apiTask = new ApiTask(this);
+            apiTask.setHttpType(ApiTask.HTTP_TYPE.GET);
+            apiTask.setParams(null,Constants.BASE_URL + Constants.SHOP_BY_BRAND);
+            apiTask.responseCallBack(new ApiTask.ResponseListener() {
+                @Override
+                public void jsonResponse(String result) {
+                    try {
+                        JSONObject object = new JSONObject(result);
+                    } catch (JSONException e) {
+                        NavigationView navigationView = findViewById(R.id.nav_view);
+                        Menu menu = navigationView.getMenu();
+                        MenuItem nav_shopbylist = menu.findItem(R.id.nav_shopbybrand);
+                        nav_shopbylist.setVisible(FALSE);
+                        //e.printStackTrace();
+                    } catch (Exception unused) { }
+                }
+            });
 
+        }
+    }
     private void getVersionInfo() {
         int currentVersion = -1;
         try {
@@ -842,7 +927,8 @@ public class MainActivity extends AppCompatActivity
             loggedIn = jsonObject.getBoolean("loggedIn");
             cutomersupport = jsonObject.getBoolean("show_customer_support");
             showbranch = jsonObject.getBoolean("show_branch");
-
+            show_notify = jsonObject.getBoolean("enable_abandoned_cart_notification");
+         //   show_delipickup = jsonObject.getBoolean("enable_delivery_pickup_menu");
 
             if(jsonObject.has("email")){
                 Dotdigital(jsonObject.getString("email"));
@@ -861,7 +947,9 @@ public class MainActivity extends AppCompatActivity
             String city_name = address.getString("city");
 
             String state_name = address.getString("state");
-
+            if(jsonObject.has("android_token")) {
+                 tokencheck = jsonObject.getString("android_token");
+            }
             NavigationView navigationView = findViewById(R.id.nav_view);
             Menu menu = navigationView.getMenu();
 
@@ -889,6 +977,25 @@ public class MainActivity extends AppCompatActivity
                 MenuItem dd = menud.findItem(R.id.nav_city);
                 dd.setVisible(FALSE);
             }
+            if (loggedIn) {
+                if(fcmtoken.equals(tokencheck) ) {
+
+                }else{
+                    String tkn = "require(['Usesi_PushNotifier/js/fcmToken'],  function(fcmToken) { fcmToken.update('" + fcmtoken + "','android'); });";
+                    // webLoad.evaluateJavascript("$('.text-uppercase').html('gg');", null);
+                    webLoad.evaluateJavascript(tkn, null);
+                }
+               // Log.d(TAG, msg);
+            }
+//            if(show_delipickup) {
+//                NavigationView navigationViewp = findViewById(R.id.nav_view);
+//
+//                Menu menup = navigationViewp.getMenu();
+//                MenuItem nav_changepickup = menup.findItem(R.id.changepickup);
+//                nav_changepickup.setVisible(TRUE);
+//                navigationViewp.getMenu().setGroupVisible(R.id.grp11a,true);
+//
+//            }
 
             MenuItem nav_service = menu.findItem(R.id.nav_customer);
             nav_service.setTitle(Constants.SERVICE_NUMBER);
@@ -913,6 +1020,23 @@ public class MainActivity extends AppCompatActivity
                     drawer.closeDrawer(GravityCompat.START);
                 }
             });
+
+//            MenuItem changepickup = menu.findItem(R.id.changepickup);
+//            final DrawerLayout drawerq = findViewById(R.id.drawer_layout);
+//            changepickup.getActionView().findViewById(R.id.changepickupdelivery).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    //Bundle params = new Bundle();
+//
+//                    mFirebaseAnalytics.logEvent("navdrawer_Changepickup", params);
+//
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//                        webLoad.evaluateJavascript("(function() {  jQuery('#change-order-type-mobile').trigger('click'); })();", null);
+//                    }
+//                    drawerq.closeDrawer(GravityCompat.START);
+//                }
+//            });
+
             Toolbar toolbar = findViewById(R.id.toolbar);
             Menu menuBar = toolbar.getMenu();
 
@@ -939,7 +1063,12 @@ public class MainActivity extends AppCompatActivity
             }
 
             if (loggedIn) {
+
                 String profileName = jsonObject.getString("name");
+                SharedPreferences preferences = getApplicationContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("username", profileName);
+                editor.commit();
                 View header = navigationView.getHeaderView(0);
                 userName = header.findViewById(R.id.textView);
                 userName.setText(profileName.toUpperCase());
@@ -1211,18 +1340,23 @@ public class MainActivity extends AppCompatActivity
             i.putExtra("mylist",menulist);
             i.putExtra("mylist1",menulist1);
             i.putExtra("mylist2",menulist2);
-
+            i.putExtra("mylist3",menulist3);
            // startActivityForResult(i, 2);
             someActivityResultLauncher.launch(i);
         } else if (id == R.id.nav_shopbylist) {
             mFirebaseAnalytics.logEvent("navdrawer_SHOPBYLIST", params);
             Intent i = new Intent(this, ActivityShopList.class);
-         //   startActivityForResult(i, 3);
             someActivityResultLauncher.launch(i);
-        } else if (id == R.id.nav_locations) {
+        }else if (id == R.id.nav_shopbybrand) {
+            mFirebaseAnalytics.logEvent("navdrawer_SHOPBRAND", params);
+            Intent i = new Intent(this, ActivityShopBrand.class);
+            someActivityResultLauncher.launch(i);
+        }
+        else if (id == R.id.nav_locations) {
             mFirebaseAnalytics.logEvent("navdrawer_OURLOCATIONS", params);
             webLoad.loadUrl(Constants.LOCATION_URL);
-        } else if (id == R.id.nav_list) {
+        }
+        else if (id == R.id.nav_list) {
             mFirebaseAnalytics.logEvent("navdrawer_YOURLIST", params);
             if (employLoggedIn || loggedIn)
                 webLoad.loadUrl(Constants.BASE_URL + "wishlists");
@@ -1382,6 +1516,7 @@ public class MainActivity extends AppCompatActivity
                             i.putExtra("mylist",menulist);
                             i.putExtra("mylist1",menulist1);
                             i.putExtra("mylist2",menulist2);
+                            i.putExtra("mylist3",menulist3);
                             someActivityResultLauncher.launch(i);
                           //  startActivityForResult(i, 2);
                         }else if ("ShopByList".equals(object.getString("Event")))
@@ -1418,6 +1553,7 @@ public class MainActivity extends AppCompatActivity
         menulist.clear();
         menulist1.clear();
         menulist2.clear();
+        menulist3.clear();
         String OB_Urla = Constants.BASE_URL + Constants.CATEGORY_URL;
         //  Log.d("OB_Urla",OB_Urla );
 
@@ -1475,15 +1611,32 @@ public class MainActivity extends AppCompatActivity
                                         String p3 = le3.getString("parent_id");
                                         String id3 = le3.getString("id");
                                         String chy2 = "";
-                                        // JSONArray lev2 = new JSONArray();
+                                         JSONArray lev3 = new JSONArray();
                                         String idddd1 = le3.optString("child");
                                         if(idddd1 != ""){
                                             chy2 = "true";
-                                            // lev2 = le3.getJSONArray("child");
+                                             lev3 = le3.getJSONArray("child");
                                         }else{
                                             chy2 = "false";
                                         }
                                         menulist2.add(new ActivityList.mainaray(l3, v3, p3, id3, chy2));
+                                        for(int iiii = 0; iiii < lev3.length(); iiii++) {
+                                            JSONObject le4 = lev3.getJSONObject(iiii);
+                                            String l4 = le4.getString("label");
+                                            String v4 = le4.getString("value");
+                                            String p4 = le4.getString("parent_id");
+                                            String id4 = le4.getString("id");
+                                            String chy3 = "";
+                                            //  JSONArray lev3 = new JSONArray();
+                                            String idddd2 = le4.optString("child");
+                                            if(idddd2 != ""){
+                                                chy3 = "true";
+                                                //   lev3 = le3.getJSONArray("child");
+                                            }else{
+                                                chy3 = "false";
+                                            }
+                                            menulist3.add(new ActivityList.mainaray(l4, v4, p4, id4, chy3));
+                                        }
                                     }
 
                                 }

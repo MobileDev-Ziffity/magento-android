@@ -20,6 +20,15 @@
             app:actionLayout="@layout/drawer_change" />
     </group>
 
+<!--        <group android:id="@+id/grp11a" android:checkableBehavior="single">-->
+<!--            <item-->
+<!--                android:id="@+id/changepickup"-->
+<!--                android:title=""-->
+<!--                app:actionLayout="@layout/changepickup"-->
+<!--                />-->
+
+
+<!--        </group>-->
 
     <group android:id="@+id/grp11" android:checkableBehavior="single">
         <item
@@ -34,7 +43,12 @@
             android:icon="@drawable/ic_action_shop"
             android:title="SHOP BY LIST" />
      </group>
-
+        <group android:id="@+id/grp13a" android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_shopbybrand"
+                android:icon="@drawable/ic_brand"
+                android:title="SHOP BY BRAND" />
+        </group>
 
 
     <group android:id="@+id/grp9" android:checkableBehavior="single">

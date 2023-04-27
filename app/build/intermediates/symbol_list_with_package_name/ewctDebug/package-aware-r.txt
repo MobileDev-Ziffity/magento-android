@@ -1483,6 +1483,7 @@ drawable ic_action_shop
 drawable ic_action_shopping
 drawable ic_action_usesilogin
 drawable ic_add_item
+drawable ic_brand
 drawable ic_calendar_black_24dp
 drawable ic_call
 drawable ic_cam
@@ -1533,6 +1534,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable pickup_truck
+drawable pickupbutton
 drawable plus_item_bg
 drawable rounded_corner
 drawable search_alert
@@ -1657,6 +1659,7 @@ id center_horizontal
 id center_vertical
 id chains
 id changeBranch
+id changepickupdelivery
 id checkbox
 id checked
 id chip
@@ -1730,6 +1733,7 @@ id grp10
 id grp11
 id grp12
 id grp13
+id grp13a
 id grp14
 id grp3
 id grp4
@@ -1823,7 +1827,9 @@ id nav_locations
 id nav_login
 id nav_photo
 id nav_service
+id nav_shopbybrand
 id nav_shopbylist
+id nav_ver
 id nav_view
 id navigation_header_container
 id never
@@ -2078,6 +2084,7 @@ layout app_bar_main
 layout badge_background
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
+layout changepickup
 layout content_main
 layout custom_dialog
 layout design_bottom_navigation_item

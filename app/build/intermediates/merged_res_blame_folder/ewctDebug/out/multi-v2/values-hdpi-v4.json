@@ -4,7 +4,17 @@
             "outputFile": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/incremental/mergeEwctDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "/Users/prakash/.gradle/caches/transforms-3/585b23481780ad58b72cc18a0757622f/transformed/appcompat-1.4.1/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "source": "/Users/prakash/.gradle/caches/transforms-3/cf635f18cac9c2de87762c96ef8d0b3c/transformed/jetified-core-1.9.8/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,113",
+                        "endColumns": "57,55",
+                        "endOffsets": "108,164"
+                    }
+                },
+                {
+                    "source": "/Users/prakash/.gradle/caches/transforms-3/24a68feb0b2b7da0bc076e0e58f40770/transformed/appcompat-1.4.1/res/values-hdpi-v4/values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -20,16 +30,6 @@
                         "endLines": "8",
                         "endColumns": "13",
                         "endOffsets": "441"
-                    }
-                },
-                {
-                    "source": "/Users/prakash/.gradle/caches/transforms-3/4c8fb78cf1433d2846e20810995505ab/transformed/jetified-core-1.9.8/res/values-hdpi-v4/values-hdpi-v4.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,113",
-                        "endColumns": "57,55",
-                        "endOffsets": "108,164"
                     }
                 }
             ]

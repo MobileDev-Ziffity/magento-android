@@ -4,6 +4,15 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d78eccddf908a8c8d3f1e7eaaf5b2a11/transformed/jetified-firebase-analytics-impl-16.1.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d78eccddf908a8c8d3f1e7eaaf5b2a11/transformed/jetified-firebase-analytics-impl-16.1.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d78eccddf908a8c8d3f1e7eaaf5b2a11/transformed/jetified-firebase-analytics-impl-16.1.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/670d0615c57a02ad0e09d6e27f9889f8/transformed/jetified-firebase-analytics-impl-16.1.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/670d0615c57a02ad0e09d6e27f9889f8/transformed/jetified-firebase-analytics-impl-16.1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/670d0615c57a02ad0e09d6e27f9889f8/transformed/jetified-firebase-analytics-impl-16.1.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9894c3253b11f403f482f4451fa4254e/transformed/jetified-firebase-analytics-impl-16.1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9894c3253b11f403f482f4451fa4254e/transformed/jetified-firebase-analytics-impl-16.1.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9894c3253b11f403f482f4451fa4254e/transformed/jetified-firebase-analytics-impl-16.1.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bff5fda2d8c7e6cf00eb2faf45f838e4/transformed/jetified-firebase-analytics-impl-16.1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bff5fda2d8c7e6cf00eb2faf45f838e4/transformed/jetified-firebase-analytics-impl-16.1.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bff5fda2d8c7e6cf00eb2faf45f838e4/transformed/jetified-firebase-analytics-impl-16.1.1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

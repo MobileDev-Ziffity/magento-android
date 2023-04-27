@@ -43,6 +43,7 @@ public class ActivityList extends AppCompatActivity {
     public ArrayList<mainaray> menulist  = new ArrayList<>();
     public ArrayList<mainaray> menulist1 = new ArrayList<>();
     public ArrayList<mainaray> menulist2 = new ArrayList<>();
+    public ArrayList<mainaray> menulist3 = new ArrayList<>();
     private List<Values> listValues;
 
     private List<String> listSingleData;
@@ -87,13 +88,14 @@ public class ActivityList extends AppCompatActivity {
         menulist = (ArrayList<mainaray>) getIntent().getSerializableExtra("mylist");
         menulist1 = (ArrayList<mainaray>) getIntent().getSerializableExtra("mylist1");
         menulist2 = (ArrayList<mainaray>) getIntent().getSerializableExtra("mylist2");
+        menulist3 = (ArrayList<mainaray>) getIntent().getSerializableExtra("mylist3");
 
         shimmerFrameLayout = findViewById(R.id.shimmer);
         recyclerView = findViewById(R.id.listView);
         txtTitle = findViewById(R.id.txtTitle);
         txtTitle.setText("Shop By Category");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapterCategory = new AdapterCategory(ActivityList.this, menulist,menulist1,menulist2);
+        adapterCategory = new AdapterCategory(ActivityList.this, menulist,menulist1,menulist2,menulist3);
 //new
         shimmerFrameLayout.stopShimmerAnimation();
         shimmerFrameLayout.setVisibility(View.GONE);
@@ -125,6 +127,7 @@ public class ActivityList extends AppCompatActivity {
         menulist  = new ArrayList<>();
         menulist1  = new ArrayList<>();
         menulist2  = new ArrayList<>();
+        menulist3  = new ArrayList<>();
         String OB_Urla = Constants.BASE_URL + Constants.CATEGORY_URL;
         //  Log.d("OB_Urla",OB_Urla );
 
@@ -182,22 +185,40 @@ public class ActivityList extends AppCompatActivity {
                                         String p3 = le3.getString("parent_id");
                                         String id3 = le3.getString("id");
                                         String chy2 = "";
-                                       // JSONArray lev2 = new JSONArray();
+                                        JSONArray lev3 = new JSONArray();
                                         String idddd1 = le3.optString("child");
                                         if(idddd1 != ""){
                                             chy2 = "true";
-                                           // lev2 = le3.getJSONArray("child");
+                                            lev3 = le3.getJSONArray("child");
                                         }else{
                                             chy2 = "false";
                                         }
                                         menulist2.add(new mainaray(l3, v3, p3, id3, chy2));
+
+                                        for(int iiii = 0; iiii < lev3.length(); iiii++) {
+                                            JSONObject le4 = lev3.getJSONObject(iiii);
+                                            String l4 = le4.getString("label");
+                                            String v4 = le4.getString("value");
+                                            String p4 = le4.getString("parent_id");
+                                            String id4 = le4.getString("id");
+                                            String chy3 = "";
+                                          //  JSONArray lev3 = new JSONArray();
+                                            String idddd2 = le4.optString("child");
+                                            if(idddd2 != ""){
+                                                chy3 = "true";
+                                             //   lev3 = le3.getJSONArray("child");
+                                            }else{
+                                                chy3 = "false";
+                                            }
+                                            menulist3.add(new mainaray(l4, v4, p4, id4, chy3));
+                                        }
                                     }
 
                                 }
                             }
 //                            adapterCategory.setData(listSingleData);
 //                    admenulist1apterCategory.setAllValues(listValues);
-                            adapterCategory = new AdapterCategory(ActivityList.this, menulist,menulist1,menulist2);
+                            adapterCategory = new AdapterCategory(ActivityList.this, menulist,menulist1,menulist2,menulist3);
 
                             shimmerFrameLayout.stopShimmerAnimation();
                     shimmerFrameLayout.setVisibility(View.GONE);

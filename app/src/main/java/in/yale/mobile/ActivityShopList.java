@@ -50,6 +50,8 @@ public class ActivityShopList extends AppCompatActivity {
         shimmerFrameLayout = findViewById(R.id.shimmer);
         final RecyclerView recyclerView = findViewById(R.id.listView);
         TextView txtTitle = findViewById(R.id.txtTitle);
+        txtTitle.setText("Shop by List");
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapterShoobyList = new AdapterShoobyList(this);
         findViewById(R.id.btnClose).setOnClickListener(new View.OnClickListener() {

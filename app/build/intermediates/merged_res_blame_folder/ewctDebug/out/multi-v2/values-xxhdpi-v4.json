@@ -4,7 +4,7 @@
             "outputFile": "/Users/prakash/Desktop/ziffity/Development/magento-android/app/build/intermediates/incremental/mergeEwctDebugResources/merged.dir/values-xxhdpi-v4/values-xxhdpi-v4.xml",
             "map": [
                 {
-                    "source": "/Users/prakash/.gradle/caches/transforms-3/4c8fb78cf1433d2846e20810995505ab/transformed/jetified-core-1.9.8/res/values-xxhdpi-v4/values-xxhdpi-v4.xml",
+                    "source": "/Users/prakash/.gradle/caches/transforms-3/cf635f18cac9c2de87762c96ef8d0b3c/transformed/jetified-core-1.9.8/res/values-xxhdpi-v4/values-xxhdpi-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
