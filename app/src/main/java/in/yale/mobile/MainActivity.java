@@ -958,7 +958,6 @@ public class MainActivity extends AppCompatActivity
             String reldease =  "Version: " + release;
             MenuItem nav_ver = menu.findItem(R.id.nav_ver);
             nav_ver.setTitle(reldease);
-
 //            MenuItem nav_contact = menu.findItem(R.id.nav_contact);
 //            nav_contact.setTitle(phone_number);
             if(!cutomersupport) {
